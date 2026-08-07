@@ -875,3 +875,22 @@ function updateActiveNav() {
 window.addEventListener("scroll", updateActiveNav);
 
 window.addEventListener("load", updateActiveNav);
+
+
+
+/* ==========================================
+   MOBILE NAV CLICK
+========================================== */
+
+document.querySelectorAll(".bottom-nav-item").forEach(item => {
+
+    item.addEventListener("click", function () {
+
+        document.querySelectorAll(".bottom-nav-item")
+        .forEach(nav => nav.classList.remove("active"));
+
+        this.classList.add("active");
+
+    });
+
+});
