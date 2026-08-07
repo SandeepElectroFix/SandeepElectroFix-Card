@@ -345,3 +345,48 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 
+/* Gallery */
+
+const images=document.querySelectorAll(".gallery-grid img");
+
+const lightbox=document.getElementById("lightbox");
+
+const lightboxImage=document.getElementById("lightboxImage");
+
+const closeLightbox=document.getElementById("closeLightbox");
+
+images.forEach(img=>{
+
+img.onclick=()=>{
+
+lightbox.style.display="flex";
+
+lightboxImage.src=img.src;
+
+}
+
+});
+
+if(closeLightbox){
+
+closeLightbox.onclick=()=>{
+
+lightbox.style.display="none";
+
+}
+
+}
+
+if(lightbox){
+
+lightbox.onclick=(e)=>{
+
+if(e.target===lightbox){
+
+lightbox.style.display="none";
+
+}
+
+}
+
+}
