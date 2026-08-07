@@ -309,3 +309,39 @@ lastTouchEnd=now;
 ========================================== */
 
 console.log("Sandeep ElectroFix Card v1.0 Loaded");
+
+
+
+
+/* ==========================================
+   FEATURE TOGGLE SYSTEM
+========================================== */
+
+function toggleSection(id, enabled) {
+
+    const section = document.getElementById(id);
+
+    if (!section) return;
+
+    section.style.display = enabled ? "" : "none";
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    toggleSection("gallery", CONFIG.gallery);
+
+    toggleSection("reviews", CONFIG.reviews);
+
+    toggleSection("google-maps", CONFIG.googleMaps);
+
+    toggleSection("youtube", CONFIG.youtube);
+
+    toggleSection("faq", CONFIG.faq);
+
+    toggleSection("offers", CONFIG.offers);
+
+    toggleSection("contact-form", CONFIG.contactForm);
+
+});
+
+
