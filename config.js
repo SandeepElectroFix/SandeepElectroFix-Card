@@ -7,9 +7,9 @@ const CONFIG = {
 
   gallery: true,
 
-  reviews: true,
+  reviews: false,
 
-  googleMaps: true,
+  googleMaps: false,
 
   youtube: true,
 
