@@ -736,55 +736,92 @@ fetch("data/faq.json")
 
 });
 /* ==========================================
-   THEME TOGGLE
+   THEME TOGGLE + SAVE USER PREFERENCE
 ========================================== */
 
 const themeToggle = document.getElementById("themeToggle");
+
+function applyTheme(theme) {
+
+    if (theme === "light") {
+
+        document.body.classList.add("light-theme");
+
+    } else {
+
+        document.body.classList.remove("light-theme");
+
+    }
+
+    updateThemeButton();
+}
+
 
 function updateThemeButton() {
 
     if (!themeToggle) return;
 
-    if (document.body.classList.contains("light-theme")) {
+    const isLight =
+        document.body.classList.contains("light-theme");
 
-        themeToggle.innerHTML = "🌙 Dark Mode";
+    themeToggle.innerHTML =
+        isLight ? "🌙 Dark Mode" : "☀️ Light Mode";
+}
+
+
+/* ==========================================
+   LOAD SAVED THEME
+========================================== */
+
+const savedTheme =
+    localStorage.getItem("sandeepTheme");
+
+
+if (CONFIG.darkMode !== false) {
+
+    if (savedTheme === "light") {
+
+        applyTheme("light");
 
     } else {
 
-        themeToggle.innerHTML = "☀️ Light Mode";
+        applyTheme("dark");
 
     }
 
-}
+} else {
 
-
-const savedTheme = localStorage.getItem("sandeepTheme");
-
-if (CONFIG.darkMode !== false && savedTheme === "light") {
-
-    document.body.classList.add("light-theme");
+    applyTheme("dark");
 
 }
 
 
-updateThemeButton();
-
+/* ==========================================
+   CHANGE THEME
+========================================== */
 
 if (themeToggle) {
 
     themeToggle.addEventListener("click", () => {
 
-        document.body.classList.toggle("light-theme");
-
         const isLight =
             document.body.classList.contains("light-theme");
 
+        const newTheme =
+            isLight ? "dark" : "light";
+
+
+        /* Save user's preference */
+
         localStorage.setItem(
             "sandeepTheme",
-            isLight ? "light" : "dark"
+            newTheme
         );
 
-        updateThemeButton();
+
+        /* Apply theme */
+
+        applyTheme(newTheme);
 
     });
 
