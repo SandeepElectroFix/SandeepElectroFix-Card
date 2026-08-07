@@ -22,5 +22,9 @@
   {
     "image": "assets/gallery/work6.jpg",
     "title": "Electrical Repair"
+  },
+  {
+    "image":"assets/gallery/work7.jpg",
+    "title":"New Project"
   }
 ]
