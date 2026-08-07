@@ -444,3 +444,52 @@ fetch("data/profile.json")
 .catch(error=>{
 console.log("Profile loading error",error);
 });
+/* ==========================================
+   LOAD SERVICES
+========================================== */
+
+fetch("data/services.json")
+
+.then(response => response.json())
+
+.then(services => {
+
+
+const container =
+document.getElementById("serviceContainer");
+
+
+if(container){
+
+
+services.forEach(service=>{
+
+
+container.innerHTML += `
+
+<div class="service-card">
+
+<div class="service-icon">
+${service.icon}
+</div>
+
+${service.name}
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+})
+
+.catch(error=>{
+
+console.log("Services loading error",error);
+
+});
