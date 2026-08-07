@@ -1124,3 +1124,34 @@ padding:12px;
 font-weight:600;
 
 }
+/* Dynamic Reviews */
+
+.review-grid{
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:20px;
+
+}
+
+.review-card{
+
+background:rgba(255,255,255,.08);
+
+padding:25px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+.rating{
+
+font-size:22px;
+
+margin-bottom:15px;
+
+}
