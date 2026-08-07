@@ -22,5 +22,7 @@ const CONFIG = {
   visitorCounter: true,
 
   darkMode: true
-
+ 
+  certificates: false,
+   
 };
