@@ -1313,3 +1313,9 @@ body.light-theme .theme-toggle {
     margin-left: auto;
     margin-right: auto;
 }
+/* Saved theme on initial page load */
+
+html.saved-light-theme body {
+    background: #f5f7fa;
+    color: #111827;
+}
