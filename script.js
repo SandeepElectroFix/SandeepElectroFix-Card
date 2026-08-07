@@ -349,7 +349,7 @@ window.addEventListener("DOMContentLoaded", () => {
     toggleSection("faq", CONFIG.faq);
 
     toggleSection("offers", CONFIG.offers);
-
+console.log("Contact Form:", CONFIG.contactForm);
     toggleSection("contact-form", CONFIG.contactForm);
 
 });
