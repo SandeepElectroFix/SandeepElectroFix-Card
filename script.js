@@ -390,3 +390,57 @@ lightbox.style.display="none";
 }
 
 }
+/* ==========================================
+   LOAD PROFILE DATA
+========================================== */
+
+fetch("data/profile.json")
+.then(response => response.json())
+.then(profile => {
+
+    const name = document.querySelector(".hero h1");
+    const tagline = document.querySelector(".tagline");
+    const location = document.querySelector(".location");
+
+    if(name){
+        name.innerHTML = profile.businessName;
+    }
+
+    if(tagline){
+        tagline.innerHTML = profile.tagline;
+    }
+
+    if(location){
+        location.innerHTML = "📍 " + profile.location;
+    }
+
+
+    // Update Title
+    document.title = profile.businessName + " | Digital Card";
+
+
+    // Phone Links
+    document.querySelectorAll(
+    'a[href^="tel:"]'
+    ).forEach(btn=>{
+
+        btn.href="tel:"+profile.phone;
+
+    });
+
+
+    // WhatsApp Links
+    document.querySelectorAll(
+    'a[href*="wa.me"]'
+    ).forEach(btn=>{
+
+        btn.href=
+        "https://wa.me/"+profile.whatsapp;
+
+    });
+
+
+})
+.catch(error=>{
+console.log("Profile loading error",error);
+});
