@@ -658,3 +658,171 @@ a{
 /* =========================================
    END
 ========================================= */
+
+
+/* ==========================================
+   BONUS UI
+========================================== */
+
+/* Toast */
+
+.toast{
+
+position:fixed;
+
+left:50%;
+
+bottom:25px;
+
+transform:translateX(-50%) translateY(30px);
+
+background:#111827;
+
+color:#fff;
+
+padding:14px 22px;
+
+border-radius:14px;
+
+font-size:15px;
+
+opacity:0;
+
+transition:.35s;
+
+z-index:9999;
+
+box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+}
+
+.toast.show{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+/* Ripple */
+
+.btn,
+.card{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.ripple{
+
+position:absolute;
+
+width:20px;
+
+height:20px;
+
+background:rgba(255,255,255,.45);
+
+border-radius:50%;
+
+transform:translate(-50%,-50%) scale(0);
+
+animation:ripple .6s linear;
+
+pointer-events:none;
+
+}
+
+@keyframes ripple{
+
+to{
+
+transform:translate(-50%,-50%) scale(15);
+
+opacity:0;
+
+}
+
+}
+
+/* Scroll Button */
+
+#topButton{
+
+position:fixed;
+
+right:20px;
+
+bottom:20px;
+
+width:50px;
+
+height:50px;
+
+border:none;
+
+border-radius:50%;
+
+background:#0ea5e9;
+
+color:#fff;
+
+font-size:20px;
+
+cursor:pointer;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.3s;
+
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+z-index:999;
+
+}
+
+#topButton.show{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+#topButton:hover{
+
+transform:translateY(-4px);
+
+}
+
+/* Animation */
+
+.card,
+.service-card{
+
+opacity:0;
+
+transform:translateY(35px);
+
+transition:.6s ease;
+
+}
+
+.card.visible,
+.service-card.visible{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
