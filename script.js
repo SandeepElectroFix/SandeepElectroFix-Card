@@ -826,3 +826,52 @@ if (themeToggle) {
     });
 
 }
+/* ==========================================
+   MOBILE NAV ACTIVE SECTION
+========================================== */
+
+const bottomNavItems =
+    document.querySelectorAll(".bottom-nav-item");
+
+const navSections = [
+    "top",
+    "services",
+    "gallery",
+    "contact-form"
+];
+
+function updateActiveNav() {
+
+    let currentSection = "top";
+
+    navSections.forEach(id => {
+
+        const section = document.getElementById(id);
+
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= 180) {
+            currentSection = id;
+        }
+
+    });
+
+    bottomNavItems.forEach(item => {
+
+        item.classList.remove("active");
+
+        const href = item.getAttribute("href");
+
+        if (href === "#" + currentSection) {
+            item.classList.add("active");
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", updateActiveNav);
+
+window.addEventListener("load", updateActiveNav);
