@@ -30,5 +30,10 @@
   {
     "icon": "🚨",
     "name": "Fault Finding"
+  },
+  {
+"icon":"🏢",
+"name":"Commercial Wiring"
   }
+  
 ]
