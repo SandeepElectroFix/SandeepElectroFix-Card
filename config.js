@@ -21,8 +21,9 @@ const CONFIG = {
 
   visitorCounter: true,
 
-  darkMode: true
+  darkMode: true,
  
   certificates: false,
-   
+
+   qrCode: true,
 };
