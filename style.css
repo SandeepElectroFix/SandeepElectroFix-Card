@@ -1495,3 +1495,27 @@ body.light-theme .theme-toggle {
     }
 
 }
+/* ==========================================
+   ACTIVE MOBILE NAV
+========================================== */
+
+@media (max-width: 768px) {
+
+    .bottom-nav-item {
+        transition: .25s ease;
+    }
+
+    .bottom-nav-item.active {
+        transform: translateY(-4px);
+        font-weight: 700;
+    }
+
+    .bottom-nav-item.active span {
+        transform: scale(1.15);
+    }
+
+    .bottom-nav-item.active small {
+        font-weight: 700;
+    }
+
+}
