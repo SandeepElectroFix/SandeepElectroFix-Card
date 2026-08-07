@@ -5,21 +5,21 @@
 
 const CONFIG = {
 
-  gallery: false,
+  gallery: true,
 
-  reviews: false,
+  reviews: true,
 
   googleMaps: true,
 
-  youtube: false,
+  youtube: true,
 
-  faq: false,
+  faq: true,
 
-  offers: false,
+  offers: true,
 
   contactForm: true,
 
-  visitorCounter: false,
+  visitorCounter: true,
 
   darkMode: true
 
