@@ -541,3 +541,62 @@ alt="${item.title}">
 console.log("Gallery loading error",error);
 
 });
+/* ==========================================
+   LOAD REVIEWS
+========================================== */
+
+fetch("data/reviews.json")
+
+.then(response => response.json())
+
+.then(reviews => {
+
+
+const container =
+document.getElementById("reviewContainer");
+
+
+if(container){
+
+
+reviews.forEach(item=>{
+
+
+container.innerHTML += `
+
+<div class="review-card">
+
+<div class="rating">
+${item.rating}
+</div>
+
+<p>
+${item.review}
+</p>
+
+<h4>
+- ${item.name}
+</h4>
+
+<small>
+${item.date}
+</small>
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+})
+
+.catch(error=>{
+
+console.log("Reviews loading error",error);
+
+});
