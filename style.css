@@ -1046,3 +1046,40 @@ color:#fff;
 cursor:pointer;
 
 }
+/* ==========================================
+GOOGLE MAPS
+========================================== */
+
+#google-maps{
+
+padding:60px 20px;
+
+text-align:center;
+
+}
+
+.map-text{
+
+margin:20px auto;
+
+max-width:600px;
+
+color:#cbd5e1;
+
+line-height:1.8;
+
+}
+
+.map-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-top:25px;
+
+}
