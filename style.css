@@ -1244,3 +1244,53 @@ resize:none;
     padding: 0 18px 18px;
     line-height: 1.7;
 }
+/* ==========================================
+   THEME TOGGLE BUTTON
+========================================== */
+
+.theme-toggle {
+    margin-top: 18px;
+    padding: 11px 18px;
+    border: 1px solid rgba(255,255,255,.20);
+    border-radius: 30px;
+    background: rgba(255,255,255,.10);
+    color: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   LIGHT THEME
+========================================== */
+
+body.light-theme {
+    background: #f5f7fa;
+    color: #111827;
+}
+
+body.light-theme .background-glow {
+    opacity: .25;
+}
+
+body.light-theme .card,
+body.light-theme .review-card,
+body.light-theme .service-card,
+body.light-theme .gallery-item,
+body.light-theme .faq-item {
+    background: rgba(255,255,255,.85);
+    border-color: rgba(0,0,0,.08);
+}
+
+body.light-theme .theme-toggle {
+    background: #111827;
+    color: #ffffff;
+    border-color: #111827;
+}
