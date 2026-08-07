@@ -493,3 +493,51 @@ ${service.name}
 console.log("Services loading error",error);
 
 });
+/* ==========================================
+   LOAD GALLERY
+========================================== */
+
+fetch("data/gallery.json")
+
+.then(response => response.json())
+
+.then(gallery => {
+
+
+const container =
+document.getElementById("galleryContainer");
+
+
+if(container){
+
+
+gallery.forEach(item=>{
+
+
+container.innerHTML += `
+
+<div class="gallery-item">
+
+<img src="${item.image}" 
+alt="${item.title}">
+
+<p>${item.title}</p>
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+})
+
+.catch(error=>{
+
+console.log("Gallery loading error",error);
+
+});
