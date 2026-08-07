@@ -1319,3 +1319,84 @@ html.saved-light-theme body {
     background: #f5f7fa;
     color: #111827;
 }
+/* ==========================================
+   SAVED LIGHT THEME - FULL WEBSITE
+========================================== */
+
+html.saved-light-theme body,
+body.light-theme {
+    background: #f5f7fa;
+    color: #111827;
+}
+
+/* Sections */
+
+html.saved-light-theme section,
+body.light-theme section {
+    color: #111827;
+}
+
+/* Cards */
+
+html.saved-light-theme .card,
+html.saved-light-theme .service-card,
+html.saved-light-theme .review-card,
+html.saved-light-theme .gallery-item,
+html.saved-light-theme .faq-item,
+body.light-theme .card,
+body.light-theme .service-card,
+body.light-theme .review-card,
+body.light-theme .gallery-item,
+body.light-theme .faq-item {
+    background: #ffffff;
+    color: #111827;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Paragraphs */
+
+html.saved-light-theme p,
+body.light-theme p {
+    color: #374151;
+}
+
+/* Headings */
+
+html.saved-light-theme h1,
+html.saved-light-theme h2,
+html.saved-light-theme h3,
+html.saved-light-theme h4,
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4 {
+    color: #111827;
+}
+
+/* Quote Form */
+
+html.saved-light-theme .quote-form input,
+html.saved-light-theme .quote-form select,
+html.saved-light-theme .quote-form textarea,
+body.light-theme .quote-form input,
+body.light-theme .quote-form select,
+body.light-theme .quote-form textarea {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #d1d5db;
+}
+
+/* FAQ */
+
+html.saved-light-theme .faq-question,
+body.light-theme .faq-question {
+    color: #111827;
+}
+
+/* Theme Button */
+
+html.saved-light-theme .theme-toggle,
+body.light-theme .theme-toggle {
+    background: #111827;
+    color: #ffffff;
+}
