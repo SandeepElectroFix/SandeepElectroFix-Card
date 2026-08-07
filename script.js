@@ -1,3 +1,13 @@
+console.log("Script Loaded");
+console.log(CONFIG);
+
+
+
+
+
+
+
+
 /* ==========================================
    SANDEEP ELECTROFIX CARD
    Version 1.0
