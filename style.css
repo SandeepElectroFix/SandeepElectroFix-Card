@@ -826,3 +826,80 @@ opacity:1;
 transform:translateY(0);
 
 }
+
+
+/* Gallery */
+
+.gallery{
+
+padding:60px 20px;
+
+}
+
+.gallery h2{
+
+text-align:center;
+
+font-size:30px;
+
+margin-bottom:10px;
+
+}
+
+.gallery-subtitle{
+
+text-align:center;
+
+color:#cbd5e1;
+
+margin-bottom:30px;
+
+}
+
+.gallery-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.gallery-grid img{
+
+width:100%;
+
+aspect-ratio:1/1;
+
+object-fit:cover;
+
+border-radius:18px;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.gallery-grid img:hover{
+
+transform:scale(1.04);
+
+}
+
+@media(min-width:768px){
+
+.gallery-grid{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+}
