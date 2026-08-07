@@ -1299,16 +1299,17 @@ body.light-theme .theme-toggle {
 ========================================== */
 
 #contact-form {
-    text-align: center;
+    width: 100%;
+    text-align: center !important;
 }
 
 #contact-form h2 {
-    text-align: center;
+    width: 100%;
+    text-align: center !important;
 }
 
 #contact-form .quote-form {
-    width: 100%;
     max-width: 500px;
-    margin: 30px auto;
-    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
 }
