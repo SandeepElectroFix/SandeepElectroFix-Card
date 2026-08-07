@@ -1294,3 +1294,21 @@ body.light-theme .theme-toggle {
     color: #ffffff;
     border-color: #111827;
 }
+/* ==========================================
+   REQUEST A QUOTE - CENTER ALIGN
+========================================== */
+
+#contact-form {
+    text-align: center;
+}
+
+#contact-form h2 {
+    text-align: center;
+}
+
+#contact-form .quote-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 30px auto;
+    text-align: left;
+}
