@@ -194,6 +194,14 @@ Welcome to <strong>Sandeep ElectroFix</strong>. We provide professional electric
 
 <script src="script.js"></script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js");
+  });
+}
+</script>
+    
 </body>
 
 </html>
