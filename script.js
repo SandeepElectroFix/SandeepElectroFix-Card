@@ -735,3 +735,57 @@ fetch("data/faq.json")
     console.log("FAQ loading error:", error);
 
 });
+/* ==========================================
+   THEME TOGGLE
+========================================== */
+
+const themeToggle = document.getElementById("themeToggle");
+
+function updateThemeButton() {
+
+    if (!themeToggle) return;
+
+    if (document.body.classList.contains("light-theme")) {
+
+        themeToggle.innerHTML = "🌙 Dark Mode";
+
+    } else {
+
+        themeToggle.innerHTML = "☀️ Light Mode";
+
+    }
+
+}
+
+
+const savedTheme = localStorage.getItem("sandeepTheme");
+
+if (CONFIG.darkMode !== false && savedTheme === "light") {
+
+    document.body.classList.add("light-theme");
+
+}
+
+
+updateThemeButton();
+
+
+if (themeToggle) {
+
+    themeToggle.addEventListener("click", () => {
+
+        document.body.classList.toggle("light-theme");
+
+        const isLight =
+            document.body.classList.contains("light-theme");
+
+        localStorage.setItem(
+            "sandeepTheme",
+            isLight ? "light" : "dark"
+        );
+
+        updateThemeButton();
+
+    });
+
+}
