@@ -1519,3 +1519,10 @@ body.light-theme .theme-toggle {
     }
 
 }
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html {
+    scroll-behavior: smooth;
+}
