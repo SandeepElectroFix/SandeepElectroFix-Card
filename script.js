@@ -600,3 +600,47 @@ ${item.date}
 console.log("Reviews loading error",error);
 
 });
+/* ==========================================
+   WHATSAPP QUOTE
+========================================== */
+
+function sendWhatsApp(){
+
+let name =
+document.getElementById("customerName").value;
+
+
+let phone =
+document.getElementById("customerPhone").value;
+
+
+let service =
+document.getElementById("serviceName").value;
+
+
+let message =
+document.getElementById("customerMessage").value;
+
+
+let text =
+
+`New Enquiry
+Name: ${name}
+Mobile: ${phone}
+Service: ${service}
+Message: ${message}`;
+
+
+let whatsapp =
+"919026036445";
+
+
+let url =
+"https://wa.me/"+whatsapp+
+"?text="+encodeURIComponent(text);
+
+
+window.open(url,"_blank");
+
+
+}
