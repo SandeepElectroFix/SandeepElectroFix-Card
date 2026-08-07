@@ -1,0 +1,660 @@
+/* =========================================
+   SANDEEP ELECTROFIX CARD
+   Version 1.0
+========================================= */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Reset */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:#08111f;
+
+color:#ffffff;
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+/* Animated Background */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:-250px;
+left:-250px;
+
+width:700px;
+height:700px;
+
+background:#0077ff;
+
+filter:blur(180px);
+
+opacity:.20;
+
+z-index:-2;
+
+animation:moveOne 18s linear infinite alternate;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+right:-250px;
+bottom:-250px;
+
+width:700px;
+height:700px;
+
+background:#00d4ff;
+
+filter:blur(180px);
+
+opacity:.18;
+
+z-index:-2;
+
+animation:moveTwo 18s linear infinite alternate;
+
+}
+
+/* Background Glow */
+
+.background-glow{
+
+position:fixed;
+
+inset:0;
+
+background:
+radial-gradient(circle at top,#1e3a8a22,transparent 45%),
+radial-gradient(circle at bottom,#06b6d422,transparent 45%);
+
+pointer-events:none;
+
+z-index:-1;
+
+}
+
+/* Hero */
+
+.hero{
+
+padding:70px 20px 40px;
+
+text-align:center;
+
+}
+
+/* Logo */
+
+.logo{
+
+width:120px;
+
+height:120px;
+
+border-radius:50%;
+
+background:#fff;
+
+padding:10px;
+
+box-shadow:
+0 0 30px rgba(0,153,255,.45);
+
+animation:float 4s ease-in-out infinite;
+
+}
+
+/* Business Name */
+
+.hero h1{
+
+font-size:34px;
+
+font-weight:800;
+
+margin-top:18px;
+
+letter-spacing:.5px;
+
+}
+
+/* Tagline */
+
+.tagline{
+
+margin-top:10px;
+
+font-size:17px;
+
+color:#cbd5e1;
+
+}
+
+/* Location */
+
+.location{
+
+margin-top:12px;
+
+font-size:15px;
+
+color:#8ec5ff;
+
+}
+
+/* Buttons */
+
+.hero-buttons{
+
+margin-top:28px;
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+text-decoration:none;
+
+padding:15px 26px;
+
+border-radius:16px;
+
+font-weight:600;
+
+transition:.35s;
+
+}
+
+.call-btn{
+
+background:#0ea5e9;
+
+color:#fff;
+
+}
+
+.whatsapp-btn{
+
+background:#22c55e;
+
+color:#fff;
+
+}
+
+.btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 10px 30px rgba(255,255,255,.12);
+
+}
+
+/* Animations */
+
+@keyframes float{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+
+}
+
+@keyframes moveOne{
+
+from{
+transform:translate(-40px,-20px);
+}
+
+to{
+transform:translate(80px,60px);
+}
+
+}
+
+@keyframes moveTwo{
+
+from{
+transform:translate(40px,20px);
+}
+
+to{
+transform:translate(-80px,-60px);
+}
+
+  }
+
+/* =========================================
+   QUICK ACTIONS
+========================================= */
+
+.quick-actions{
+
+padding:30px 20px 10px;
+
+}
+
+.quick-actions h2{
+
+text-align:center;
+
+font-size:28px;
+
+margin-bottom:25px;
+
+font-weight:700;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:16px;
+
+max-width:700px;
+
+margin:auto;
+
+}
+
+/* Card */
+
+.card{
+
+text-decoration:none;
+
+color:#ffffff;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.12);
+
+backdrop-filter:blur(16px);
+
+-webkit-backdrop-filter:blur(16px);
+
+border-radius:20px;
+
+padding:22px 15px;
+
+text-align:center;
+
+transition:.35s;
+
+box-shadow:0 10px 25px rgba(0,0,0,.20);
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+border-color:#00c8ff;
+
+box-shadow:0 15px 35px rgba(0,200,255,.30);
+
+}
+
+.card .icon{
+
+display:block;
+
+font-size:34px;
+
+margin-bottom:12px;
+
+}
+
+.card span:last-child{
+
+font-size:16px;
+
+font-weight:600;
+
+}
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.about{
+
+padding:55px 22px;
+
+max-width:850px;
+
+margin:auto;
+
+}
+
+.about h2{
+
+text-align:center;
+
+font-size:28px;
+
+margin-bottom:20px;
+
+}
+
+.about p{
+
+line-height:1.9;
+
+text-align:center;
+
+color:#d6d6d6;
+
+font-size:16px;
+
+}
+
+/* =========================================
+   SERVICES
+========================================= */
+
+.services{
+
+padding:50px 20px;
+
+}
+
+.services h2{
+
+text-align:center;
+
+font-size:28px;
+
+margin-bottom:25px;
+
+}
+
+.service-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:16px;
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.service-card{
+
+background:rgba(255,255,255,.07);
+
+border:1px solid rgba(255,255,255,.10);
+
+border-radius:18px;
+
+padding:22px;
+
+text-align:center;
+
+font-size:16px;
+
+font-weight:600;
+
+transition:.35s;
+
+}
+
+.service-card:hover{
+
+transform:translateY(-6px);
+
+background:rgba(0,170,255,.12);
+
+border-color:#00c8ff;
+
+}
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact{
+
+padding:55px 20px;
+
+text-align:center;
+
+}
+
+.contact h2{
+
+font-size:28px;
+
+margin-bottom:20px;
+
+}
+
+.contact p{
+
+margin:10px 0;
+
+color:#d8d8d8;
+
+}
+
+.contact-buttons{
+
+margin-top:25px;
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+
+padding:35px 20px;
+
+text-align:center;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+color:#94a3b8;
+
+font-size:14px;
+
+margin-top:30px;
+
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width:768px){
+
+.hero h1{
+font-size:30px;
+}
+
+.tagline{
+font-size:16px;
+}
+
+.location{
+font-size:14px;
+}
+
+.logo{
+width:100px;
+height:100px;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
+
+.service-grid{
+grid-template-columns:1fr;
+}
+
+.btn{
+width:100%;
+max-width:260px;
+text-align:center;
+}
+
+}
+
+@media (min-width:769px){
+
+.grid{
+grid-template-columns:repeat(5,1fr);
+}
+
+.service-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+.hero{
+padding-top:90px;
+}
+
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-track{
+background:#08111f;
+}
+
+::-webkit-scrollbar-thumb{
+background:#00b4ff;
+border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background:#38bdf8;
+}
+
+/* =========================================
+   SELECTION
+========================================= */
+
+::selection{
+background:#00b4ff;
+color:#fff;
+}
+
+/* =========================================
+   FADE-IN ANIMATION
+========================================= */
+
+.hero,
+.quick-actions,
+.about,
+.services,
+.contact,
+footer{
+
+animation:fadeUp .8s ease both;
+
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(35px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* =========================================
+   CARD ACTIVE EFFECT
+========================================= */
+
+.card:active,
+.service-card:active,
+.btn:active{
+
+transform:scale(.96);
+
+}
+
+/* =========================================
+   IMAGE RESPONSIVE
+========================================= */
+
+img{
+max-width:100%;
+display:block;
+}
+
+/* =========================================
+   LINKS
+========================================= */
+
+a{
+-webkit-tap-highlight-color:transparent;
+}
+
+/* =========================================
+   END
+========================================= */
