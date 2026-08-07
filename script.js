@@ -654,3 +654,84 @@ window.open(url,"_blank");
 
 
 }
+/* ==========================================
+   LOAD FAQ
+========================================== */
+
+fetch("data/faq.json")
+
+.then(response => response.json())
+
+.then(faqs => {
+
+    const container =
+        document.getElementById("faqContainer");
+
+    if (!container) return;
+
+    faqs.forEach(item => {
+
+        container.innerHTML += `
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+                ${item.question}
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>${item.answer}</p>
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    document
+    .querySelectorAll(".faq-question")
+    .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const answer =
+                button.nextElementSibling;
+
+            const isOpen =
+                answer.classList.contains("open");
+
+            document
+            .querySelectorAll(".faq-answer")
+            .forEach(item => {
+                item.classList.remove("open");
+            });
+
+            document
+            .querySelectorAll(".faq-question span")
+            .forEach(icon => {
+                icon.textContent = "+";
+            });
+
+            if (!isOpen) {
+
+                answer.classList.add("open");
+
+                button
+                .querySelector("span")
+                .textContent = "−";
+
+            }
+
+        });
+
+    });
+
+})
+
+.catch(error => {
+
+    console.log("FAQ loading error:", error);
+
+});
