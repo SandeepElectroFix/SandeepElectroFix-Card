@@ -723,99 +723,165 @@ if (getLocationBtn) {
    SEND QUOTE TO WHATSAPP
 ========================================== */
 
-if (sendQuoteBtn) {
+/* ==========================================
+   REQUEST A QUOTE
+   GOOGLE SHEET + WHATSAPP
+========================================== */
 
-    sendQuoteBtn.addEventListener("click", function () {
+function sendWhatsApp() {
 
+    const name =
+        document.getElementById("customerName").value.trim();
 
-        const name =
-            document
-            .getElementById("customerName")
-            .value
-            .trim();
+    const phone =
+        document.getElementById("customerPhone").value.trim();
 
+    const service =
+        document.getElementById("serviceName").value.trim();
 
-        const phone =
-            document
-            .getElementById("customerPhone")
-            .value
-            .trim();
+    const message =
+        document.getElementById("customerMessage").value.trim();
 
-
-        const service =
-            document
-            .getElementById("serviceName")
-            .value
-            .trim();
+    const location =
+        document.getElementById("customerLocation").value.trim();
 
 
-        const message =
-            document
-            .getElementById("customerMessage")
-            .value
-            .trim();
+    /* =========================
+       VALIDATION
+    ========================= */
+
+    if (!name) {
+        alert("Please enter your name.");
+        return;
+    }
+
+    if (!phone) {
+        alert("Please enter your mobile number.");
+        return;
+    }
+
+    if (!service) {
+        alert("Please select a service.");
+        return;
+    }
+
+    if (!location) {
+        alert("Please share your service location.");
+        return;
+    }
 
 
-        const location =
-            document
-            .getElementById("customerLocation")
-            .value
-            .trim();
+    /* =========================
+       DATA FOR GOOGLE SHEET
+    ========================= */
+
+    const enquiryData = {
+
+        name: name,
+
+        phone: phone,
+
+        service: service,
+
+        message: message,
+
+        location: location
+
+    };
 
 
-        /* ==================================
-           VALIDATION
-        ================================== */
+    /* =========================
+       GOOGLE APPS SCRIPT URL
+    ========================= */
+
+    const googleSheetURL =
+        "https://script.google.com/macros/s/AKfycbxShXAXNiKStkhDZLywJ4YeRVUJ2Ljv44qOjsofiVP27vArOk2OhiN1i4BXKwv21joF/exec";
 
 
-        if (!name) {
+    /* =========================
+       SAVE TO GOOGLE SHEET
+    ========================= */
 
-            alert("Please enter your name.");
+    fetch(googleSheetURL, {
 
-            document
-            .getElementById("customerName")
-            .focus();
+        method: "POST",
 
-            return;
-        }
+        mode: "no-cors",
 
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+        },
 
-        if (!phone) {
+        body: JSON.stringify(enquiryData)
 
-            alert("Please enter your mobile number.");
+    })
+    .then(() => {
 
-            document
-            .getElementById("customerPhone")
-            .focus();
+        console.log(
+            "Enquiry sent to Google Sheet"
+        );
 
-            return;
-        }
+    })
+    .catch(error => {
 
+        console.log(
+            "Google Sheet Error:",
+            error
+        );
 
-        if (!service) {
-
-            alert("Please select a service.");
-
-            document
-            .getElementById("serviceName")
-            .focus();
-
-            return;
-        }
+    });
 
 
-        if (!location) {
+    /* =========================
+       WHATSAPP MESSAGE
+    ========================= */
 
-            alert(
-                "Please share your service location."
-            );
+    const whatsappMessage =
 
-            document
-            .getElementById("customerLocation")
-            .focus();
+`🔔 *NEW SERVICE ENQUIRY*
 
-            return;
-        }
+👤 *Name:* ${name}
+
+📱 *Mobile:* ${phone}
+
+⚡ *Service:* ${service}
+
+📝 *Message:*
+${message || "No message provided"}
+
+📍 *Service Location:*
+${location}
+
+━━━━━━━━━━━━━━
+
+⚡ *Sandeep ElectroFix*
+Professional Electrical Services
+📍 Lucknow, Uttar Pradesh`;
+
+
+    const whatsappNumber =
+        "919026036445";
+
+
+    const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(
+            whatsappMessage
+        );
+
+
+    /* =========================
+       OPEN WHATSAPP
+    ========================= */
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
 
 
         /* ==================================
