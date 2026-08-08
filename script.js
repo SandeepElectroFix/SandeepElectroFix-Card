@@ -1,330 +1,42 @@
-console.log("Script Loaded");
-console.log(CONFIG);
-
-
-
-
-
-
+console.log("Sandeep ElectroFix Script Loaded");
+console.log("CONFIG:", CONFIG);
 
 
 /* ==========================================
-   SANDEEP ELECTROFIX CARD
-   Version 1.0
-========================================== */
-
-/* Share Button */
-
-const shareButton = document.getElementById("shareCard");
-
-if (shareButton) {
-
-shareButton.addEventListener("click", async (e) => {
-
-e.preventDefault();
-
-const shareData = {
-
-title: "Sandeep ElectroFix",
-
-text: "Professional Electrical Services in Lucknow",
-
-url: window.location.href
-
-};
-
-if (navigator.share) {
-
-try {
-
-await navigator.share(shareData);
-
-} catch (err) {
-
-console.log(err);
-
-}
-
-} else {
-
-navigator.clipboard.writeText(window.location.href);
-
-alert("Website link copied successfully.");
-
-}
-
-});
-
-}
-
-/* Save Contact */
-
-const saveButton = document.getElementById("saveContact");
-
-if (saveButton) {
-
-saveButton.addEventListener("click", function (e) {
-
-e.preventDefault();
-
-const vcard = `
-
-BEGIN:VCARD
-VERSION:3.0
-FN:Sandeep ElectroFix
-ORG:Sandeep ElectroFix
-TEL:+919026036445
-EMAIL:SandeepElectroFix@gmail.com
-URL:https://sandeepelectrofix.github.io
-END:VCARD
-
-`;
-
-const blob = new Blob([vcard], {
-
-type: "text/vcard"
-
-});
-
-const link = document.createElement("a");
-
-link.href = URL.createObjectURL(blob);
-
-link.download = "SandeepElectroFix.vcf";
-
-document.body.appendChild(link);
-
-link.click();
-
-document.body.removeChild(link);
-
-});
-
-}
-
-/* Page Loaded */
-
-window.addEventListener("load", () => {
-
-document.body.classList.add("loaded");
-
-});
-
-/* ==========================================
-   TOAST NOTIFICATION
+   HELPER
 ========================================== */
 
 function showToast(message) {
 
-const oldToast = document.querySelector(".toast");
+    const oldToast = document.querySelector(".toast");
 
-if (oldToast) oldToast.remove();
+    if (oldToast) oldToast.remove();
 
-const toast = document.createElement("div");
+    const toast = document.createElement("div");
 
-toast.className = "toast";
+    toast.className = "toast";
+    toast.textContent = message;
 
-toast.innerText = message;
-
-document.body.appendChild(toast);
-
-setTimeout(() => {
-    toast.classList.add("show");
-}, 100);
-
-setTimeout(() => {
-    toast.classList.remove("show");
+    document.body.appendChild(toast);
 
     setTimeout(() => {
-        toast.remove();
-    }, 300);
+        toast.classList.add("show");
+    }, 100);
 
-}, 2500);
+    setTimeout(() => {
 
+        toast.classList.remove("show");
+
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+
+    }, 2500);
 }
 
-/* ==========================================
-   RIPPLE EFFECT
-========================================== */
-
-document.querySelectorAll(".btn,.card").forEach(item => {
-
-item.addEventListener("click", function(e){
-
-const ripple = document.createElement("span");
-
-ripple.className = "ripple";
-
-const rect = this.getBoundingClientRect();
-
-ripple.style.left = (e.clientX - rect.left) + "px";
-ripple.style.top = (e.clientY - rect.top) + "px";
-
-this.appendChild(ripple);
-
-setTimeout(() => {
-
-ripple.remove();
-
-},600);
-
-});
-
-});
 
 /* ==========================================
-   SCROLL TO TOP BUTTON
-========================================== */
-
-const topButton = document.createElement("button");
-
-topButton.innerHTML = "⬆";
-
-topButton.id = "topButton";
-
-document.body.appendChild(topButton);
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>300){
-
-topButton.classList.add("show");
-
-}else{
-
-topButton.classList.remove("show");
-
-}
-
-});
-
-topButton.addEventListener("click",()=>{
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-});
-
-/* ==========================================
-   BUTTON FEEDBACK
-========================================== */
-
-document.querySelectorAll(".btn,.card").forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-if(button.id!=="shareCard" && button.id!=="saveContact"){
-
-showToast("Opening...");
-
-}
-
-});
-
-});
-
-/* ==========================================
-   INSTALL APP (PWA)
-========================================== */
-
-let deferredPrompt = null;
-
-window.addEventListener("beforeinstallprompt", (e) => {
-
-e.preventDefault();
-
-deferredPrompt = e;
-
-showToast("📱 App can be installed");
-
-});
-
-async function installApp(){
-
-if(!deferredPrompt) return;
-
-deferredPrompt.prompt();
-
-await deferredPrompt.userChoice;
-
-deferredPrompt=null;
-
-}
-
-/* ==========================================
-   CARD ENTRANCE ANIMATION
-========================================== */
-
-const observer = new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("visible");
-
-}
-
-});
-
-},{
-threshold:.15
-});
-
-document.querySelectorAll(".card,.service-card").forEach(item=>{
-
-observer.observe(item);
-
-});
-
-/* ==========================================
-   CURRENT YEAR
-========================================== */
-
-const footer=document.querySelector("footer p");
-
-if(footer){
-
-footer.innerHTML=`© ${new Date().getFullYear()} Sandeep ElectroFix`;
-
-}
-
-/* ==========================================
-   PREVENT DOUBLE TAP ZOOM
-========================================== */
-
-let lastTouchEnd=0;
-
-document.addEventListener("touchend",function(event){
-
-const now=(new Date()).getTime();
-
-if(now-lastTouchEnd<=300){
-
-event.preventDefault();
-
-}
-
-lastTouchEnd=now;
-
-},{passive:false});
-
-/* ==========================================
-   VERSION INFO
-========================================== */
-
-console.log("Sandeep ElectroFix Card v1.0 Loaded");
-
-
-
-
-/* ==========================================
-   FEATURE TOGGLE SYSTEM
+   FEATURE TOGGLE
 ========================================== */
 
 function toggleSection(id, enabled) {
@@ -336,286 +48,579 @@ function toggleSection(id, enabled) {
     section.style.display = enabled ? "" : "none";
 }
 
-window.addEventListener("DOMContentLoaded", () => {
+
+/* ==========================================
+   SHARE CARD
+========================================== */
+
+const shareButton = document.getElementById("shareCard");
+
+if (shareButton) {
+
+    shareButton.addEventListener("click", async function (e) {
+
+        e.preventDefault();
+
+        const shareData = {
+            title: "Sandeep ElectroFix",
+            text: "Professional Electrical Services in Lucknow",
+            url: window.location.href
+        };
+
+        try {
+
+            if (navigator.share) {
+
+                await navigator.share(shareData);
+
+            } else {
+
+                await navigator.clipboard.writeText(
+                    window.location.href
+                );
+
+                showToast("Website link copied successfully.");
+
+            }
+
+        } catch (error) {
+
+            console.log("Share cancelled/error:", error);
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================
+   SAVE CONTACT
+========================================== */
+
+const saveButton = document.getElementById("saveContact");
+
+if (saveButton) {
+
+    saveButton.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const vcard = [
+            "BEGIN:VCARD",
+            "VERSION:3.0",
+            "FN:Sandeep ElectroFix",
+            "ORG:Sandeep ElectroFix",
+            "TEL:+919026036445",
+            "EMAIL:SandeepElectroFix@gmail.com",
+            "URL:https://sandeepelectrofix.github.io/SandeepElectroFix-Card/",
+            "END:VCARD"
+        ].join("\n");
+
+        const blob = new Blob(
+            [vcard],
+            { type: "text/vcard;charset=utf-8" }
+        );
+
+        const link = document.createElement("a");
+
+        link.href = URL.createObjectURL(blob);
+        link.download = "SandeepElectroFix.vcf";
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(link.href);
+
+        showToast("Contact file created.");
+
+    });
+
+}
+
+
+/* ==========================================
+   PAGE LOADED
+========================================== */
+
+window.addEventListener("load", function () {
+
+    document.body.classList.add("loaded");
+
+});
+
+
+/* ==========================================
+   RIPPLE EFFECT
+========================================== */
+
+document.addEventListener("click", function (e) {
+
+    const target = e.target.closest(".btn, .card");
+
+    if (!target) return;
+
+    const ripple = document.createElement("span");
+
+    ripple.className = "ripple";
+
+    const rect = target.getBoundingClientRect();
+
+    ripple.style.left =
+        (e.clientX - rect.left) + "px";
+
+    ripple.style.top =
+        (e.clientY - rect.top) + "px";
+
+    target.appendChild(ripple);
+
+    setTimeout(() => {
+
+        ripple.remove();
+
+    }, 600);
+
+});
+
+
+/* ==========================================
+   SCROLL TO TOP
+========================================== */
+
+const topButton = document.createElement("button");
+
+topButton.innerHTML = "⬆";
+topButton.id = "topButton";
+topButton.setAttribute("aria-label", "Back to top");
+
+document.body.appendChild(topButton);
+
+window.addEventListener("scroll", function () {
+
+    if (window.scrollY > 300) {
+
+        topButton.classList.add("show");
+
+    } else {
+
+        topButton.classList.remove("show");
+
+    }
+
+});
+
+topButton.addEventListener("click", function () {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+
+/* ==========================================
+   BUTTON FEEDBACK
+========================================== */
+
+document.addEventListener("click", function (e) {
+
+    const button = e.target.closest(".btn, .card");
+
+    if (!button) return;
+
+    if (
+        button.id !== "shareCard" &&
+        button.id !== "saveContact"
+    ) {
+
+        showToast("Opening...");
+
+    }
+
+});
+
+
+/* ==========================================
+   FEATURE CONFIG
+========================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
 
     toggleSection("gallery", CONFIG.gallery);
-
     toggleSection("reviews", CONFIG.reviews);
-
     toggleSection("google-maps", CONFIG.googleMaps);
-
     toggleSection("youtube", CONFIG.youtube);
-
     toggleSection("faq", CONFIG.faq);
-
     toggleSection("offers", CONFIG.offers);
-console.log("Contact Form:", CONFIG.contactForm);
     toggleSection("contact-form", CONFIG.contactForm);
 
 });
 
 
-/* Gallery */
-
-const images=document.querySelectorAll(".gallery-grid img");
-
-const lightbox=document.getElementById("lightbox");
-
-const lightboxImage=document.getElementById("lightboxImage");
-
-const closeLightbox=document.getElementById("closeLightbox");
-
-images.forEach(img=>{
-
-img.onclick=()=>{
-
-lightbox.style.display="flex";
-
-lightboxImage.src=img.src;
-
-}
-
-});
-
-if(closeLightbox){
-
-closeLightbox.onclick=()=>{
-
-lightbox.style.display="none";
-
-}
-
-}
-
-if(lightbox){
-
-lightbox.onclick=(e)=>{
-
-if(e.target===lightbox){
-
-lightbox.style.display="none";
-
-}
-
-}
-
-}
 /* ==========================================
-   LOAD PROFILE DATA
+   LOAD PROFILE
 ========================================== */
 
 fetch("data/profile.json")
-.then(response => response.json())
-.then(profile => {
 
-    const name = document.querySelector(".hero h1");
-    const tagline = document.querySelector(".tagline");
-    const location = document.querySelector(".location");
+.then(response => {
 
-    if(name){
-        name.innerHTML = profile.businessName;
+    if (!response.ok) {
+        throw new Error("Profile file not found");
     }
 
-    if(tagline){
-        tagline.innerHTML = profile.tagline;
-    }
-
-    if(location){
-        location.innerHTML = "📍 " + profile.location;
-    }
-
-
-    // Update Title
-    document.title = profile.businessName + " | Digital Card";
-
-
-    // Phone Links
-    document.querySelectorAll(
-    'a[href^="tel:"]'
-    ).forEach(btn=>{
-
-        btn.href="tel:"+profile.phone;
-
-    });
-
-
-    // WhatsApp Links
-    document.querySelectorAll(
-    'a[href*="wa.me"]'
-    ).forEach(btn=>{
-
-        btn.href=
-        "https://wa.me/"+profile.whatsapp;
-
-    });
-
+    return response.json();
 
 })
-.catch(error=>{
-console.log("Profile loading error",error);
+
+.then(profile => {
+
+    const name =
+        document.querySelector(".hero h1");
+
+    const tagline =
+        document.querySelector(".tagline");
+
+    const location =
+        document.querySelector(".location");
+
+
+    if (name && profile.businessName) {
+
+        name.textContent =
+            profile.businessName;
+
+    }
+
+
+    if (tagline && profile.tagline) {
+
+        tagline.textContent =
+            profile.tagline;
+
+    }
+
+
+    if (location && profile.location) {
+
+        location.textContent =
+            "📍 " + profile.location;
+
+    }
+
+
+    /* Phone */
+
+    if (profile.phone) {
+
+        document
+            .querySelectorAll('a[href^="tel:"]')
+            .forEach(link => {
+
+                link.href =
+                    "tel:" + profile.phone;
+
+            });
+
+    }
+
+
+    /* WhatsApp */
+
+    if (profile.whatsapp) {
+
+        document
+            .querySelectorAll('a[href*="wa.me"]')
+            .forEach(link => {
+
+                link.href =
+                    "https://wa.me/" +
+                    profile.whatsapp;
+
+            });
+
+    }
+
+})
+
+.catch(error => {
+
+    console.log(
+        "Profile loading error:",
+        error
+    );
+
 });
+
+
 /* ==========================================
    LOAD SERVICES
 ========================================== */
 
 fetch("data/services.json")
 
-.then(response => response.json())
+.then(response => {
 
-.then(services => {
+    if (!response.ok) {
+        throw new Error("Services file not found");
+    }
 
-
-const container =
-document.getElementById("serviceContainer");
-
-
-if(container){
-
-
-services.forEach(service=>{
-
-
-container.innerHTML += `
-
-<div class="service-card">
-
-<div class="service-icon">
-${service.icon}
-</div>
-
-${service.name}
-
-</div>
-
-`;
-
-
-});
-
-
-}
-
+    return response.json();
 
 })
 
-.catch(error=>{
+.then(services => {
 
-console.log("Services loading error",error);
+    const container =
+        document.getElementById("serviceContainer");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    services.forEach(service => {
+
+        container.innerHTML += `
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ${service.icon || "⚡"}
+                </div>
+
+                <div>
+                    ${service.name || ""}
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+})
+
+.catch(error => {
+
+    console.log(
+        "Services loading error:",
+        error
+    );
 
 });
+
+
 /* ==========================================
    LOAD GALLERY
 ========================================== */
 
 fetch("data/gallery.json")
 
-.then(response => response.json())
+.then(response => {
+
+    if (!response.ok) {
+        throw new Error("Gallery file not found");
+    }
+
+    return response.json();
+
+})
 
 .then(gallery => {
 
+    const container =
+        document.getElementById("galleryContainer");
 
-const container =
-document.getElementById("galleryContainer");
+    if (!container) return;
 
+    container.innerHTML = "";
 
-if(container){
+    gallery.forEach(item => {
 
+        container.innerHTML += `
 
-gallery.forEach(item=>{
+            <div class="gallery-item">
 
+                <img
+                    src="${item.image}"
+                    alt="${item.title || "Electrical Work"}"
+                    loading="lazy"
+                >
 
-container.innerHTML += `
+                <p>${item.title || ""}</p>
 
-<div class="gallery-item">
+            </div>
 
-<img src="${item.image}" 
-alt="${item.title}">
+        `;
 
-<p>${item.title}</p>
+    });
 
-</div>
+    setupGalleryLightbox();
 
-`;
+})
 
+.catch(error => {
+
+    console.log(
+        "Gallery loading error:",
+        error
+    );
 
 });
 
+
+/* ==========================================
+   GALLERY LIGHTBOX
+========================================== */
+
+function setupGalleryLightbox() {
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+    const lightboxImage =
+        document.getElementById("lightboxImage");
+
+    const closeLightbox =
+        document.getElementById("closeLightbox");
+
+    if (!lightbox || !lightboxImage) return;
+
+
+    document
+        .querySelectorAll(".gallery-grid img")
+        .forEach(img => {
+
+            img.addEventListener("click", function () {
+
+                lightboxImage.src =
+                    this.src;
+
+                lightboxImage.alt =
+                    this.alt;
+
+                lightbox.style.display =
+                    "flex";
+
+            });
+
+        });
+
+
+    if (closeLightbox) {
+
+        closeLightbox.onclick =
+            function () {
+
+                lightbox.style.display =
+                    "none";
+
+            };
+
+    }
+
+
+    lightbox.onclick =
+        function (e) {
+
+            if (e.target === lightbox) {
+
+                lightbox.style.display =
+                    "none";
+
+            }
+
+        };
+
+
+    document.addEventListener(
+        "keydown",
+        function (e) {
+
+            if (e.key === "Escape") {
+
+                lightbox.style.display =
+                    "none";
+
+            }
+
+        }
+    );
 
 }
 
 
-})
-
-.catch(error=>{
-
-console.log("Gallery loading error",error);
-
-});
 /* ==========================================
    LOAD REVIEWS
 ========================================== */
 
 fetch("data/reviews.json")
 
-.then(response => response.json())
+.then(response => {
 
-.then(reviews => {
+    if (!response.ok) {
+        throw new Error("Reviews file not found");
+    }
 
-
-const container =
-document.getElementById("reviewContainer");
-
-
-if(container){
-
-
-reviews.forEach(item=>{
-
-
-container.innerHTML += `
-
-<div class="review-card">
-
-<div class="rating">
-${item.rating}
-</div>
-
-<p>
-${item.review}
-</p>
-
-<h4>
-- ${item.name}
-</h4>
-
-<small>
-${item.date}
-</small>
-
-</div>
-
-`;
-
-
-});
-
-
-}
-
+    return response.json();
 
 })
 
-.catch(error=>{
+.then(reviews => {
 
-console.log("Reviews loading error",error);
+    const container =
+        document.getElementById("reviewContainer");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    reviews.forEach(item => {
+
+        container.innerHTML += `
+
+            <div class="review-card">
+
+                <div class="rating">
+                    ${item.rating || "★★★★★"}
+                </div>
+
+                <p>
+                    ${item.review || ""}
+                </p>
+
+                <h4>
+                    - ${item.name || "Customer"}
+                </h4>
+
+                <small>
+                    ${item.date || ""}
+                </small>
+
+            </div>
+
+        `;
+
+    });
+
+})
+
+.catch(error => {
+
+    console.log(
+        "Reviews loading error:",
+        error
+    );
 
 });
-/* ==========================================
-   WHATSAPP QUOTE
-========================================== */
+
 
 /* ==========================================
-   REQUEST A QUOTE + LOCATION
+   REQUEST QUOTE - LOCATION
 ========================================== */
 
 const locationInput =
@@ -627,180 +632,217 @@ const locationStatus =
 const getLocationBtn =
     document.getElementById("getLocationBtn");
 
-const sendQuoteBtn =
-    document.getElementById("sendQuoteBtn");
-
-
-/* ==========================================
-   GET CURRENT GPS LOCATION
-========================================== */
 
 if (getLocationBtn) {
 
-    getLocationBtn.addEventListener("click", function () {
+    getLocationBtn.addEventListener(
+        "click",
+        function () {
 
-        if (!navigator.geolocation) {
+            if (!navigator.geolocation) {
 
-            locationStatus.innerText =
-                "❌ Location is not supported by your browser.";
+                if (locationStatus) {
 
-            return;
-        }
+                    locationStatus.textContent =
+                        "❌ Location is not supported by your browser.";
 
+                }
 
-        locationStatus.innerText =
-            "📍 Getting your location...";
+                return;
 
-
-        getLocationBtn.disabled = true;
-
-        getLocationBtn.innerText =
-            "📍 Getting Location...";
-
-
-        navigator.geolocation.getCurrentPosition(
-
-            function (position) {
-
-                const latitude =
-                    position.coords.latitude;
-
-                const longitude =
-                    position.coords.longitude;
-
-
-                const mapsURL =
-                    "https://www.google.com/maps?q=" +
-                    latitude +
-                    "," +
-                    longitude;
-
-
-                locationInput.value = mapsURL;
-
-
-                locationStatus.innerText =
-                    "✅ Location captured successfully.";
-
-
-                getLocationBtn.disabled = false;
-
-                getLocationBtn.innerText =
-                    "📍 Location Captured";
-
-            },
-
-
-            function (error) {
-
-                console.log(error);
-
-
-                locationStatus.innerText =
-                    "❌ Location permission denied. Please paste your Google Maps link.";
-
-                getLocationBtn.disabled = false;
-
-                getLocationBtn.innerText =
-                    "📍 Try Again";
-
-            },
-
-            {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 0
             }
 
-        );
 
-    });
+            if (locationStatus) {
+
+                locationStatus.textContent =
+                    "📍 Getting your location...";
+
+            }
+
+
+            getLocationBtn.disabled = true;
+
+            getLocationBtn.textContent =
+                "📍 Getting Location...";
+
+
+            navigator.geolocation.getCurrentPosition(
+
+                function (position) {
+
+                    const latitude =
+                        position.coords.latitude;
+
+                    const longitude =
+                        position.coords.longitude;
+
+
+                    const mapsURL =
+                        "https://www.google.com/maps?q=" +
+                        latitude +
+                        "," +
+                        longitude;
+
+
+                    if (locationInput) {
+
+                        locationInput.value =
+                            mapsURL;
+
+                    }
+
+
+                    if (locationStatus) {
+
+                        locationStatus.textContent =
+                            "✅ Location captured successfully.";
+
+                    }
+
+
+                    getLocationBtn.disabled = false;
+
+                    getLocationBtn.textContent =
+                        "📍 Location Captured";
+
+                },
+
+
+                function (error) {
+
+                    console.log(
+                        "Location error:",
+                        error
+                    );
+
+
+                    if (locationStatus) {
+
+                        locationStatus.textContent =
+                            "❌ Location permission denied. Please paste your Google Maps link.";
+
+                    }
+
+
+                    getLocationBtn.disabled = false;
+
+                    getLocationBtn.textContent =
+                        "📍 Try Again";
+
+                },
+
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+
+            );
+
+        }
+    );
 
 }
 
 
 /* ==========================================
-   SEND QUOTE TO WHATSAPP
-========================================== */
-
-/* ==========================================
-   REQUEST A QUOTE
+   REQUEST QUOTE
    GOOGLE SHEET + WHATSAPP
 ========================================== */
 
-function sendWhatsApp() {
+const sendQuoteBtn =
+    document.getElementById("sendQuoteBtn");
+
+
+if (sendQuoteBtn) {
+
+    sendQuoteBtn.addEventListener(
+        "click",
+        sendQuote
+    );
+
+}
+
+
+function sendQuote() {
 
     const name =
-        document.getElementById("customerName").value.trim();
+        document
+            .getElementById("customerName")
+            ?.value.trim() || "";
 
     const phone =
-        document.getElementById("customerPhone").value.trim();
+        document
+            .getElementById("customerPhone")
+            ?.value.trim() || "";
 
     const service =
-        document.getElementById("serviceName").value.trim();
+        document
+            .getElementById("serviceName")
+            ?.value.trim() || "";
 
     const message =
-        document.getElementById("customerMessage").value.trim();
+        document
+            .getElementById("customerMessage")
+            ?.value.trim() || "";
 
     const location =
-        document.getElementById("customerLocation").value.trim();
+        document
+            .getElementById("customerLocation")
+            ?.value.trim() || "";
 
 
-    /* =========================
-       VALIDATION
-    ========================= */
+    /* Validation */
 
     if (!name) {
+
         alert("Please enter your name.");
         return;
+
     }
+
 
     if (!phone) {
+
         alert("Please enter your mobile number.");
         return;
+
     }
+
 
     if (!service) {
+
         alert("Please select a service.");
         return;
+
     }
+
 
     if (!location) {
+
         alert("Please share your service location.");
         return;
+
     }
 
 
-    /* =========================
-       DATA FOR GOOGLE SHEET
-    ========================= */
+    /* Google Sheet data */
 
     const enquiryData = {
 
         name: name,
-
         phone: phone,
-
         service: service,
-
         message: message,
-
         location: location
 
     };
 
 
-    /* =========================
-       GOOGLE APPS SCRIPT URL
-    ========================= */
-
     const googleSheetURL =
         "https://script.google.com/macros/s/AKfycbxShXAXNiKStkhDZLywJ4YeRVUJ2Ljv44qOjsofiVP27vArOk2OhiN1i4BXKwv21joF/exec";
 
-
-    /* =========================
-       SAVE TO GOOGLE SHEET
-    ========================= */
 
     fetch(googleSheetURL, {
 
@@ -809,12 +851,14 @@ function sendWhatsApp() {
         mode: "no-cors",
 
         headers: {
-            "Content-Type": "text/plain;charset=utf-8"
+            "Content-Type":
+                "text/plain;charset=utf-8"
         },
 
         body: JSON.stringify(enquiryData)
 
     })
+
     .then(() => {
 
         console.log(
@@ -822,19 +866,18 @@ function sendWhatsApp() {
         );
 
     })
+
     .catch(error => {
 
         console.log(
-            "Google Sheet Error:",
+            "Google Sheet error:",
             error
         );
 
     });
 
 
-    /* =========================
-       WHATSAPP MESSAGE
-    ========================= */
+    /* WhatsApp */
 
     const whatsappMessage =
 
@@ -872,75 +915,38 @@ Professional Electrical Services
         );
 
 
-    /* =========================
-       OPEN WHATSAPP
-    ========================= */
-
-    window.open(
-        whatsappURL,
-        "_blank"
+    showToast(
+        "Enquiry prepared. Opening WhatsApp..."
     );
 
-}
 
-
-        /* ==================================
-           WHATSAPP MESSAGE
-        ================================== */
-
-        const whatsappMessage =
-
-`🔔 *NEW SERVICE ENQUIRY*
-
-👤 *Name:* ${name}
-
-📱 *Mobile:* ${phone}
-
-⚡ *Service:* ${service}
-
-📝 *Message:*
-${message || "No message provided"}
-
-📍 *Service Location:*
-${location}
-
-━━━━━━━━━━━━━━
-⚡ *Sandeep ElectroFix*
-Professional Electrical Services
-📍 Lucknow, Uttar Pradesh`;
-
-
-        const whatsappNumber =
-            "919026036445";
-
-
-        const whatsappURL =
-            "https://wa.me/" +
-            whatsappNumber +
-            "?text=" +
-            encodeURIComponent(
-                whatsappMessage
-            );
-
+    setTimeout(() => {
 
         window.open(
             whatsappURL,
             "_blank"
         );
 
-    });
+    }, 300);
 
 }
 
 
-}
 /* ==========================================
    LOAD FAQ
 ========================================== */
 
 fetch("data/faq.json")
 
-.then(response => response.json())
+.then(response => {
+
+    if (!response.ok) {
+        throw new Error("FAQ file not found");
+    }
+
+    return response.json();
+
+})
 
 .then(faqs => {
 
@@ -949,91 +955,128 @@ fetch("data/faq.json")
 
     if (!container) return;
 
+    container.innerHTML = "";
+
     faqs.forEach(item => {
 
         container.innerHTML += `
 
-        <div class="faq-item">
+            <div class="faq-item">
 
-            <button class="faq-question">
-                ${item.question}
-                <span>+</span>
-            </button>
+                <button
+                    class="faq-question"
+                    type="button">
 
-            <div class="faq-answer">
-                <p>${item.answer}</p>
+                    ${item.question || ""}
+
+                    <span>+</span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        ${item.answer || ""}
+                    </p>
+
+                </div>
+
             </div>
-
-        </div>
 
         `;
 
     });
 
-    document
-    .querySelectorAll(".faq-question")
-    .forEach(button => {
 
-        button.addEventListener("click", () => {
+    container
+        .querySelectorAll(".faq-question")
+        .forEach(button => {
 
-            const answer =
-                button.nextElementSibling;
+            button.addEventListener(
+                "click",
+                function () {
 
-            const isOpen =
-                answer.classList.contains("open");
+                    const answer =
+                        this.nextElementSibling;
 
-            document
-            .querySelectorAll(".faq-answer")
-            .forEach(item => {
-                item.classList.remove("open");
-            });
+                    const isOpen =
+                        answer.classList.contains("open");
 
-            document
-            .querySelectorAll(".faq-question span")
-            .forEach(icon => {
-                icon.textContent = "+";
-            });
 
-            if (!isOpen) {
+                    container
+                        .querySelectorAll(".faq-answer")
+                        .forEach(item => {
 
-                answer.classList.add("open");
+                            item.classList.remove("open");
 
-                button
-                .querySelector("span")
-                .textContent = "−";
+                        });
 
-            }
+
+                    container
+                        .querySelectorAll(
+                            ".faq-question span"
+                        )
+                        .forEach(icon => {
+
+                            icon.textContent = "+";
+
+                        });
+
+
+                    if (!isOpen) {
+
+                        answer.classList.add("open");
+
+                        this
+                            .querySelector("span")
+                            .textContent = "−";
+
+                    }
+
+                }
+            );
 
         });
-
-    });
 
 })
 
 .catch(error => {
 
-    console.log("FAQ loading error:", error);
+    console.log(
+        "FAQ loading error:",
+        error
+    );
 
 });
+
+
 /* ==========================================
-   THEME TOGGLE + SAVE USER PREFERENCE
+   THEME TOGGLE
 ========================================== */
 
-const themeToggle = document.getElementById("themeToggle");
+const themeToggle =
+    document.getElementById("themeToggle");
+
 
 function applyTheme(theme) {
 
     if (theme === "light") {
 
-        document.body.classList.add("light-theme");
+        document.body.classList.add(
+            "light-theme"
+        );
 
     } else {
 
-        document.body.classList.remove("light-theme");
+        document.body.classList.remove(
+            "light-theme"
+        );
 
     }
 
+
     updateThemeButton();
+
 }
 
 
@@ -1042,32 +1085,32 @@ function updateThemeButton() {
     if (!themeToggle) return;
 
     const isLight =
-        document.body.classList.contains("light-theme");
+        document.body.classList.contains(
+            "light-theme"
+        );
 
-    themeToggle.innerHTML =
-        isLight ? "🌙 Dark Mode" : "☀️ Light Mode";
+
+    themeToggle.textContent =
+        isLight
+            ? "🌙 Dark Mode"
+            : "☀️ Light Mode";
+
 }
 
 
-/* ==========================================
-   LOAD SAVED THEME
-========================================== */
-
 const savedTheme =
-    localStorage.getItem("sandeepTheme");
+    localStorage.getItem(
+        "sandeepTheme"
+    );
 
 
 if (CONFIG.darkMode !== false) {
 
-    if (savedTheme === "light") {
-
-        applyTheme("light");
-
-    } else {
-
-        applyTheme("dark");
-
-    }
+    applyTheme(
+        savedTheme === "light"
+            ? "light"
+            : "dark"
+    );
 
 } else {
 
@@ -1076,42 +1119,62 @@ if (CONFIG.darkMode !== false) {
 }
 
 
-/* ==========================================
-   CHANGE THEME
-========================================== */
-
 if (themeToggle) {
 
-    themeToggle.addEventListener("click", () => {
+    themeToggle.addEventListener(
+        "click",
+        function () {
 
-        const isLight =
-            document.body.classList.contains("light-theme");
-
-        const newTheme =
-            isLight ? "dark" : "light";
-
-
-        /* Save user's preference */
-
-        localStorage.setItem(
-            "sandeepTheme",
-            newTheme
-        );
+            const isLight =
+                document.body.classList.contains(
+                    "light-theme"
+                );
 
 
-        /* Apply theme */
+            const newTheme =
+                isLight
+                    ? "dark"
+                    : "light";
 
-        applyTheme(newTheme);
+           localStorage.setItem(
+                "sandeepTheme",
+                newTheme
+            );
 
-    });
+
+            applyTheme(newTheme);
+
+        }
+    );
 
 }
+
+
 /* ==========================================
-   MOBILE NAV ACTIVE SECTION
+   CURRENT YEAR
+========================================== */
+
+const footer =
+    document.querySelector("footer p");
+
+
+if (footer) {
+
+    footer.textContent =
+        `© ${new Date().getFullYear()} Sandeep ElectroFix`;
+
+}
+
+
+/* ==========================================
+   MOBILE BOTTOM NAVIGATION
 ========================================== */
 
 const bottomNavItems =
-    document.querySelectorAll(".bottom-nav-item");
+    document.querySelectorAll(
+        ".bottom-nav-item"
+    );
+
 
 const navSections = [
     "top",
@@ -1120,57 +1183,220 @@ const navSections = [
     "contact-form"
 ];
 
+
 function updateActiveNav() {
 
     let currentSection = "top";
 
+
     navSections.forEach(id => {
 
-        const section = document.getElementById(id);
+        const section =
+            document.getElementById(id);
 
         if (!section) return;
 
-        const rect = section.getBoundingClientRect();
+
+        const rect =
+            section.getBoundingClientRect();
+
 
         if (rect.top <= 180) {
+
             currentSection = id;
+
         }
 
     });
+
 
     bottomNavItems.forEach(item => {
 
         item.classList.remove("active");
 
-        const href = item.getAttribute("href");
 
-        if (href === "#" + currentSection) {
+        const href =
+            item.getAttribute("href");
+
+
+        if (
+            href === "#" +
+            currentSection
+        ) {
+
             item.classList.add("active");
+
         }
 
     });
 
 }
 
-window.addEventListener("scroll", updateActiveNav);
 
-window.addEventListener("load", updateActiveNav);
+window.addEventListener(
+    "scroll",
+    updateActiveNav
+);
 
+
+window.addEventListener(
+    "load",
+    updateActiveNav
+);
+
+
+bottomNavItems.forEach(item => {
+
+    item.addEventListener(
+        "click",
+        function () {
+
+            bottomNavItems.forEach(nav => {
+
+                nav.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            this.classList.add("active");
+
+        }
+    );
+
+});
 
 
 /* ==========================================
-   MOBILE NAV CLICK
+   QR DOWNLOAD
 ========================================== */
 
-document.querySelectorAll(".bottom-nav-item").forEach(item => {
+const downloadQR =
+    document.getElementById("downloadQR");
 
-    item.addEventListener("click", function () {
+const cardQR =
+    document.getElementById("cardQR");
 
-        document.querySelectorAll(".bottom-nav-item")
-        .forEach(nav => nav.classList.remove("active"));
 
-        this.classList.add("active");
+if (downloadQR && cardQR) {
 
-    });
+    downloadQR.addEventListener(
+        "click",
+        function () {
 
-});
+            const link =
+                document.createElement("a");
+
+            link.href =
+                cardQR.src;
+
+            link.download =
+                "Sandeep-ElectroFix-QR.png";
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+
+            showToast(
+                "QR download started."
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   PWA INSTALL
+========================================== */
+
+let deferredPrompt = null;
+
+
+window.addEventListener(
+    "beforeinstallprompt",
+    function (e) {
+
+        e.preventDefault();
+
+        deferredPrompt = e;
+
+        showToast(
+            "📱 App can be installed"
+        );
+
+    }
+);
+
+
+async function installApp() {
+
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+
+}
+
+
+/* ==========================================
+   CARD ENTRANCE ANIMATION
+========================================== */
+
+if ("IntersectionObserver" in window) {
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".card, .service-card, .gallery-item"
+        )
+        .forEach(item => {
+
+            observer.observe(item);
+
+        });
+
+}
+
+
+/* ==========================================
+   SERVICE WORKER
+========================================== */
+
+console.log(
+    "Sandeep ElectroFix Card v2.0 Loaded"
+);
+
+
+       
