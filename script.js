@@ -614,43 +614,257 @@ console.log("Reviews loading error",error);
    WHATSAPP QUOTE
 ========================================== */
 
-function sendWhatsApp(){
+/* ==========================================
+   REQUEST A QUOTE + LOCATION
+========================================== */
 
-let name =
-document.getElementById("customerName").value;
+const locationInput =
+    document.getElementById("customerLocation");
 
+const locationStatus =
+    document.getElementById("locationStatus");
 
-let phone =
-document.getElementById("customerPhone").value;
+const getLocationBtn =
+    document.getElementById("getLocationBtn");
 
-
-let service =
-document.getElementById("serviceName").value;
-
-
-let message =
-document.getElementById("customerMessage").value;
-
-
-let text =
-
-`New Enquiry
-Name: ${name}
-Mobile: ${phone}
-Service: ${service}
-Message: ${message}`;
+const sendQuoteBtn =
+    document.getElementById("sendQuoteBtn");
 
 
-let whatsapp =
-"919026036445";
+/* ==========================================
+   GET CURRENT GPS LOCATION
+========================================== */
+
+if (getLocationBtn) {
+
+    getLocationBtn.addEventListener("click", function () {
+
+        if (!navigator.geolocation) {
+
+            locationStatus.innerText =
+                "❌ Location is not supported by your browser.";
+
+            return;
+        }
 
 
-let url =
-"https://wa.me/"+whatsapp+
-"?text="+encodeURIComponent(text);
+        locationStatus.innerText =
+            "📍 Getting your location...";
 
 
-window.open(url,"_blank");
+        getLocationBtn.disabled = true;
+
+        getLocationBtn.innerText =
+            "📍 Getting Location...";
+
+
+        navigator.geolocation.getCurrentPosition(
+
+            function (position) {
+
+                const latitude =
+                    position.coords.latitude;
+
+                const longitude =
+                    position.coords.longitude;
+
+
+                const mapsURL =
+                    "https://www.google.com/maps?q=" +
+                    latitude +
+                    "," +
+                    longitude;
+
+
+                locationInput.value = mapsURL;
+
+
+                locationStatus.innerText =
+                    "✅ Location captured successfully.";
+
+
+                getLocationBtn.disabled = false;
+
+                getLocationBtn.innerText =
+                    "📍 Location Captured";
+
+            },
+
+
+            function (error) {
+
+                console.log(error);
+
+
+                locationStatus.innerText =
+                    "❌ Location permission denied. Please paste your Google Maps link.";
+
+                getLocationBtn.disabled = false;
+
+                getLocationBtn.innerText =
+                    "📍 Try Again";
+
+            },
+
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+
+        );
+
+    });
+
+}
+
+
+/* ==========================================
+   SEND QUOTE TO WHATSAPP
+========================================== */
+
+if (sendQuoteBtn) {
+
+    sendQuoteBtn.addEventListener("click", function () {
+
+
+        const name =
+            document
+            .getElementById("customerName")
+            .value
+            .trim();
+
+
+        const phone =
+            document
+            .getElementById("customerPhone")
+            .value
+            .trim();
+
+
+        const service =
+            document
+            .getElementById("serviceName")
+            .value
+            .trim();
+
+
+        const message =
+            document
+            .getElementById("customerMessage")
+            .value
+            .trim();
+
+
+        const location =
+            document
+            .getElementById("customerLocation")
+            .value
+            .trim();
+
+
+        /* ==================================
+           VALIDATION
+        ================================== */
+
+
+        if (!name) {
+
+            alert("Please enter your name.");
+
+            document
+            .getElementById("customerName")
+            .focus();
+
+            return;
+        }
+
+
+        if (!phone) {
+
+            alert("Please enter your mobile number.");
+
+            document
+            .getElementById("customerPhone")
+            .focus();
+
+            return;
+        }
+
+
+        if (!service) {
+
+            alert("Please select a service.");
+
+            document
+            .getElementById("serviceName")
+            .focus();
+
+            return;
+        }
+
+
+        if (!location) {
+
+            alert(
+                "Please share your service location."
+            );
+
+            document
+            .getElementById("customerLocation")
+            .focus();
+
+            return;
+        }
+
+
+        /* ==================================
+           WHATSAPP MESSAGE
+        ================================== */
+
+        const whatsappMessage =
+
+`🔔 *NEW SERVICE ENQUIRY*
+
+👤 *Name:* ${name}
+
+📱 *Mobile:* ${phone}
+
+⚡ *Service:* ${service}
+
+📝 *Message:*
+${message || "No message provided"}
+
+📍 *Service Location:*
+${location}
+
+━━━━━━━━━━━━━━
+⚡ *Sandeep ElectroFix*
+Professional Electrical Services
+📍 Lucknow, Uttar Pradesh`;
+
+
+        const whatsappNumber =
+            "919026036445";
+
+
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(
+                whatsappMessage
+            );
+
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+    });
+
+}
 
 
 }
