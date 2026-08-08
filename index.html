@@ -239,68 +239,153 @@ WHATSAPP QUOTE FORM
 STATUS : CONFIG CONTROLLED
 ========================================= -->
 
+<!-- ==========================================
+     REQUEST A QUOTE
+========================================== -->
+
 <section id="contact-form">
 
-<h2>Request a Quote</h2>
+    <h2>Request a Quote</h2>
 
-<div class="quote-form">
+    <p class="quote-subtitle">
+        Tell us what electrical service you need.
+    </p>
 
-<input 
-type="text" 
-id="customerName"
-placeholder="Your Name">
+    <div class="quote-form">
+
+        <!-- Name -->
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Your Name"
+            autocomplete="name"
+        >
+
+        <!-- Mobile -->
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Mobile Number"
+            inputmode="tel"
+            autocomplete="tel"
+        >
+
+        <!-- Service -->
+        <select id="serviceName">
+
+            <option value="">
+                Select Service
+            </option>
+
+            <option value="House Wiring">
+                House Wiring
+            </option>
+
+            <option value="False Ceiling Wiring">
+                False Ceiling Wiring
+            </option>
+
+            <option value="MCB & DB Installation">
+                MCB & DB Installation
+            </option>
+
+            <option value="Fan & Light Fitting">
+                Fan & Light Fitting
+            </option>
+
+            <option value="Inverter Wiring">
+                Inverter Wiring
+            </option>
+
+            <option value="Electrical Repair">
+                Electrical Repair
+            </option>
+
+            <option value="Fault Finding">
+                Fault Finding
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
 
 
-<input 
-type="tel" 
-id="customerPhone"
-placeholder="Mobile Number">
+        <!-- Message -->
+        <textarea
+            id="customerMessage"
+            placeholder="Describe your electrical work..."
+            rows="5"
+        ></textarea>
 
 
-<select id="serviceName">
+        <!-- LOCATION -->
+        <div class="location-box">
 
-<option value="">
-Select Service
-</option>
+            <h3>📍 Your Service Location</h3>
 
-<option>
-House Wiring
-</option>
-
-<option>
-False Ceiling Wiring
-</option>
-
-<option>
-MCB & DB Installation
-</option>
-
-<option>
-Electrical Repair
-</option>
-
-</select>
+            <p>
+                Share your location so we can reach you easily.
+            </p>
 
 
-<textarea 
-id="customerMessage"
-placeholder="Your Message">
-</textarea>
+            <!-- GPS Button -->
+            <button
+                type="button"
+                class="location-btn"
+                id="getLocationBtn">
+
+                📍 Use My Current Location
+
+            </button>
 
 
-<button 
-class="btn"
-onclick="sendWhatsApp()">
+            <!-- Google Maps -->
+            <a
+                href="https://www.google.com/maps"
+                target="_blank"
+                rel="noopener"
+                class="location-btn maps-btn">
 
-Send Enquiry
+                🗺️ Open Google Maps & Pin Location
 
-</button>
+            </a>
 
-</div>
+
+            <!-- Location URL -->
+            <input
+                type="url"
+                id="customerLocation"
+                placeholder="Paste Google Maps location link here"
+                autocomplete="off"
+            >
+
+
+            <!-- Location Status -->
+            <div
+                id="locationStatus"
+                class="location-status">
+            </div>
+
+        </div>
+
+
+        <!-- Send WhatsApp -->
+        <button
+            type="button"
+            class="btn whatsapp-btn"
+            id="sendQuoteBtn">
+
+            💬 Send Enquiry on WhatsApp
+
+        </button>
+
+    </div>
 
 </section>
 
-<!-- END WHATSAPP FORM -->
+<!-- END REQUEST A QUOTE -->
     
 
 <!-- =========================================
