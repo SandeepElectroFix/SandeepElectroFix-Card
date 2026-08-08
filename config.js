@@ -9,7 +9,7 @@ const CONFIG = {
 
   reviews: false,
 
-  googleMaps: false,
+  googleMaps: true,
 
   youtube: true,
 
