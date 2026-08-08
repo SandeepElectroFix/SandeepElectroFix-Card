@@ -1495,6 +1495,10 @@ body.light-theme .theme-toggle {
     }
 
 }
+
+
+
+
 /* ==========================================
    ACTIVE MOBILE NAV
 ========================================== */
@@ -1519,10 +1523,75 @@ body.light-theme .theme-toggle {
     }
 
 }
+
+
+
+
 /* ==========================================
    SMOOTH SCROLL
 ========================================== */
 
 html {
     scroll-behavior: smooth;
+}
+
+
+
+
+
+/* ==========================================
+   DIGITAL CARD QR SECTION
+========================================== */
+
+#qr-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+#qr-section p {
+    margin-bottom: 25px;
+}
+
+.qr-box {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 22px;
+
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    backdrop-filter: blur(12px);
+}
+
+#cardQR {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 14px;
+}
+
+#downloadQR {
+    width: 100%;
+    max-width: 220px;
+}
+/* QR - Light Theme */
+
+html.saved-light-theme .qr-box,
+body.light-theme .qr-box {
+    background: #ffffff;
+    border-color: rgba(0,0,0,.08);
+}
+
+html.saved-light-theme #qr-section p,
+body.light-theme #qr-section p {
+    color: #374151;
 }
