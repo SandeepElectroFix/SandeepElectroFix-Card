@@ -330,80 +330,92 @@ box-shadow:0 15px 35px rgba(0,200,255,.30);
 }
 
 /* =========================================
-   QUICK ACCESS ICON COLORS
+   QUICK ACCESS ICONS
 ========================================= */
 
 .card .icon {
-    color: #38bdf8 !important;
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.08);
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    transition: .35s ease;
 }
 
 /* Call */
 .card:nth-child(1) .icon {
-    color: #38bdf8 !important;
+    color: #38bdf8;
 }
 
 /* WhatsApp */
 .card:nth-child(2) .icon {
-    color: #25D366 !important;
+    color: #25D366;
 }
 
 /* Website */
 .card:nth-child(3) .icon {
-    color: #38bdf8 !important;
+    color: #38bdf8;
 }
 
 /* Google Maps */
 .card:nth-child(4) .icon {
-    color: #ff4b4b !important;
+    color: #ff4b4b;
 }
 
 /* Facebook */
 .card:nth-child(5) .icon {
-    color: #1877F2 !important;
+    color: #1877F2;
 }
 
 /* Instagram */
 .card:nth-child(6) .icon {
-    color: #E4405F !important;
+    color: #E4405F;
 }
 
 /* YouTube */
 .card:nth-child(7) .icon {
-    color: #FF0000 !important;
+    color: #FF0000;
 }
 
 /* Email */
 .card:nth-child(8) .icon {
-    color: #38bdf8 !important;
+    color: #38bdf8;
 }
 
 /* Save Contact */
 .card:nth-child(9) .icon {
-    color: #fbbf24 !important;
+    color: #fbbf24;
 }
 
 /* Share */
 .card:nth-child(10) .icon {
-    color: #a78bfa !important;
+    color: #a78bfa;
 }
+
+
+/* Hover Effect */
 
 .card:hover .icon {
-    transform: scale(1.12) rotate(-3deg);
+    transform: scale(1.12);
 
-    background: rgba(0, 200, 255, 0.18);
+    background: rgba(0,200,255,.12);
 
-    border-color: #00c8ff;
+    border-color: rgba(0,200,255,.35);
 
     box-shadow:
-        0 0 20px rgba(0, 200, 255, .25);
-}
-
-.card span:last-child{
-
-font-size:16px;
-
-font-weight:600;
-
+        0 0 20px rgba(0,200,255,.20);
 }
 
 /* =========================================
