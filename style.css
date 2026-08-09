@@ -329,14 +329,38 @@ box-shadow:0 15px 35px rgba(0,200,255,.30);
 
 }
 
-.card .icon{
+.card .icon {
+    width: 58px;
+    height: 58px;
 
-display:block;
+    margin: 0 auto 12px;
 
-font-size:34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-margin-bottom:12px;
+    font-size: 27px;
 
+    border-radius: 50%;
+
+    background: rgba(0, 200, 255, 0.10);
+
+    border: 1px solid rgba(0, 200, 255, 0.18);
+
+    color: #38bdf8;
+
+    transition: .35s ease;
+}
+
+.card:hover .icon {
+    transform: scale(1.12) rotate(-3deg);
+
+    background: rgba(0, 200, 255, 0.18);
+
+    border-color: #00c8ff;
+
+    box-shadow:
+        0 0 20px rgba(0, 200, 255, .25);
 }
 
 .card span:last-child{
