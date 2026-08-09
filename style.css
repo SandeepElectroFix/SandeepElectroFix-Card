@@ -1799,3 +1799,81 @@ header.hero > img.logo {
     }
 
 }
+/* =========================================
+   🔥 FINAL HERO + LOGO CENTER FIX
+========================================= */
+
+header.hero {
+    width: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    text-align: center !important;
+}
+
+
+/* LOGO */
+header.hero > img.logo {
+    display: block !important;
+
+    width: 150px !important;
+    height: 150px !important;
+
+    margin: 0 0 20px 0 !important;
+
+    padding: 3px !important;
+
+    object-fit: contain !important;
+
+    position: relative !important;
+
+    left: 0 !important;
+    right: auto !important;
+
+    transform: none !important;
+
+    border-radius: 50% !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 0 30px rgba(0,153,255,.45) !important;
+}
+
+
+/* Logo animation separately */
+header.hero > img.logo {
+    animation: logoFloat 4s ease-in-out infinite !important;
+}
+
+@keyframes logoFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    header.hero > img.logo {
+        width: 150px !important;
+        height: 150px !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+}
