@@ -2409,3 +2409,102 @@ header.hero > img.logo {
 
     border-color: rgba(255,255,255,.25);
 }
+/* =========================================
+   FINAL QUICK ACCESS ICON SIZE
+========================================= */
+
+.quick-actions .card .icon {
+    width: 48px !important;
+    height: 48px !important;
+
+    margin: 0 auto 10px auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.06);
+
+    border: none;
+
+    font-size: 24px;
+}
+
+/* SVG SIZE */
+.quick-actions .card .icon svg {
+    width: 27px !important;
+    height: 27px !important;
+
+    display: block;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* =========================================
+   ICON COLORS
+========================================= */
+
+.call-icon {
+    color: #00BFFF !important;
+}
+
+.whatsapp-icon {
+    color: #25D366 !important;
+}
+
+.website-icon {
+    color: #00D9FF !important;
+}
+
+.maps-icon {
+    color: #EA4335 !important;
+}
+
+.facebook-icon {
+    color: #1877F2 !important;
+}
+
+.instagram-icon {
+    color: #E4405F !important;
+}
+
+.youtube-icon {
+    color: #FF0000 !important;
+}
+
+.email-icon {
+    color: #38BDF8 !important;
+}
+
+.contact-icon {
+    color: #FFD700 !important;
+}
+
+.share-icon {
+    color: #A855F7 !important;
+}
+
+/* Brand-style filled icons */
+.whatsapp-icon svg,
+.facebook-icon svg,
+.youtube-icon svg {
+    fill: currentColor !important;
+    stroke: none !important;
+}
+
+/* YouTube play button */
+.youtube-icon svg .play {
+    fill: #ffffff !important;
+}
+
+/* Hover */
+.quick-actions .card:hover .icon {
+    transform: scale(1.08);
+    background: rgba(255,255,255,.08);
+}
