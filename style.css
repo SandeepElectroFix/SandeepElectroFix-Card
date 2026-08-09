@@ -1877,3 +1877,45 @@ header.hero > img.logo {
     }
 
 }
+/* =========================================
+   FINAL LOGO CENTER FIX
+========================================= */
+
+.hero {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.logo-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 20px auto !important;
+}
+
+.logo-wrapper .logo {
+    display: block !important;
+
+    width: 150px !important;
+    height: 150px !important;
+
+    margin: 0 !important;
+
+    object-fit: contain !important;
+
+    position: static !important;
+
+    float: none !important;
+
+    transform: none !important;
+
+    border-radius: 50% !important;
+
+    background: #ffffff !important;
+
+    padding: 3px !important;
+
+    box-shadow:
+        0 0 30px rgba(0,153,255,.45);
+}
