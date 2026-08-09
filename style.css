@@ -2461,50 +2461,155 @@ header.hero > img.logo {
 .website-icon {
     color: #00D9FF !important;
 }
+/* =========================================
+   FINAL QUICK ACCESS ICON FIX
+   SMALL + COLORFUL SVG
+========================================= */
 
-.maps-icon {
+.quick-actions .card .icon {
+    width: 42px !important;
+    height: 42px !important;
+
+    margin: 0 auto 10px auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: transparent !important;
+    border: none !important;
+
+    font-size: 22px !important;
+
+    transform: none !important;
+}
+
+
+/* SVG SIZE */
+.quick-actions .card .icon svg {
+    width: 28px !important;
+    height: 28px !important;
+
+    display: block !important;
+
+    stroke-width: 2 !important;
+}
+
+
+/* ==============================
+   ICON COLORS
+============================== */
+
+.quick-actions .call-icon {
+    color: #00BFFF !important;
+}
+
+.quick-actions .whatsapp-icon {
+    color: #25D366 !important;
+}
+
+.quick-actions .website-icon {
+    color: #00D9FF !important;
+}
+
+.quick-actions .maps-icon {
     color: #EA4335 !important;
 }
 
-.facebook-icon {
+.quick-actions .facebook-icon {
     color: #1877F2 !important;
 }
 
-.instagram-icon {
+.quick-actions .instagram-icon {
     color: #E4405F !important;
 }
 
-.youtube-icon {
+.quick-actions .youtube-icon {
     color: #FF0000 !important;
 }
 
-.email-icon {
+.quick-actions .email-icon {
     color: #38BDF8 !important;
 }
 
-.contact-icon {
+.quick-actions .contact-icon {
     color: #FFD700 !important;
 }
 
-.share-icon {
+.quick-actions .share-icon {
     color: #A855F7 !important;
 }
 
-/* Brand-style filled icons */
-.whatsapp-icon svg,
-.facebook-icon svg,
-.youtube-icon svg {
+
+/* ==============================
+   OUTLINE ICONS
+============================== */
+
+.quick-actions .call-icon svg,
+.quick-actions .website-icon svg,
+.quick-actions .maps-icon svg,
+.quick-actions .instagram-icon svg,
+.quick-actions .email-icon svg,
+.quick-actions .contact-icon svg,
+.quick-actions .share-icon svg {
+
+    fill: none !important;
+    stroke: currentColor !important;
+}
+
+
+/* ==============================
+   WHATSAPP
+============================== */
+
+.quick-actions .whatsapp-icon svg {
+
     fill: currentColor !important;
     stroke: none !important;
+
 }
 
-/* YouTube play button */
-.youtube-icon svg .play {
+
+/* ==============================
+   FACEBOOK
+============================== */
+
+.quick-actions .facebook-icon svg {
+
+    fill: currentColor !important;
+    stroke: none !important;
+
+}
+
+
+/* ==============================
+   YOUTUBE
+============================== */
+
+.quick-actions .youtube-icon svg {
+
+    fill: currentColor !important;
+    stroke: none !important;
+
+}
+
+.quick-actions .youtube-icon svg .play {
+
     fill: #ffffff !important;
+
 }
 
-/* Hover */
+
+/* ==============================
+   HOVER
+============================== */
+
 .quick-actions .card:hover .icon {
-    transform: scale(1.08);
-    background: rgba(255,255,255,.08);
+
+    transform: scale(1.08) !important;
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+
 }
