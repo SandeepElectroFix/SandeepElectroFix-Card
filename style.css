@@ -1705,3 +1705,61 @@ body.light-theme #customerLocation {
     color: #111827;
     border-color: #d1d5db;
 }
+/* =========================================
+   FINAL LOGO CENTER FIX
+========================================= */
+
+.hero > .logo {
+    display: block !important;
+
+    width: 150px !important;
+    height: 150px !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    padding: 3px;
+
+    box-shadow:
+        0 0 30px rgba(0,153,255,.45);
+
+    animation: float 4s ease-in-out infinite;
+}
+
+
+/* =========================================
+   SERVICES & WORK HEADING CENTER
+========================================= */
+
+#services h2,
+#gallery h2,
+#reviews h2,
+#google-maps h2,
+#faq h2,
+#qr-section h2,
+#contact-form h2 {
+    text-align: center !important;
+}
+
+
+/* Mobile Logo */
+@media (max-width: 768px) {
+
+    .hero > .logo {
+        width: 150px !important;
+        height: 150px !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+}
