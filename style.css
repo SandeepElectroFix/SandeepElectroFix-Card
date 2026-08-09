@@ -1763,3 +1763,39 @@ body.light-theme #customerLocation {
     }
 
 }
+/* =========================================
+   FINAL LOGO CENTER - FORCE FIX
+========================================= */
+
+header.hero {
+    text-align: center !important;
+}
+
+header.hero > img.logo {
+    display: block !important;
+
+    width: 150px !important;
+    height: 150px !important;
+
+    margin: 0 auto 20px auto !important;
+
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+
+    object-fit: contain !important;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    header.hero > img.logo {
+        width: 150px !important;
+        height: 150px !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+}
