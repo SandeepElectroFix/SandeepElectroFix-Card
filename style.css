@@ -102,34 +102,35 @@ z-index:-1;
 
 /* Hero */
 
-.hero{
-
-padding:70px 20px 40px;
-
-text-align:center;
-
+.hero {
+    padding: 70px 20px 40px;
+    text-align: center;
 }
 
 /* =========================================
-   PREMIUM LOGO
+   PREMIUM LOGO — PERFECT CENTER
 ========================================= */
 
-.logo{
-    width:150px;
-    height:150px;
+.logo {
+    display: block;
 
-    object-fit:contain;
+    width: 150px;
+    height: 150px;
 
-    border-radius:50%;
+    object-fit: contain;
 
-    background:#ffffff;
+    border-radius: 50%;
 
-    padding:3px;
+    background: #ffffff;
+
+    padding: 3px;
+
+    margin: 0 auto 18px auto;
 
     box-shadow:
         0 0 30px rgba(0,153,255,.45);
 
-    animation:float 4s ease-in-out infinite;
+    animation: float 4s ease-in-out infinite;
 }
 
 /* Business Name */
