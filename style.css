@@ -2307,14 +2307,14 @@ header.hero > img.logo {
     margin-right: auto !important;
 }
 /* =========================================
-   PREMIUM SVG QUICK ACCESS ICONS
+   SMALL COLOURFUL SVG QUICK ACCESS ICONS
 ========================================= */
 
 .quick-actions .card .icon {
-    width: 58px;
-    height: 58px;
+    width: 48px;
+    height: 48px;
 
-    margin: 0 auto 12px;
+    margin: 0 auto 10px;
 
     display: flex;
     align-items: center;
@@ -2323,15 +2323,16 @@ header.hero > img.logo {
     border-radius: 50%;
 
     background: rgba(255,255,255,.08);
-
     border: 1px solid rgba(255,255,255,.12);
 
-    transition: .35s ease;
+    transition: .3s ease;
 }
 
 .quick-actions .card .icon svg {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
+
+    display: block;
 
     fill: none;
     stroke: currentColor;
@@ -2340,20 +2341,9 @@ header.hero > img.logo {
     stroke-linejoin: round;
 }
 
-/* Filled brand-style icons */
-.whatsapp-icon svg,
-.facebook-icon svg,
-.youtube-icon svg {
-    fill: currentColor;
-    stroke: none;
-}
-
-.youtube-icon svg .play {
-    fill: #08111f;
-}
-
-
-/* COLORS */
+/* =========================
+   ORIGINAL BRAND COLORS
+========================= */
 
 .call-icon {
     color: #00BFFF;
@@ -2395,16 +2385,27 @@ header.hero > img.logo {
     color: #A855F7;
 }
 
+/* Filled icons */
+
+.whatsapp-icon svg,
+.facebook-icon svg,
+.youtube-icon svg {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* YouTube play */
+
+.youtube-icon svg .play {
+    fill: #08111f;
+}
 
 /* Hover */
 
 .quick-actions .card:hover .icon {
-    transform: scale(1.12);
+    transform: scale(1.08);
 
     background: rgba(255,255,255,.12);
 
     border-color: rgba(255,255,255,.25);
-
-    box-shadow:
-        0 0 20px rgba(0,200,255,.25);
 }
