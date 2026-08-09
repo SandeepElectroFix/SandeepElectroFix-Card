@@ -2307,20 +2307,18 @@ header.hero > img.logo {
     margin-right: auto !important;
 }
 /* =========================================
-   🌈 QUICK ACCESS - COLORFUL ICONS
+   PREMIUM SVG QUICK ACCESS ICONS
 ========================================= */
 
 .quick-actions .card .icon {
     width: 58px;
     height: 58px;
 
+    margin: 0 auto 12px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-
-    margin: 0 auto 12px;
-
-    font-size: 28px;
 
     border-radius: 50%;
 
@@ -2331,63 +2329,69 @@ header.hero > img.logo {
     transition: .35s ease;
 }
 
+.quick-actions .card .icon svg {
+    width: 30px;
+    height: 30px;
 
-/* 📞 Call */
-.quick-actions .card:nth-child(1) .icon {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Filled brand-style icons */
+.whatsapp-icon svg,
+.facebook-icon svg,
+.youtube-icon svg {
+    fill: currentColor;
+    stroke: none;
+}
+
+.youtube-icon svg .play {
+    fill: #08111f;
+}
+
+
+/* COLORS */
+
+.call-icon {
     color: #00BFFF;
 }
 
-
-/* 🟢 WhatsApp */
-.quick-actions .card:nth-child(2) .icon {
+.whatsapp-icon {
     color: #25D366;
 }
 
-
-/* 🌐 Website */
-.quick-actions .card:nth-child(3) .icon {
+.website-icon {
     color: #00D9FF;
 }
 
-
-/* 📍 Google Maps */
-.quick-actions .card:nth-child(4) .icon {
+.maps-icon {
     color: #EA4335;
 }
 
-
-/* 🔵 Facebook */
-.quick-actions .card:nth-child(5) .icon {
+.facebook-icon {
     color: #1877F2;
 }
 
-
-/* 🟣 Instagram */
-.quick-actions .card:nth-child(6) .icon {
+.instagram-icon {
     color: #E4405F;
 }
 
-
-/* 🔴 YouTube */
-.quick-actions .card:nth-child(7) .icon {
+.youtube-icon {
     color: #FF0000;
 }
 
-
-/* ✉️ Email */
-.quick-actions .card:nth-child(8) .icon {
+.email-icon {
     color: #38BDF8;
 }
 
-
-/* 🟡 Save Contact */
-.quick-actions .card:nth-child(9) .icon {
+.contact-icon {
     color: #FFD700;
 }
 
-
-/* 🟣 Share */
-.quick-actions .card:nth-child(10) .icon {
+.share-icon {
     color: #A855F7;
 }
 
@@ -2401,5 +2405,6 @@ header.hero > img.logo {
 
     border-color: rgba(255,255,255,.25);
 
-    box-shadow: 0 0 20px rgba(0,200,255,.20);
+    box-shadow:
+        0 0 20px rgba(0,200,255,.25);
 }
