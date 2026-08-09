@@ -74,7 +74,7 @@ features: {
 
     gallery: true,
 
-    reviews: true,
+    reviews: false,
 
     googleMaps: true,
 
@@ -82,7 +82,7 @@ features: {
 
     faq: true,
 
-    offers: false,
+    offers: true,
 
     contactForm: true,
 
