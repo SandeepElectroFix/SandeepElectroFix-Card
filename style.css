@@ -108,24 +108,20 @@ z-index:-1;
 }
 
 /* =========================================
-   PREMIUM LOGO — PERFECT CENTER
+   PREMIUM LOGO - PERFECT CENTER
 ========================================= */
 
-.logo {
+.hero .logo {
     display: block;
-
     width: 150px;
     height: 150px;
-
     object-fit: contain;
 
-    border-radius: 50%;
-
-    background: #ffffff;
-
-    padding: 3px;
-
     margin: 0 auto 18px auto;
+
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 3px;
 
     box-shadow:
         0 0 30px rgba(0,153,255,.45);
