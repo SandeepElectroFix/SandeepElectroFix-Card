@@ -2017,3 +2017,109 @@ header.hero > img.logo {
     }
 
 }
+/* =========================================
+   FINAL LOGO CENTER FIX
+========================================= */
+
+.hero {
+    width: 100% !important;
+    text-align: center !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* Logo wrapper */
+
+.logo-center {
+    width: 100% !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    text-align: center !important;
+
+    margin: 0 auto 20px auto !important;
+
+    padding: 0 !important;
+}
+
+/* Logo */
+
+.logo-center .logo {
+    display: block !important;
+
+    width: 150px !important;
+    height: 150px !important;
+
+    margin: 0 auto !important;
+
+    padding: 3px !important;
+
+    object-fit: contain !important;
+
+    position: static !important;
+
+    float: none !important;
+
+    left: auto !important;
+    right: auto !important;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .hero {
+        width: 100% !important;
+        align-items: center !important;
+    }
+
+    .logo-center {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .logo-center .logo {
+        width: 150px !important;
+        height: 150px !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+}
+
+
+/* =========================================
+   SERVICES HEADING CENTER
+========================================= */
+
+#services {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+#services h2 {
+    text-align: center !important;
+    width: 100% !important;
+}
+
+
+/* =========================================
+   OUR WORK HEADING CENTER
+========================================= */
+
+#gallery {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+#gallery h2 {
+    text-align: center !important;
+    width: 100% !important;
+   }
