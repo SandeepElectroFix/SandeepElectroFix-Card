@@ -1,868 +1,583 @@
-console.log("Sandeep ElectroFix Script Loaded");
-console.log("CONFIG:", CONFIG);
+/* =========================================================
+SANDEEP ELECTROFIX - DIGITAL CARD
+PROJECT 2
+script.js - CLEAN VERSION
+========================================================= */
 
+"use strict";
 
-/* ==========================================
-   HELPER
-========================================== */
+/* =========================================================
+CONFIG SAFETY
+========================================================= */
+
+const APP = window.CONFIG || {};
+
+const FEATURES = APP.features || {};
+
+/* =========================================================
+DOM READY
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+initializeTheme();
+
+initializeFeatureControls();
+
+initializeShare();
+
+initializeSaveContact();
+
+initializeQuoteForm();
+
+initializeLocation();
+
+initializeFAQ();
+
+initializeGallery();
+
+initializeQR();
+
+initializeTopButton();
+
+initializeMobileNavigation();
+
+initializeRipple();
+
+loadServices();
+
+loadReviews();
+
+updateBusinessLinks();
+
+updateFooterYear();
+
+initializeAnimations();
+
+});
+
+/* =========================================================
+TOAST
+========================================================= */
 
 function showToast(message) {
 
-    const oldToast = document.querySelector(".toast");
+const oldToast =
+    document.querySelector(".toast");
 
-    if (oldToast) oldToast.remove();
-
-    const toast = document.createElement("div");
-
-    toast.className = "toast";
-    toast.textContent = message;
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-        toast.classList.add("show");
-    }, 100);
-
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-        setTimeout(() => {
-            toast.remove();
-        }, 300);
-
-    }, 2500);
+if (oldToast) {
+    oldToast.remove();
 }
 
+const toast =
+    document.createElement("div");
 
-/* ==========================================
-   FEATURE TOGGLE
-========================================== */
+toast.className = "toast";
+
+toast.textContent = message;
+
+document.body.appendChild(toast);
+
+requestAnimationFrame(() => {
+
+    toast.classList.add("show");
+
+});
+
+setTimeout(() => {
+
+    toast.classList.remove("show");
+
+    setTimeout(() => {
+
+        toast.remove();
+
+    }, 300);
+
+}, 2500);
+
+}
+
+/* =========================================================
+FEATURE CONTROLS
+========================================================= */
+
+function initializeFeatureControls() {
+
+toggleSection(
+    "gallery",
+    FEATURES.gallery !== false
+);
+
+toggleSection(
+    "reviews",
+    FEATURES.reviews !== false
+);
+
+toggleSection(
+    "google-maps",
+    FEATURES.googleMaps !== false
+);
+
+toggleSection(
+    "faq",
+    FEATURES.faq !== false
+);
+
+toggleSection(
+    "contact-form",
+    FEATURES.contactForm !== false
+);
+
+toggleSection(
+    "qr-section",
+    FEATURES.qrCode !== false
+);
+
+toggleSection(
+    "offers",
+    FEATURES.offers === true
+);
+
+toggleSection(
+    "youtube",
+    FEATURES.youtube === true
+);
+
+}
 
 function toggleSection(id, enabled) {
 
-    const section = document.getElementById(id);
+const section =
+    document.getElementById(id);
 
-    if (!section) return;
+if (!section) return;
 
-    section.style.display = enabled ? "" : "none";
+section.style.display =
+    enabled ? "" : "none";
+
 }
 
+/* =========================================================
+BUSINESS LINKS
+========================================================= */
 
-/* ==========================================
-   SHARE CARD
-========================================== */
+function updateBusinessLinks() {
 
-const shareButton = document.getElementById("shareCard");
+const phone =
+    APP.phone ||
+    "+919026036445";
 
-if (shareButton) {
+const whatsapp =
+    APP.whatsapp ||
+    "919026036445";
 
-    shareButton.addEventListener("click", async function (e) {
+const website =
+    APP.website ||
+    "https://sandeepelectrofix.github.io/";
 
-        e.preventDefault();
+const maps =
+    APP.googleMaps ||
+    "https://maps.app.goo.gl/XYZnm7sFAVRT68Vs7";
 
-        const shareData = {
-            title: "Sandeep ElectroFix",
-            text: "Professional Electrical Services in Lucknow",
-            url: window.location.href
-        };
+const facebook =
+    APP.facebook ||
+    "https://www.facebook.com/SandeepElectroFix";
 
-        try {
+const instagram =
+    APP.instagram ||
+    "https://www.instagram.com/sandeep_electrofix";
 
-            if (navigator.share) {
+const youtube =
+    APP.youtube ||
+    "https://youtube.com/@sandeepelectrofix";
 
-                await navigator.share(shareData);
+const email =
+    APP.email ||
+    "SandeepElectroFix@gmail.com";
 
-            } else {
 
-                await navigator.clipboard.writeText(
-                    window.location.href
-                );
+/* Phone */
 
-                showToast("Website link copied successfully.");
+document
+    .querySelectorAll('a[href^="tel:"]')
+    .forEach(link => {
 
-            }
+        link.href =
+            "tel:" + phone.replace(/\s/g, "");
 
-        } catch (error) {
+    });
 
-            console.log("Share cancelled/error:", error);
+
+/* WhatsApp */
+
+document
+    .querySelectorAll('a[href*="wa.me"]')
+    .forEach(link => {
+
+        link.href =
+            "https://wa.me/" +
+            whatsapp.replace(/\D/g, "");
+
+    });
+
+
+/* Website */
+
+document
+    .querySelectorAll(
+        'a[href*="sandeepelectrofix.github.io"]'
+    )
+    .forEach(link => {
+
+        if (
+            link.textContent
+                .toLowerCase()
+                .includes("website")
+        ) {
+
+            link.href = website;
 
         }
 
     });
 
-}
+
+/* Maps */
+
+document
+    .querySelectorAll(
+        'a[href*="maps.app.goo.gl"], a[href*="share.google"]'
+    )
+    .forEach(link => {
+
+        link.href = maps;
+
+        link.target = "_blank";
+
+        link.rel = "noopener";
+
+    });
 
 
-/* ==========================================
-   SAVE CONTACT
-========================================== */
+/* Facebook */
 
-const saveButton = document.getElementById("saveContact");
+document
+    .querySelectorAll(
+        'a[href*="facebook.com"]'
+    )
+    .forEach(link => {
 
-if (saveButton) {
+        link.href = facebook;
 
-    saveButton.addEventListener("click", function (e) {
+        link.target = "_blank";
 
-        e.preventDefault();
+        link.rel = "noopener";
 
-        const vcard = [
-            "BEGIN:VCARD",
-            "VERSION:3.0",
-            "FN:Sandeep ElectroFix",
-            "ORG:Sandeep ElectroFix",
-            "TEL:+919026036445",
-            "EMAIL:SandeepElectroFix@gmail.com",
-            "URL:https://sandeepelectrofix.github.io/SandeepElectroFix-Card/",
-            "END:VCARD"
-        ].join("\n");
+    });
 
-        const blob = new Blob(
-            [vcard],
-            { type: "text/vcard;charset=utf-8" }
-        );
 
-        const link = document.createElement("a");
+/* Instagram */
 
-        link.href = URL.createObjectURL(blob);
-        link.download = "SandeepElectroFix.vcf";
+document
+    .querySelectorAll(
+        'a[href*="instagram.com"]'
+    )
+    .forEach(link => {
 
-        document.body.appendChild(link);
+        link.href = instagram;
 
-        link.click();
+        link.target = "_blank";
 
-        document.body.removeChild(link);
+        link.rel = "noopener";
 
-        URL.revokeObjectURL(link.href);
+    });
 
-        showToast("Contact file created.");
+
+/* YouTube */
+
+document
+    .querySelectorAll(
+        'a[href*="youtube.com"]'
+    )
+    .forEach(link => {
+
+        link.href = youtube;
+
+        link.target = "_blank";
+
+        link.rel = "noopener";
+
+    });
+
+
+/* Email */
+
+document
+    .querySelectorAll(
+        'a[href^="mailto:"]'
+    )
+    .forEach(link => {
+
+        link.href =
+            "mailto:" + email;
 
     });
 
 }
 
-
-/* ==========================================
-   PAGE LOADED
-========================================== */
-
-window.addEventListener("load", function () {
-
-    document.body.classList.add("loaded");
-
-});
-
-
-/* ==========================================
-   RIPPLE EFFECT
-========================================== */
-
-document.addEventListener("click", function (e) {
-
-    const target = e.target.closest(".btn, .card");
-
-    if (!target) return;
-
-    const ripple = document.createElement("span");
-
-    ripple.className = "ripple";
-
-    const rect = target.getBoundingClientRect();
-
-    ripple.style.left =
-        (e.clientX - rect.left) + "px";
-
-    ripple.style.top =
-        (e.clientY - rect.top) + "px";
-
-    target.appendChild(ripple);
-
-    setTimeout(() => {
-
-        ripple.remove();
-
-    }, 600);
-
-});
-
-
-/* ==========================================
-   SCROLL TO TOP
-========================================== */
-
-const topButton = document.createElement("button");
-
-topButton.innerHTML = "⬆";
-topButton.id = "topButton";
-topButton.setAttribute("aria-label", "Back to top");
-
-document.body.appendChild(topButton);
-
-window.addEventListener("scroll", function () {
-
-    if (window.scrollY > 300) {
-
-        topButton.classList.add("show");
-
-    } else {
-
-        topButton.classList.remove("show");
-
-    }
-
-});
-
-topButton.addEventListener("click", function () {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-});
-
-
-/* ==========================================
-   BUTTON FEEDBACK
-========================================== */
-
-document.addEventListener("click", function (e) {
-
-    const button = e.target.closest(".btn, .card");
-
-    if (!button) return;
-
-    if (
-        button.id !== "shareCard" &&
-        button.id !== "saveContact"
-    ) {
-
-        showToast("Opening...");
-
-    }
-
-});
-
-
-/* ==========================================
-   FEATURE CONFIG
-========================================== */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    toggleSection("gallery", CONFIG.gallery);
-    toggleSection("reviews", CONFIG.reviews);
-    toggleSection("google-maps", CONFIG.googleMaps);
-    toggleSection("youtube", CONFIG.youtube);
-    toggleSection("faq", CONFIG.faq);
-    toggleSection("offers", CONFIG.offers);
-    toggleSection("contact-form", CONFIG.contactForm);
-
-});
-
-
-/* ==========================================
-   LOAD PROFILE
-========================================== */
-
-fetch("data/profile.json")
-
-.then(response => {
-
-    if (!response.ok) {
-        throw new Error("Profile file not found");
-    }
-
-    return response.json();
-
-})
-
-.then(profile => {
-
-    const name =
-        document.querySelector(".hero h1");
-
-    const tagline =
-        document.querySelector(".tagline");
-
-    const location =
-        document.querySelector(".location");
-
-
-    if (name && profile.businessName) {
-
-        name.textContent =
-            profile.businessName;
-
-    }
-
-
-    if (tagline && profile.tagline) {
-
-        tagline.textContent =
-            profile.tagline;
-
-    }
-
-
-    if (location && profile.location) {
-
-        location.textContent =
-            "📍 " + profile.location;
-
-    }
-
-
-    /* Phone */
-
-    if (profile.phone) {
-
-        document
-            .querySelectorAll('a[href^="tel:"]')
-            .forEach(link => {
-
-                link.href =
-                    "tel:" + profile.phone;
-
-            });
-
-    }
-
-
-    /* WhatsApp */
-
-    if (profile.whatsapp) {
-
-        document
-            .querySelectorAll('a[href*="wa.me"]')
-            .forEach(link => {
-
-                link.href =
-                    "https://wa.me/" +
-                    profile.whatsapp;
-
-            });
-
-    }
-
-})
-
-.catch(error => {
-
-    console.log(
-        "Profile loading error:",
-        error
+/* =========================================================
+SHARE CARD
+========================================================= */
+
+function initializeShare() {
+
+const shareButtons =
+    document.querySelectorAll(
+        '[onclick*="shareCard"], #shareCard, .share-icon'
     );
 
-});
 
+shareButtons.forEach(button => {
 
-/* ==========================================
-   LOAD SERVICES
-========================================== */
+    const card =
+        button.closest(".card") ||
+        button;
 
-fetch("data/services.json")
 
-.then(response => {
+    card.addEventListener(
+        "click",
+        async event => {
 
-    if (!response.ok) {
-        throw new Error("Services file not found");
-    }
+            event.preventDefault();
 
-    return response.json();
+            const shareData = {
 
-})
+                title:
+                    APP.businessName ||
+                    "Sandeep ElectroFix",
 
-.then(services => {
+                text:
+                    "Professional Electrical Services in Lucknow",
 
-    const container =
-        document.getElementById("serviceContainer");
-
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    services.forEach(service => {
-
-        container.innerHTML += `
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    ${service.icon || "⚡"}
-                </div>
-
-                <div>
-                    ${service.name || ""}
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-})
-
-.catch(error => {
-
-    console.log(
-        "Services loading error:",
-        error
-    );
-
-});
-
-
-/* ==========================================
-   LOAD GALLERY
-========================================== */
-
-fetch("data/gallery.json")
-
-.then(response => {
-
-    if (!response.ok) {
-        throw new Error("Gallery file not found");
-    }
-
-    return response.json();
-
-})
-
-.then(gallery => {
-
-    const container =
-        document.getElementById("galleryContainer");
-
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    gallery.forEach(item => {
-
-        container.innerHTML += `
-
-            <div class="gallery-item">
-
-                <img
-                    src="${item.image}"
-                    alt="${item.title || "Electrical Work"}"
-                    loading="lazy"
-                >
-
-                <p>${item.title || ""}</p>
-
-            </div>
-
-        `;
-
-    });
-
-    setupGalleryLightbox();
-
-})
-
-.catch(error => {
-
-    console.log(
-        "Gallery loading error:",
-        error
-    );
-
-});
-
-
-/* ==========================================
-   GALLERY LIGHTBOX
-========================================== */
-
-function setupGalleryLightbox() {
-
-    const lightbox =
-        document.getElementById("lightbox");
-
-    const lightboxImage =
-        document.getElementById("lightboxImage");
-
-    const closeLightbox =
-        document.getElementById("closeLightbox");
-
-    if (!lightbox || !lightboxImage) return;
-
-
-    document
-        .querySelectorAll(".gallery-grid img")
-        .forEach(img => {
-
-            img.addEventListener("click", function () {
-
-                lightboxImage.src =
-                    this.src;
-
-                lightboxImage.alt =
-                    this.alt;
-
-                lightbox.style.display =
-                    "flex";
-
-            });
-
-        });
-
-
-    if (closeLightbox) {
-
-        closeLightbox.onclick =
-            function () {
-
-                lightbox.style.display =
-                    "none";
+                url:
+                    window.location.href
 
             };
 
-    }
 
+            try {
 
-    lightbox.onclick =
-        function (e) {
+                if (
+                    navigator.share
+                ) {
 
-            if (e.target === lightbox) {
+                    await navigator.share(
+                        shareData
+                    );
 
-                lightbox.style.display =
-                    "none";
+                } else if (
+                    navigator.clipboard
+                ) {
 
-            }
+                    await navigator.clipboard.writeText(
+                        window.location.href
+                    );
 
-        };
+                    showToast(
+                        "Website link copied successfully."
+                    );
 
+                } else {
 
-    document.addEventListener(
-        "keydown",
-        function (e) {
+                    showToast(
+                        "Copy the website link from your browser."
+                    );
 
-            if (e.key === "Escape") {
+                }
 
-                lightbox.style.display =
-                    "none";
+            } catch (error) {
+
+                if (
+                    error.name !==
+                    "AbortError"
+                ) {
+
+                    console.log(
+                        "Share error:",
+                        error
+                    );
+
+                }
 
             }
 
         }
     );
 
-}
-
-
-/* ==========================================
-   LOAD REVIEWS
-========================================== */
-
-fetch("data/reviews.json")
-
-.then(response => {
-
-    if (!response.ok) {
-        throw new Error("Reviews file not found");
-    }
-
-    return response.json();
-
-})
-
-.then(reviews => {
-
-    const container =
-        document.getElementById("reviewContainer");
-
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    reviews.forEach(item => {
-
-        container.innerHTML += `
-
-            <div class="review-card">
-
-                <div class="rating">
-                    ${item.rating || "★★★★★"}
-                </div>
-
-                <p>
-                    ${item.review || ""}
-                </p>
-
-                <h4>
-                    - ${item.name || "Customer"}
-                </h4>
-
-                <small>
-                    ${item.date || ""}
-                </small>
-
-            </div>
-
-        `;
-
-    });
-
-})
-
-.catch(error => {
-
-    console.log(
-        "Reviews loading error:",
-        error
-    );
-
 });
 
+}
 
-/* ==========================================
-   REQUEST QUOTE - LOCATION
-========================================== */
+/* =========================================================
+SAVE CONTACT
+========================================================= */
 
-const locationInput =
-    document.getElementById("customerLocation");
+function initializeSaveContact() {
 
-const locationStatus =
-    document.getElementById("locationStatus");
-
-const getLocationBtn =
-    document.getElementById("getLocationBtn");
+const buttons =
+    document.querySelectorAll(
+        '#saveContact, a[href="#contact-form"]'
+    );
 
 
-if (getLocationBtn) {
+buttons.forEach(button => {
 
-    getLocationBtn.addEventListener(
+    const text =
+        button.textContent
+            .toLowerCase();
+
+    if (
+        !text.includes("save contact")
+    ) {
+
+        return;
+
+    }
+
+
+    button.addEventListener(
         "click",
-        function () {
+        event => {
 
-            if (!navigator.geolocation) {
+            event.preventDefault();
 
-                if (locationStatus) {
+            const vcard = [
 
-                    locationStatus.textContent =
-                        "❌ Location is not supported by your browser.";
+                "BEGIN:VCARD",
 
-                }
+                "VERSION:3.0",
 
-                return;
+                "FN:Sandeep ElectroFix",
 
-            }
+                "ORG:Sandeep ElectroFix",
 
+                "TEL:+919026036445",
 
-            if (locationStatus) {
+                "EMAIL:SandeepElectroFix@gmail.com",
 
-                locationStatus.textContent =
-                    "📍 Getting your location...";
+                "URL:https://sandeepelectrofix.github.io/SandeepElectroFix-Card/",
 
-            }
+                "ADR:;;Lucknow;Uttar Pradesh;;India",
 
+                "NOTE:Professional Electrical Services",
 
-            getLocationBtn.disabled = true;
+                "END:VCARD"
 
-            getLocationBtn.textContent =
-                "📍 Getting Location...";
-
-
-            navigator.geolocation.getCurrentPosition(
-
-                function (position) {
-
-                    const latitude =
-                        position.coords.latitude;
-
-                    const longitude =
-                        position.coords.longitude;
+            ].join("\r\n");
 
 
-                    const mapsURL =
-                        "https://www.google.com/maps?q=" +
-                        latitude +
-                        "," +
-                        longitude;
-
-
-                    if (locationInput) {
-
-                        locationInput.value =
-                            mapsURL;
-
+            const blob =
+                new Blob(
+                    [vcard],
+                    {
+                        type:
+                            "text/vcard;charset=utf-8"
                     }
+                );
 
 
-                    if (locationStatus) {
-
-                        locationStatus.textContent =
-                            "✅ Location captured successfully.";
-
-                    }
+            const url =
+                URL.createObjectURL(blob);
 
 
-                    getLocationBtn.disabled = false;
+            const link =
+                document.createElement("a");
 
-                    getLocationBtn.textContent =
-                        "📍 Location Captured";
+            link.href = url;
 
-                },
-
-
-                function (error) {
-
-                    console.log(
-                        "Location error:",
-                        error
-                    );
+            link.download =
+                "Sandeep-ElectroFix.vcf";
 
 
-                    if (locationStatus) {
+            document.body.appendChild(link);
 
-                        locationStatus.textContent =
-                            "❌ Location permission denied. Please paste your Google Maps link.";
+            link.click();
 
-                    }
+            link.remove();
+
+            setTimeout(() => {
+
+                URL.revokeObjectURL(url);
+
+            }, 1000);
 
 
-                    getLocationBtn.disabled = false;
-
-                    getLocationBtn.textContent =
-                        "📍 Try Again";
-
-                },
-
-                {
-                    enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 0
-                }
-
+            showToast(
+                "Contact file created."
             );
 
         }
     );
 
+});
+
 }
 
+/* =========================================================
+SERVICES
+========================================================= */
 
-/* ==========================================
-   REQUEST QUOTE
-   GOOGLE SHEET + WHATSAPP
-========================================== */
+function loadServices() {
 
-const sendQuoteBtn =
-    document.getElementById("sendQuoteBtn");
-
-
-if (sendQuoteBtn) {
-
-    sendQuoteBtn.addEventListener(
-        "click",
-        sendQuote
+const container =
+    document.getElementById(
+        "serviceContainer"
     );
 
+if (!container) return;
+
+
+/* Use CONFIG first */
+
+if (
+    Array.isArray(APP.services) &&
+    APP.services.length
+) {
+
+    renderServices(
+        container,
+        APP.services
+    );
+
+    return;
+
 }
 
 
-function sendQuote() {
+/* Fallback to JSON */
 
-    const name =
-        document
-            .getElementById("customerName")
-            ?.value.trim() || "";
+fetch("data/services.json")
 
-    const phone =
-        document
-            .getElementById("customerPhone")
-            ?.value.trim() || "";
+    .then(response => {
 
-    const service =
-        document
-            .getElementById("serviceName")
-            ?.value.trim() || "";
+        if (!response.ok) {
 
-    const message =
-        document
-            .getElementById("customerMessage")
-            ?.value.trim() || "";
+            throw new Error(
+                "services.json not found"
+            );
 
-    const location =
-        document
-            .getElementById("customerLocation")
-            ?.value.trim() || "";
+        }
 
-
-    /* Validation */
-
-    if (!name) {
-
-        alert("Please enter your name.");
-        return;
-
-    }
-
-
-    if (!phone) {
-
-        alert("Please enter your mobile number.");
-        return;
-
-    }
-
-
-    if (!service) {
-
-        alert("Please select a service.");
-        return;
-
-    }
-
-
-    if (!location) {
-
-        alert("Please share your service location.");
-        return;
-
-    }
-
-
-    /* Google Sheet data */
-
-    const enquiryData = {
-
-        name: name,
-        phone: phone,
-        service: service,
-        message: message,
-        location: location
-
-    };
-
-
-    const googleSheetURL =
-        "https://script.google.com/macros/s/AKfycbxShXAXNiKStkhDZLywJ4YeRVUJ2Ljv44qOjsofiVP27vArOk2OhiN1i4BXKwv21joF/exec";
-
-
-    fetch(googleSheetURL, {
-
-        method: "POST",
-
-        mode: "no-cors",
-
-        headers: {
-            "Content-Type":
-                "text/plain;charset=utf-8"
-        },
-
-        body: JSON.stringify(enquiryData)
+        return response.json();
 
     })
 
-    .then(() => {
+    .then(services => {
 
-        console.log(
-            "Enquiry sent to Google Sheet"
+        renderServices(
+            container,
+            services
         );
 
     })
@@ -870,232 +585,1020 @@ function sendQuote() {
     .catch(error => {
 
         console.log(
-            "Google Sheet error:",
+            "Services error:",
             error
         );
 
     });
 
+}
 
-    /* WhatsApp */
+function renderServices(
+container,
+services
+) {
 
-    const whatsappMessage =
-
-`🔔 *NEW SERVICE ENQUIRY*
-
-👤 *Name:* ${name}
-
-📱 *Mobile:* ${phone}
-
-⚡ *Service:* ${service}
-
-📝 *Message:*
-${message || "No message provided"}
-
-📍 *Service Location:*
-${location}
-
-━━━━━━━━━━━━━━
-
-⚡ *Sandeep ElectroFix*
-Professional Electrical Services
-📍 Lucknow, Uttar Pradesh`;
+container.innerHTML = "";
 
 
-    const whatsappNumber =
-        "919026036445";
+services.forEach(service => {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "service-card";
 
 
-    const whatsappURL =
-        "https://wa.me/" +
-        whatsappNumber +
-        "?text=" +
-        encodeURIComponent(
-            whatsappMessage
+    const icon =
+        document.createElement("div");
+
+    icon.className =
+        "service-icon";
+
+    icon.textContent =
+        service.icon || "⚡";
+
+
+    const title =
+        document.createElement("h3");
+
+    title.textContent =
+        service.title ||
+        service.name ||
+        "Electrical Service";
+
+
+    const description =
+        document.createElement("p");
+
+    description.textContent =
+        service.description || "";
+
+
+    card.appendChild(icon);
+
+    card.appendChild(title);
+
+    if (
+        service.description
+    ) {
+
+        card.appendChild(
+            description
         );
 
+    }
 
-    showToast(
-        "Enquiry prepared. Opening WhatsApp..."
+
+    container.appendChild(card);
+
+});
+
+}
+
+/* =========================================================
+GALLERY
+========================================================= */
+
+function initializeGallery() {
+
+const container =
+    document.getElementById(
+        "galleryContainer"
     );
 
+if (!container) return;
 
-    setTimeout(() => {
 
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
+if (
+    Array.isArray(APP.gallery) &&
+    APP.gallery.length
+) {
 
-    }, 300);
+    renderGallery(
+        container,
+        APP.gallery
+    );
+
+    return;
 
 }
 
 
-/* ==========================================
-   LOAD FAQ
-========================================== */
+fetch("data/gallery.json")
 
-fetch("data/faq.json")
+    .then(response => {
 
-.then(response => {
+        if (!response.ok) {
 
-    if (!response.ok) {
-        throw new Error("FAQ file not found");
-    }
+            throw new Error(
+                "gallery.json not found"
+            );
 
-    return response.json();
+        }
 
-})
+        return response.json();
 
-.then(faqs => {
+    })
 
-    const container =
-        document.getElementById("faqContainer");
+    .then(gallery => {
 
-    if (!container) return;
+        renderGallery(
+            container,
+            gallery
+        );
 
-    container.innerHTML = "";
+    })
 
-    faqs.forEach(item => {
+    .catch(error => {
 
-        container.innerHTML += `
+        console.log(
+            "Gallery error:",
+            error
+        );
 
-            <div class="faq-item">
+    });
 
-                <button
-                    class="faq-question"
-                    type="button">
+}
 
-                    ${item.question || ""}
+function renderGallery(
+container,
+gallery
+) {
 
-                    <span>+</span>
+container.innerHTML = "";
 
-                </button>
 
-                <div class="faq-answer">
+gallery.forEach(item => {
 
-                    <p>
-                        ${item.answer || ""}
-                    </p>
+    const wrapper =
+        document.createElement("div");
 
-                </div>
+    wrapper.className =
+        "gallery-item";
 
-            </div>
 
-        `;
+    const image =
+        document.createElement("img");
+
+    image.src =
+        item.image || "";
+
+    image.alt =
+        item.title ||
+        "Sandeep ElectroFix Electrical Work";
+
+    image.loading =
+        "lazy";
+
+
+    const title =
+        document.createElement("p");
+
+    title.textContent =
+        item.title || "";
+
+
+    wrapper.appendChild(image);
+
+    wrapper.appendChild(title);
+
+    container.appendChild(wrapper);
+
+});
+
+
+setupGalleryLightbox();
+
+}
+
+function setupGalleryLightbox() {
+
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
+
+const lightboxImage =
+    document.getElementById(
+        "lightboxImage"
+    );
+
+const closeButton =
+    document.getElementById(
+        "closeLightbox"
+    );
+
+
+if (
+    !lightbox ||
+    !lightboxImage
+) return;
+
+
+document
+    .querySelectorAll(
+        "#galleryContainer img"
+    )
+    .forEach(image => {
+
+        image.addEventListener(
+            "click",
+            () => {
+
+                lightboxImage.src =
+                    image.src;
+
+                lightboxImage.alt =
+                    image.alt;
+
+                lightbox.style.display =
+                    "flex";
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
 
     });
 
 
-    container
-        .querySelectorAll(".faq-question")
-        .forEach(button => {
+function closeLightbox() {
 
-            button.addEventListener(
-                "click",
-                function () {
+    lightbox.style.display =
+        "none";
 
-                    const answer =
-                        this.nextElementSibling;
+    document.body.style.overflow =
+        "";
 
-                    const isOpen =
-                        answer.classList.contains("open");
+}
 
 
-                    container
-                        .querySelectorAll(".faq-answer")
-                        .forEach(item => {
+if (closeButton) {
 
-                            item.classList.remove("open");
+    closeButton.addEventListener(
+        "click",
+        closeLightbox
+    );
 
-                        });
-
-
-                    container
-                        .querySelectorAll(
-                            ".faq-question span"
-                        )
-                        .forEach(icon => {
-
-                            icon.textContent = "+";
-
-                        });
+}
 
 
-                    if (!isOpen) {
+lightbox.addEventListener(
+    "click",
+    event => {
 
-                        answer.classList.add("open");
+        if (
+            event.target === lightbox
+        ) {
 
-                        this
-                            .querySelector("span")
-                            .textContent = "−";
+            closeLightbox();
 
-                    }
+        }
 
-                }
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+}
+
+/* =========================================================
+REVIEWS
+========================================================= */
+
+function loadReviews() {
+
+const container =
+    document.getElementById(
+        "reviewContainer"
+    );
+
+if (!container) return;
+
+
+if (
+    Array.isArray(APP.reviews) &&
+    APP.reviews.length
+) {
+
+    renderReviews(
+        container,
+        APP.reviews
+    );
+
+    return;
+
+}
+
+
+fetch("data/reviews.json")
+
+    .then(response => {
+
+        if (!response.ok) {
+
+            throw new Error(
+                "reviews.json not found"
             );
 
-        });
+        }
+
+        return response.json();
+
+    })
+
+    .then(reviews => {
+
+        renderReviews(
+            container,
+            reviews
+        );
+
+    })
+
+    .catch(error => {
+
+        console.log(
+            "Reviews error:",
+            error
+        );
+
+    });
+
+}
+
+function renderReviews(
+container,
+reviews
+) {
+
+container.innerHTML = "";
+
+
+reviews.forEach(review => {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "review-card";
+
+
+    const rating =
+        document.createElement("div");
+
+    rating.className =
+        "rating";
+
+
+    const ratingValue =
+        Number(review.rating) || 5;
+
+
+    rating.textContent =
+        "★".repeat(
+            Math.max(
+                0,
+                Math.min(
+                    5,
+                    ratingValue
+                )
+            )
+        );
+
+
+    const text =
+        document.createElement("p");
+
+    text.textContent =
+        review.text ||
+        review.review ||
+        "";
+
+
+    const name =
+        document.createElement("h4");
+
+    name.textContent =
+        "- " +
+        (
+            review.name ||
+            "Customer"
+        );
+
+
+    card.appendChild(rating);
+
+    card.appendChild(text);
+
+    card.appendChild(name);
+
+
+    if (review.date) {
+
+        const date =
+            document.createElement("small");
+
+        date.textContent =
+            review.date;
+
+        card.appendChild(date);
+
+    }
+
+
+    container.appendChild(card);
+
+});
+
+}
+
+/* =========================================================
+FAQ
+========================================================= */
+
+function initializeFAQ() {
+
+const container =
+    document.getElementById(
+        "faqContainer"
+    );
+
+if (!container) return;
+
+
+if (
+    Array.isArray(APP.faq) &&
+    APP.faq.length
+) {
+
+    renderFAQ(
+        container,
+        APP.faq
+    );
+
+    return;
+
+}
+
+
+fetch("data/faq.json")
+
+    .then(response => {
+
+        if (!response.ok) {
+
+            throw new Error(
+                "faq.json not found"
+            );
+
+        }
+
+        return response.json();
+
+    })
+
+    .then(faqs => {
+
+        renderFAQ(
+            container,
+            faqs
+        );
+
+    })
+
+    .catch(error => {
+
+        console.log(
+            "FAQ error:",
+            error
+        );
+
+    });
+
+}
+
+function renderFAQ(
+container,
+faqs
+) {
+
+container.innerHTML = "";
+
+
+faqs.forEach(item => {
+
+    const wrapper =
+        document.createElement("div");
+
+    wrapper.className =
+        "faq-item";
+
+
+    const button =
+        document.createElement("button");
+
+    button.type =
+        "button";
+
+    button.className =
+        "faq-question";
+
+
+    const question =
+        document.createElement("span");
+
+    question.textContent =
+        item.question || "";
+
+
+    const icon =
+        document.createElement("span");
+
+    icon.textContent =
+        "+";
+
+
+    button.appendChild(question);
+
+    button.appendChild(icon);
+
+
+    const answer =
+        document.createElement("div");
+
+    answer.className =
+        "faq-answer";
+
+
+    const paragraph =
+        document.createElement("p");
+
+    paragraph.textContent =
+        item.answer || "";
+
+
+    answer.appendChild(
+        paragraph
+    );
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const isOpen =
+                answer.classList.contains(
+                    "open"
+                );
+
+
+            container
+                .querySelectorAll(
+                    ".faq-answer"
+                )
+                .forEach(item => {
+
+                    item.classList.remove(
+                        "open"
+                    );
+
+                });
+
+
+            container
+                .querySelectorAll(
+                    ".faq-question span:last-child"
+                )
+                .forEach(item => {
+
+                    item.textContent =
+                        "+";
+
+                });
+
+
+            if (!isOpen) {
+
+                answer.classList.add(
+                    "open"
+                );
+
+                icon.textContent =
+                    "−";
+
+            }
+
+        }
+    );
+
+
+    wrapper.appendChild(button);
+
+    wrapper.appendChild(answer);
+
+    container.appendChild(wrapper);
+
+});
+
+}
+
+/* =========================================================
+LOCATION
+========================================================= */
+
+function initializeLocation() {
+
+const button =
+    document.getElementById(
+        "getLocationBtn"
+    );
+
+const input =
+    document.getElementById(
+        "customerLocation"
+    );
+
+const status =
+    document.getElementById(
+        "locationStatus"
+    );
+
+
+if (!button) return;
+
+
+button.addEventListener(
+    "click",
+    () => {
+
+        if (!navigator.geolocation) {
+
+            setLocationStatus(
+                status,
+                "❌ Your browser does not support location."
+            );
+
+            return;
+
+        }
+
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "📍 Getting Location...";
+
+
+        setLocationStatus(
+            status,
+            "📍 Getting your current location..."
+        );
+
+
+        navigator.geolocation.getCurrentPosition(
+
+            position => {
+
+                const lat =
+                    position.coords.latitude;
+
+                const lng =
+                    position.coords.longitude;
+
+
+                const mapsURL =
+                    `https://www.google.com/maps?q=${lat},${lng}`;
+
+
+                if (input) {
+
+                    input.value =
+                        mapsURL;
+
+                }
+
+
+                setLocationStatus(
+                    status,
+                    "✅ Location captured successfully."
+                );
+
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "📍 Location Captured";
+
+            },
+
+
+            error => {
+
+                console.log(
+                    "Location error:",
+                    error
+                );
+
+
+                setLocationStatus(
+                    status,
+                    "❌ Location permission denied. Please paste your Google Maps location link."
+                );
+
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "📍 Try Again";
+
+            },
+
+            {
+
+                enableHighAccuracy:
+                    true,
+
+                timeout:
+                    15000,
+
+                maximumAge:
+                    0
+
+            }
+
+        );
+
+    }
+);
+
+}
+
+function setLocationStatus(
+element,
+message
+) {
+
+if (!element) return;
+
+element.textContent =
+    message;
+
+}
+
+/* =========================================================
+WHATSAPP QUOTE
+========================================================= */
+
+function initializeQuoteForm() {
+
+const button =
+    document.getElementById(
+        "sendQuoteBtn"
+    );
+
+if (!button) return;
+
+
+button.addEventListener(
+    "click",
+    sendQuote
+);
+
+}
+
+function sendQuote() {
+
+const name =
+    getValue(
+        "customerName"
+    );
+
+const phone =
+    getValue(
+        "customerPhone"
+    );
+
+const service =
+    getValue(
+        "serviceName"
+    );
+
+const message =
+    getValue(
+        "customerMessage"
+    );
+
+const location =
+    getValue(
+        "customerLocation"
+    );
+
+
+if (!name) {
+
+    showToast(
+        "Please enter your name."
+    );
+
+    return;
+
+}
+
+
+if (!phone) {
+
+    showToast(
+        "Please enter your mobile number."
+    );
+
+    return;
+
+}
+
+
+if (!service) {
+
+    showToast(
+        "Please select a service."
+    );
+
+    return;
+
+}
+
+
+if (!location) {
+
+    showToast(
+        "Please share your service location."
+    );
+
+    return;
+
+}
+
+
+const whatsappNumber =
+    APP.whatsapp ||
+    "919026036445";
+
+
+const whatsappMessage =
+
+`🔔 NEW SERVICE ENQUIRY
+
+👤 Name: ${name}
+
+📱 Mobile: ${phone}
+
+⚡ Service: ${service}
+
+📝 Message:
+${message || "No message provided"}
+
+📍 Service Location:
+${location}
+
+━━━━━━━━━━━━━━
+
+⚡ Sandeep ElectroFix
+Professional Electrical Services
+📍 Lucknow, Uttar Pradesh`;
+
+const whatsappURL =
+    "https://wa.me/" +
+    whatsappNumber.replace(/\D/g, "") +
+    "?text=" +
+    encodeURIComponent(
+        whatsappMessage
+    );
+
+
+showToast(
+    "Opening WhatsApp..."
+);
+
+
+setTimeout(() => {
+
+    window.open(
+        whatsappURL,
+        "_blank",
+        "noopener"
+    );
+
+}, 300);
+
+
+/* Optional Google Sheet */
+
+sendToGoogleSheet({
+
+    name,
+    phone,
+    service,
+    message,
+    location
+
+});
+
+}
+
+function getValue(id) {
+
+return (
+    document
+        .getElementById(id)
+        ?.value
+        .trim() || ""
+);
+
+}
+
+/* =========================================================
+GOOGLE SHEET
+========================================================= */
+
+function sendToGoogleSheet(data) {
+
+const googleSheetURL =
+    "https://script.google.com/macros/s/AKfycbxShXAXNiKStkhDZLywJ4YeRVUJ2Ljv44qOjsofiVP27vArOk2OhiN1i4BXKwv21joF/exec";
+
+
+if (
+    !googleSheetURL
+) return;
+
+
+fetch(
+    googleSheetURL,
+    {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        headers: {
+
+            "Content-Type":
+                "text/plain;charset=utf-8"
+
+        },
+
+        body:
+            JSON.stringify(data)
+
+    }
+)
+.then(() => {
+
+    console.log(
+        "Enquiry sent to Google Sheet."
+    );
 
 })
-
 .catch(error => {
 
     console.log(
-        "FAQ loading error:",
+        "Google Sheet error:",
         error
     );
 
 });
 
-
-/* ==========================================
-   THEME TOGGLE
-========================================== */
-
-const themeToggle =
-    document.getElementById("themeToggle");
-
-
-function applyTheme(theme) {
-
-    if (theme === "light") {
-
-        document.body.classList.add(
-            "light-theme"
-        );
-
-    } else {
-
-        document.body.classList.remove(
-            "light-theme"
-        );
-
-    }
-
-
-    updateThemeButton();
-
 }
 
+/* =========================================================
+THEME
+========================================================= */
 
-function updateThemeButton() {
+function initializeTheme() {
 
-    if (!themeToggle) return;
-
-    const isLight =
-        document.body.classList.contains(
-            "light-theme"
-        );
-
-
-    themeToggle.textContent =
-        isLight
-            ? "🌙 Dark Mode"
-            : "☀️ Light Mode";
-
-}
+const button =
+    document.getElementById(
+        "themeToggle"
+    );
 
 
 const savedTheme =
@@ -1104,129 +1607,325 @@ const savedTheme =
     );
 
 
-if (CONFIG.darkMode !== false) {
+if (
+    savedTheme === "light"
+) {
 
-    applyTheme(
-        savedTheme === "light"
-            ? "light"
-            : "dark"
+    document.body.classList.add(
+        "light-theme"
     );
 
 } else {
 
-    applyTheme("dark");
-
-}
-
-
-if (themeToggle) {
-
-    themeToggle.addEventListener(
-        "click",
-        function () {
-
-            const isLight =
-                document.body.classList.contains(
-                    "light-theme"
-                );
-
-
-            const newTheme =
-                isLight
-                    ? "dark"
-                    : "light";
-
-           localStorage.setItem(
-                "sandeepTheme",
-                newTheme
-            );
-
-
-            applyTheme(newTheme);
-
-        }
+    document.body.classList.remove(
+        "light-theme"
     );
 
 }
 
 
-/* ==========================================
-   CURRENT YEAR
-========================================== */
-
-const footer =
-    document.querySelector("footer p");
+updateThemeButton(
+    button
+);
 
 
-if (footer) {
+if (!button) return;
 
-    footer.textContent =
-        `© ${new Date().getFullYear()} Sandeep ElectroFix`;
+
+button.addEventListener(
+    "click",
+    () => {
+
+        const isLight =
+            document.body.classList.contains(
+                "light-theme"
+            );
+
+
+        const newTheme =
+            isLight
+                ? "dark"
+                : "light";
+
+
+        if (
+            newTheme === "light"
+        ) {
+
+            document.body.classList.add(
+                "light-theme"
+            );
+
+        } else {
+
+            document.body.classList.remove(
+                "light-theme"
+            );
+
+        }
+
+
+        localStorage.setItem(
+            "sandeepTheme",
+            newTheme
+        );
+
+
+        updateThemeButton(
+            button
+        );
+
+    }
+);
+
+}
+
+function updateThemeButton(button) {
+
+if (!button) return;
+
+
+const isLight =
+    document.body.classList.contains(
+        "light-theme"
+    );
+
+
+button.textContent =
+    isLight
+        ? "🌙 Dark Mode"
+        : "☀️ Light Mode";
+
+}
+
+/* =========================================================
+QR DOWNLOAD
+========================================================= */
+
+function initializeQR() {
+
+const button =
+    document.getElementById(
+        "downloadQR"
+    );
+
+const qr =
+    document.getElementById(
+        "cardQR"
+    );
+
+
+if (
+    !button ||
+    !qr
+) return;
+
+
+button.addEventListener(
+    "click",
+    () => {
+
+        const link =
+            document.createElement("a");
+
+        link.href =
+            qr.src;
+
+        link.download =
+            "Sandeep-ElectroFix-QR.png";
+
+
+        document.body.appendChild(
+            link
+        );
+
+        link.click();
+
+        link.remove();
+
+
+        showToast(
+            "QR download started."
+        );
+
+    }
+);
+
+}
+
+/* =========================================================
+TOP BUTTON
+========================================================= */
+
+function initializeTopButton() {
+
+const button =
+    document.createElement(
+        "button"
+    );
+
+
+button.id =
+    "topButton";
+
+button.type =
+    "button";
+
+button.setAttribute(
+    "aria-label",
+    "Back to top"
+);
+
+button.textContent =
+    "⬆";
+
+
+document.body.appendChild(
+    button
+);
+
+
+function update() {
+
+    if (
+        window.scrollY > 300
+    ) {
+
+        button.classList.add(
+            "show"
+        );
+
+    } else {
+
+        button.classList.remove(
+            "show"
+        );
+
+    }
 
 }
 
 
-/* ==========================================
-   MOBILE BOTTOM NAVIGATION
-========================================== */
+window.addEventListener(
+    "scroll",
+    update,
+    {
+        passive: true
+    }
+);
 
-const bottomNavItems =
+
+button.addEventListener(
+    "click",
+    () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+);
+
+}
+
+/* =========================================================
+MOBILE NAVIGATION
+========================================================= */
+
+function initializeMobileNavigation() {
+
+const items =
     document.querySelectorAll(
         ".bottom-nav-item"
     );
 
 
-const navSections = [
+if (!items.length) return;
+
+
+items.forEach(item => {
+
+    item.addEventListener(
+        "click",
+        () => {
+
+            items.forEach(
+                nav =>
+                    nav.classList.remove(
+                        "active"
+                    )
+            );
+
+
+            item.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+});
+
+
+const sections = [
+
     "top",
+
     "services",
+
     "gallery",
+
     "contact-form"
+
 ];
 
 
-function updateActiveNav() {
+function updateActive() {
 
-    let currentSection = "top";
+    let current =
+        "top";
 
 
-    navSections.forEach(id => {
+    sections.forEach(id => {
 
         const section =
-            document.getElementById(id);
+            document.getElementById(
+                id
+            );
+
 
         if (!section) return;
 
 
-        const rect =
-            section.getBoundingClientRect();
+        if (
+            section.getBoundingClientRect()
+                .top <= 180
+        ) {
 
-
-        if (rect.top <= 180) {
-
-            currentSection = id;
+            current =
+                id;
 
         }
 
     });
 
 
-    bottomNavItems.forEach(item => {
-
-        item.classList.remove("active");
-
+    items.forEach(item => {
 
         const href =
-            item.getAttribute("href");
+            item.getAttribute(
+                "href"
+            );
 
 
-        if (
-            href === "#" +
-            currentSection
-        ) {
-
-            item.classList.add("active");
-
-        }
+        item.classList.toggle(
+            "active",
+            href === "#" + current
+        );
 
     });
 
@@ -1235,128 +1934,105 @@ function updateActiveNav() {
 
 window.addEventListener(
     "scroll",
-    updateActiveNav
+    updateActive,
+    {
+        passive: true
+    }
 );
 
 
-window.addEventListener(
-    "load",
-    updateActiveNav
-);
-
-
-bottomNavItems.forEach(item => {
-
-    item.addEventListener(
-        "click",
-        function () {
-
-            bottomNavItems.forEach(nav => {
-
-                nav.classList.remove(
-                    "active"
-                );
-
-            });
-
-
-            this.classList.add("active");
-
-        }
-    );
-
-});
-
-
-/* ==========================================
-   QR DOWNLOAD
-========================================== */
-
-const downloadQR =
-    document.getElementById("downloadQR");
-
-const cardQR =
-    document.getElementById("cardQR");
-
-
-if (downloadQR && cardQR) {
-
-    downloadQR.addEventListener(
-        "click",
-        function () {
-
-            const link =
-                document.createElement("a");
-
-            link.href =
-                cardQR.src;
-
-            link.download =
-                "Sandeep-ElectroFix-QR.png";
-
-            document.body.appendChild(link);
-
-            link.click();
-
-            document.body.removeChild(link);
-
-            showToast(
-                "QR download started."
-            );
-
-        }
-    );
+updateActive();
 
 }
 
+/* =========================================================
+RIPPLE
+========================================================= */
 
-/* ==========================================
-   PWA INSTALL
-========================================== */
+function initializeRipple() {
 
-let deferredPrompt = null;
+document.addEventListener(
+    "click",
+    event => {
+
+        const target =
+            event.target.closest(
+                ".btn, .card"
+            );
 
 
-window.addEventListener(
-    "beforeinstallprompt",
-    function (e) {
+        if (!target) return;
 
-        e.preventDefault();
 
-        deferredPrompt = e;
+        const ripple =
+            document.createElement(
+                "span"
+            );
 
-        showToast(
-            "📱 App can be installed"
+
+        ripple.className =
+            "ripple";
+
+
+        const rect =
+            target.getBoundingClientRect();
+
+
+        ripple.style.left =
+            (
+                event.clientX -
+                rect.left
+            ) + "px";
+
+
+        ripple.style.top =
+            (
+                event.clientY -
+                rect.top
+            ) + "px";
+
+
+        target.appendChild(
+            ripple
+        );
+
+
+        setTimeout(
+            () => {
+
+                ripple.remove();
+
+            },
+            600
         );
 
     }
 );
 
-
-async function installApp() {
-
-    if (!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-
-    await deferredPrompt.userChoice;
-
-    deferredPrompt = null;
-
 }
 
+/* =========================================================
+ANIMATIONS
+========================================================= */
 
-/* ==========================================
-   CARD ENTRANCE ANIMATION
-========================================== */
+function initializeAnimations() {
 
-if ("IntersectionObserver" in window) {
+document.body.classList.add(
+    "loaded"
+);
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
 
-                entries.forEach(entry => {
+if (
+    !("IntersectionObserver" in window)
+) return;
+
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
 
                     if (
                         entry.isIntersecting
@@ -1366,37 +2042,72 @@ if ("IntersectionObserver" in window) {
                             "visible"
                         );
 
+                        observer.unobserve(
+                            entry.target
+                        );
+
                     }
 
-                });
+                }
+            );
 
-            },
-            {
-                threshold: 0.15
-            }
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+document
+    .querySelectorAll(
+        ".card, .service-card, .gallery-item, .review-card, .faq-item"
+    )
+    .forEach(element => {
+
+        observer.observe(
+            element
         );
 
-
-    document
-        .querySelectorAll(
-            ".card, .service-card, .gallery-item"
-        )
-        .forEach(item => {
-
-            observer.observe(item);
-
-        });
+    });
 
 }
 
+/* =========================================================
+FOOTER YEAR
+========================================================= */
 
-/* ==========================================
-   SERVICE WORKER
-========================================== */
+function updateFooterYear() {
 
-console.log(
-    "Sandeep ElectroFix Card v2.0 Loaded"
+const footerText =
+    document.querySelector(
+        "footer p"
+    );
+
+
+if (!footerText) return;
+
+
+footerText.textContent =
+    `© ${new Date().getFullYear()} Sandeep ElectroFix`;
+
+}
+
+/* =========================================================
+PAGE LOAD
+========================================================= */
+
+window.addEventListener(
+"load",
+() => {
+
+    document.body.classList.add(
+        "loaded"
+    );
+
+    console.log(
+        "⚡ Sandeep ElectroFix Digital Card Loaded"
+    );
+
+}
+
 );
-
-
-       
