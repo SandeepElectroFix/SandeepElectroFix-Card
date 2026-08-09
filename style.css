@@ -333,7 +333,12 @@ box-shadow:0 15px 35px rgba(0,200,255,.30);
    QUICK ACCESS ICONS
 ========================================= */
 
+/* =========================================
+   PREMIUM ORIGINAL-STYLE QUICK ICONS
+========================================= */
+
 .card .icon {
+
     width: 58px;
     height: 58px;
 
@@ -343,79 +348,99 @@ box-shadow:0 15px 35px rgba(0,200,255,.30);
     align-items: center;
     justify-content: center;
 
-    font-size: 27px;
-
     border-radius: 50%;
+
+    font-size: 28px;
 
     background: rgba(255,255,255,.08);
 
     border: 1px solid rgba(255,255,255,.12);
 
     transition: .35s ease;
+
 }
+
 
 /* Call */
-.card:nth-child(1) .icon {
-    color: #38bdf8;
+.call-icon {
+    color: #00BFFF;
+    text-shadow: 0 0 14px rgba(0,191,255,.65);
 }
+
 
 /* WhatsApp */
-.card:nth-child(2) .icon {
+.whatsapp-icon {
     color: #25D366;
+    text-shadow: 0 0 14px rgba(37,211,102,.65);
 }
+
 
 /* Website */
-.card:nth-child(3) .icon {
-    color: #38bdf8;
+.website-icon {
+    color: #00D9FF;
+    text-shadow: 0 0 14px rgba(0,217,255,.65);
 }
+
 
 /* Google Maps */
-.card:nth-child(4) .icon {
-    color: #ff4b4b;
+.maps-icon {
+    color: #EA4335;
+    text-shadow: 0 0 14px rgba(234,67,53,.65);
 }
+
 
 /* Facebook */
-.card:nth-child(5) .icon {
+.facebook-icon {
     color: #1877F2;
+    text-shadow: 0 0 14px rgba(24,119,242,.65);
 }
+
 
 /* Instagram */
-.card:nth-child(6) .icon {
+.instagram-icon {
     color: #E4405F;
+    text-shadow: 0 0 14px rgba(228,64,95,.65);
 }
+
 
 /* YouTube */
-.card:nth-child(7) .icon {
+.youtube-icon {
     color: #FF0000;
+    text-shadow: 0 0 14px rgba(255,0,0,.65);
 }
+
 
 /* Email */
-.card:nth-child(8) .icon {
-    color: #38bdf8;
+.email-icon {
+    color: #38BDF8;
+    text-shadow: 0 0 14px rgba(56,189,248,.65);
 }
+
 
 /* Save Contact */
-.card:nth-child(9) .icon {
-    color: #fbbf24;
+.contact-icon {
+    color: #FFD700;
+    text-shadow: 0 0 14px rgba(255,215,0,.65);
 }
+
 
 /* Share */
-.card:nth-child(10) .icon {
-    color: #a78bfa;
+.share-icon {
+    color: #A855F7;
+    text-shadow: 0 0 14px rgba(168,85,247,.65);
 }
 
 
-/* Hover Effect */
+/* Hover */
 
 .card:hover .icon {
+
     transform: scale(1.12);
 
-    background: rgba(0,200,255,.12);
+    background: rgba(255,255,255,.12);
 
-    border-color: rgba(0,200,255,.35);
+    border-color: rgba(255,255,255,.25);
 
-    box-shadow:
-        0 0 20px rgba(0,200,255,.20);
 }
 
 /* =========================================
