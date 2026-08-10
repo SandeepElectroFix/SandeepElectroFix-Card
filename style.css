@@ -1841,3 +1841,128 @@ REDUCED MOTION
     }
 
 }
+/* =========================================
+   LANGUAGE SWITCHER
+========================================= */
+
+.language-switcher {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+
+    width: fit-content;
+
+    margin: 15px auto 20px;
+
+    padding: 5px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.20);
+
+}
+
+
+.language-btn {
+
+    border: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    padding: 8px 16px;
+
+    border-radius: 22px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.language-btn:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+.language-btn.active {
+
+    background: linear-gradient(
+        135deg,
+        #00c6ff,
+        #0072ff
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 4px 15px rgba(0,114,255,0.35);
+
+}
+
+
+/* =========================================
+   LIGHT MODE
+========================================= */
+
+.saved-light-theme
+.language-switcher {
+
+    background: rgba(0,0,0,0.06);
+
+    border-color:
+        rgba(0,0,0,0.12);
+
+}
+
+
+.saved-light-theme
+.language-btn {
+
+    color: #111827;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .language-switcher {
+
+        margin-top: 10px;
+
+        margin-bottom: 18px;
+
+    }
+
+    .language-btn {
+
+        padding: 7px 14px;
+
+        font-size: 13px;
+
+    }
+
+}
