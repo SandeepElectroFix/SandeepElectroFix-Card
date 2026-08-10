@@ -1563,3 +1563,24 @@ REDUCED MOTION
 }
 
 }
+/* =========================================
+   FINAL LOGO SIZE
+========================================= */
+
+.hero-logo img {
+    width: 180px !important;
+    height: 180px !important;
+}
+
+@media (max-width: 768px) {
+
+    .hero-logo {
+        height: 180px !important;
+    }
+
+    .hero-logo img {
+        width: 180px !important;
+        height: 180px !important;
+    }
+
+}
