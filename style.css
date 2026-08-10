@@ -188,15 +188,14 @@ background:
 }
 
 /* =========================================
-   HERO LOGO
-   LARGE + CENTER + NO CSS CIRCLE
+   HERO LOGO - EXTRA LARGE
 ========================================= */
 
 .hero-logo {
-    width: 210px;
-    height: 210px;
+    width: 260px !important;
+    height: 260px !important;
 
-    margin: 0 auto 25px auto;
+    margin: 0 auto 25px auto !important;
 
     display: flex;
     align-items: center;
@@ -206,49 +205,43 @@ background:
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-
     padding: 0 !important;
 }
 
 .hero-logo img {
-    width: 210px;
-    height: 210px;
-
-    display: block;
+    width: 260px !important;
+    height: 260px !important;
 
     object-fit: contain;
+    display: block;
 
     background: transparent !important;
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-
     padding: 0 !important;
 
-    filter: drop-shadow(
-        0 8px 20px rgba(0,153,255,.35)
-    );
+    filter: drop-shadow(0 8px 20px rgba(0,153,255,.35));
 
     animation: float 4s ease-in-out infinite;
 }
 
 
 /* =========================================
-   MOBILE
+   MOBILE - LARGE LOGO
 ========================================= */
 
 @media (max-width: 768px) {
 
     .hero-logo {
-        width: 190px;
-        height: 190px;
-
-        margin: 0 auto 22px auto;
+        width: 230px !important;
+        height: 230px !important;
+        margin: 0 auto 22px auto !important;
     }
 
     .hero-logo img {
-        width: 190px;
-        height: 190px;
+        width: 230px !important;
+        height: 230px !important;
     }
 
 }
