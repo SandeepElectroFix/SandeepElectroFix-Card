@@ -188,14 +188,15 @@ background:
 }
 
 /* =========================================
-   HERO LOGO - EXTRA LARGE
+   SANDEEP ELECTROFIX
+   HERO LOGO - LARGE PREMIUM
 ========================================= */
 
 .hero-logo {
-    width: 260px !important;
-    height: 260px !important;
+    width: 340px !important;
+    height: 340px !important;
 
-    margin: 0 auto 25px auto !important;
+    margin: 0 auto 20px auto !important;
 
     display: flex;
     align-items: center;
@@ -209,11 +210,11 @@ background:
 }
 
 .hero-logo img {
-    width: 260px !important;
-    height: 260px !important;
+    width: 340px !important;
+    height: 340px !important;
 
-    object-fit: contain;
     display: block;
+    object-fit: contain;
 
     background: transparent !important;
     border: none !important;
@@ -222,26 +223,25 @@ background:
     padding: 0 !important;
 
     filter: drop-shadow(0 8px 20px rgba(0,153,255,.35));
-
-    animation: float 4s ease-in-out infinite;
 }
 
 
 /* =========================================
-   MOBILE - LARGE LOGO
+   MOBILE
 ========================================= */
 
 @media (max-width: 768px) {
 
     .hero-logo {
-        width: 230px !important;
-        height: 230px !important;
-        margin: 0 auto 22px auto !important;
+        width: 300px !important;
+        height: 300px !important;
+
+        margin: 0 auto 18px auto !important;
     }
 
     .hero-logo img {
-        width: 230px !important;
-        height: 230px !important;
+        width: 300px !important;
+        height: 300px !important;
     }
 
 }
