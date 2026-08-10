@@ -2111,3 +2111,255 @@ window.addEventListener(
 }
 
 );
+
+
+
+/* =========================================
+   SANDEEP ELECTROFIX
+   SERVICE WORKER
+   CACHE-BUSTING VERSION 2.0
+========================================= */
+
+const CACHE_NAME = "sandeep-electrofix-card-v2";
+
+
+/* =========================================
+   FILES TO CACHE
+========================================= */
+
+const STATIC_ASSETS = [
+
+    "./",
+
+    "./index.html",
+    "./style.css",
+    "./config.js",
+    "./script.js",
+
+    "./assets/logo.png",
+    "./assets/qr-card.png"
+
+];
+
+
+/* =========================================
+   INSTALL
+========================================= */
+
+self.addEventListener("install", event => {
+
+    console.log(
+        "Sandeep ElectroFix SW: Installing..."
+    );
+
+    event.waitUntil(
+
+        caches.open(CACHE_NAME)
+            .then(cache => {
+
+                return cache.addAll(STATIC_ASSETS);
+
+            })
+            .then(() => {
+
+                console.log(
+                    "Sandeep ElectroFix SW: Assets cached."
+                );
+
+                /*
+                 * Activate new Service Worker
+                 * immediately.
+                 */
+
+                return self.skipWaiting();
+
+            })
+
+    );
+
+});
+
+
+/* =========================================
+   ACTIVATE
+   DELETE OLD CACHES
+========================================= */
+
+self.addEventListener("activate", event => {
+
+    console.log(
+        "Sandeep ElectroFix SW: Activated."
+    );
+
+    event.waitUntil(
+
+        caches.keys()
+            .then(cacheNames => {
+
+                return Promise.all(
+
+                    cacheNames.map(cacheName => {
+
+                        /*
+                         * Delete every old
+                         * Sandeep ElectroFix cache.
+                         */
+
+                        if (
+                            cacheName.startsWith(
+                                "sandeep-electrofix-card-"
+                            )
+                            &&
+                            cacheName !== CACHE_NAME
+                        ) {
+
+                            console.log(
+                                "Deleting old cache:",
+                                cacheName
+                            );
+
+                            return caches.delete(
+                                cacheName
+                            );
+
+                        }
+
+                        return null;
+
+                    })
+
+                );
+
+            })
+            .then(() => {
+
+                /*
+                 * Take control of all open pages.
+                 */
+
+                return self.clients.claim();
+
+            })
+
+    );
+
+});
+
+
+/* =========================================
+   FETCH
+========================================= */
+
+self.addEventListener("fetch", event => {
+
+    const request = event.request;
+
+
+    /*
+     * Only handle GET requests.
+     */
+
+    if (request.method !== "GET") {
+
+        return;
+
+    }
+
+
+    /*
+     * Ignore external websites.
+     */
+
+    const requestURL =
+        new URL(request.url);
+
+    if (
+        requestURL.origin !==
+        self.location.origin
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+     * NETWORK FIRST
+     *
+     * This is important for your website.
+     *
+     * Browser tries to get the latest
+     * version from GitHub Pages first.
+     *
+     * If internet is unavailable,
+     * cached version is used.
+     */
+
+    event.respondWith(
+
+        fetch(request)
+            .then(response => {
+
+                /*
+                 * Save successful response
+                 * into current cache.
+                 */
+
+                if (
+                    response &&
+                    response.status === 200
+                ) {
+
+                    const responseClone =
+                        response.clone();
+
+                    caches.open(CACHE_NAME)
+                        .then(cache => {
+
+                            cache.put(
+                                request,
+                                responseClone
+                            );
+
+                        });
+
+                }
+
+
+                return response;
+
+            })
+
+            .catch(() => {
+
+                /*
+                 * Internet unavailable.
+                 * Use cached version.
+                 */
+
+                return caches.match(request);
+
+            })
+
+    );
+
+});
+
+
+/* =========================================
+   MESSAGE
+   FORCE UPDATE
+========================================= */
+
+self.addEventListener("message", event => {
+
+    if (
+        event.data &&
+        event.data.type === "SKIP_WAITING"
+    ) {
+
+        self.skipWaiting();
+
+    }
+
+});
