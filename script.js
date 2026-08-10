@@ -2363,3 +2363,189 @@ self.addEventListener("message", event => {
     }
 
 });
+/* =========================================
+   LANGUAGE SYSTEM
+   SANDEEP ELECTROFIX
+========================================= */
+
+const translations = {
+
+    en: {
+
+        tagline: "Powering Your Trust",
+
+        location: "📍 Lucknow, Uttar Pradesh",
+
+        callNow: "📞 Call Now",
+
+        whatsapp: "💬 WhatsApp",
+
+        quickAccess: "Quick Access",
+
+        about: "About",
+
+        ourServices: "Our Services",
+
+        ourWork: "Our Work",
+
+        customerReviews: "Customer Reviews",
+
+        visitUs: "📍 Visit Us",
+
+        requestQuote: "Request a Quote",
+
+        faq: "Frequently Asked Questions",
+
+        scanSave: "📱 Scan & Save",
+
+        contact: "Contact"
+
+    },
+
+
+    hi: {
+
+        tagline: "आपका विश्वास, हमारी शक्ति",
+
+        location: "📍 लखनऊ, उत्तर प्रदेश",
+
+        callNow: "📞 अभी कॉल करें",
+
+        whatsapp: "💬 व्हाट्सऐप",
+
+        quickAccess: "त्वरित संपर्क",
+
+        about: "हमारे बारे में",
+
+        ourServices: "हमारी सेवाएँ",
+
+        ourWork: "हमारा काम",
+
+        customerReviews: "ग्राहक समीक्षाएँ",
+
+        visitUs: "📍 यहाँ आएँ",
+
+        requestQuote: "सेवा के लिए अनुरोध करें",
+
+        faq: "अक्सर पूछे जाने वाले सवाल",
+
+        scanSave: "📱 स्कैन करें और सेव करें",
+
+        contact: "संपर्क करें"
+
+    }
+
+};
+
+
+/* =========================================
+   CHANGE LANGUAGE
+========================================= */
+
+function setLanguage(language) {
+
+    const selectedLanguage =
+        translations[language]
+            ? language
+            : "en";
+
+
+    /*
+     * Change all elements
+     * having data-i18n
+     */
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute("data-i18n");
+
+            if (
+                translations[selectedLanguage][key]
+            ) {
+
+                element.textContent =
+                    translations[selectedLanguage][key];
+
+            }
+
+        });
+
+
+    /*
+     * Save selected language
+     */
+
+    localStorage.setItem(
+        "sandeepLanguage",
+        selectedLanguage
+    );
+
+
+    /*
+     * Update buttons
+     */
+
+    document
+        .querySelectorAll(".language-btn")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.lang ===
+                selectedLanguage
+            );
+
+        });
+
+
+    /*
+     * HTML language attribute
+     */
+
+    document.documentElement.lang =
+        selectedLanguage === "hi"
+            ? "hi"
+            : "en";
+
+}
+
+
+/* =========================================
+   LANGUAGE BUTTONS
+========================================= */
+
+document
+    .querySelectorAll(".language-btn")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                setLanguage(
+                    button.dataset.lang
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================
+   LOAD SAVED LANGUAGE
+========================================= */
+
+(function () {
+
+    const savedLanguage =
+        localStorage.getItem(
+            "sandeepLanguage"
+        ) || "en";
+
+    setLanguage(savedLanguage);
+
+})();
