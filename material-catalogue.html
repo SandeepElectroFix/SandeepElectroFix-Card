@@ -1,97 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <!-- =========================================
+    <!-- =====================================================
          BASIC META
-    ========================================== -->
+    ====================================================== -->
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="theme-color"
-          content="#05070b">
+    <meta
+        name="theme-color"
+        content="#070b12"
+    >
 
-    <meta name="robots"
-          content="index, follow">
+    <meta
+        name="robots"
+        content="index, follow"
+    >
 
 
-    <!-- =========================================
+    <!-- =====================================================
          SEO
-    ========================================== -->
+    ====================================================== -->
 
     <title>
         Material Catalogue | Sandeep ElectroFix
     </title>
 
-    <meta name="description"
-          content="Browse electrical materials and products from Sandeep ElectroFix, Lucknow.">
+    <meta
+        name="description"
+        content="Electrical material catalogue by Sandeep ElectroFix, Lucknow. Browse wires, conduit pipes, switches, MCB, RCCB, DB boxes and electrical accessories."
+    >
 
-    <link rel="canonical"
-          href="https://sandeepelectrofix.github.io/SandeepElectroFix-Card/material-catalogue.html">
+
+    <!-- =====================================================
+         CANONICAL
+    ====================================================== -->
+
+    <link
+        rel="canonical"
+        href="https://sandeepelectrofix.github.io/SandeepElectroFix-Card/material-catalogue.html"
+    >
 
 
-    <!-- =========================================
+    <!-- =====================================================
          FAVICON
-    ========================================== -->
+    ====================================================== -->
 
-    <link rel="icon"
-          type="image/png"
-          href="assets/logo.png">
+    <link
+        rel="icon"
+        type="image/png"
+        href="assets/logo.png"
+    >
 
 
-    <!-- =========================================
+    <!-- =====================================================
          GOOGLE FONT
-    ========================================== -->
+    ====================================================== -->
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-
-    <!-- =========================================
-         CATALOGUE CSS
-    ========================================== -->
-
-    <link rel="stylesheet"
-          href="material-catalogue.css?v=1.0.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
 
-    <!-- =========================================
-         OPEN GRAPH
-    ========================================== -->
+    <!-- =====================================================
+         MATERIAL CATALOGUE CSS
+    ====================================================== -->
 
-    <meta property="og:type"
-          content="website">
-
-    <meta property="og:title"
-          content="Material Catalogue | Sandeep ElectroFix">
-
-    <meta property="og:description"
-          content="Browse electrical materials from Sandeep ElectroFix, Lucknow.">
-
-    <meta property="og:url"
-          content="https://sandeepelectrofix.github.io/SandeepElectroFix-Card/material-catalogue.html">
-
-    <meta property="og:image"
-          content="https://sandeepelectrofix.github.io/SandeepElectroFix-Card/assets/logo.png">
-
-    <meta property="og:site_name"
-          content="Sandeep ElectroFix">
-
-    <meta property="og:locale"
-          content="en_IN">
-
+    <link
+        rel="stylesheet"
+        href="material-catalogue.css?v=1.0.0"
+    >
 
 </head>
 
@@ -99,51 +96,92 @@
 <body>
 
 
-<!-- =====================================================
-     PAGE WRAPPER
-===================================================== -->
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
 
-<div class="catalogue-page">
+    <div class="catalogue-background"></div>
 
 
-    <!-- =================================================
-         TOP HEADER
-    ================================================== -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="catalogue-header">
 
 
         <!-- BACK TO DIGITAL CARD -->
 
-        <a href="index.html"
-           class="catalogue-back"
-           aria-label="Back to Digital Card">
+        <a
+            href="index.html"
+            id="backButton"
+            class="back-button"
+            aria-label="Back to Sandeep ElectroFix Digital Card"
+        >
 
-            <span>←</span>
+            ←
 
         </a>
 
 
-        <!-- BRAND -->
+        <!-- LOGO -->
 
-        <div class="catalogue-brand">
+        <img
+            src="assets/logo.png"
+            alt="Sandeep ElectroFix Logo"
+            class="catalogue-logo"
+        >
 
-            <img src="assets/logo.png"
-                 alt="Sandeep ElectroFix Logo"
-                 class="catalogue-logo">
 
-            <div class="catalogue-brand-text">
+        <!-- TITLE -->
 
-                <h1>
-                    SANDEEP
-                    <span>ELECTROFIX</span>
-                </h1>
+        <h1>
+            Material Catalogue
+        </h1>
 
-                <p>
-                    MATERIAL CATALOGUE
-                </p>
 
-            </div>
+        <p class="catalogue-subtitle">
+
+            Electrical materials for
+            professional installation & wiring
+
+        </p>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         SEARCH TOOLBAR
+    ====================================================== -->
+
+    <div class="catalogue-toolbar">
+
+
+        <div class="search-box">
+
+
+            <input
+                type="search"
+                id="materialSearch"
+                placeholder="Search material, size or category..."
+                autocomplete="off"
+                aria-label="Search electrical materials"
+            >
+
+
+            <button
+                type="button"
+                id="clearSearch"
+                class="clear-search"
+                aria-label="Clear search"
+            >
+
+                ×
+
+            </button>
+
 
         </div>
 
@@ -152,97 +190,282 @@
 
         <button
             type="button"
-            class="catalogue-search-btn"
-            id="catalogueSearchButton"
-            aria-label="Open Search">
+            id="searchToggle"
+            class="search-toggle"
+            aria-label="Toggle search"
+        >
 
             🔍
 
         </button>
 
 
-    </header>
+    </div>
 
 
 
-    <!-- =================================================
-         SEARCH BOX
-    ================================================== -->
+    <!-- =====================================================
+         SEARCH PANEL
+    ====================================================== -->
 
-    <section
-        class="catalogue-search"
-        id="catalogueSearch">
+    <div
+        id="searchPanel"
+        class="catalogue-search-panel"
+    >
 
-        <div class="search-box">
+        <!-- Future advanced search filters
+             can be added here -->
 
-            <span class="search-icon">
-                🔍
+    </div>
+
+
+
+    <!-- =====================================================
+         CATEGORY SECTION
+    ====================================================== -->
+
+    <section class="category-section">
+
+
+        <div class="section-label">
+
+            <h2>
+                Categories
+            </h2>
+
+
+            <span
+                id="productCounter"
+                class="product-counter"
+            >
+
+                0 Materials
+
             </span>
 
-            <input
-                type="search"
-                id="materialSearch"
-                placeholder="Search material..."
-                autocomplete="off"
-                aria-label="Search electrical materials">
+        </div>
 
-            <button
-                type="button"
-                id="clearSearch"
-                class="clear-search"
-                aria-label="Clear Search">
 
-                ✕
+        <!-- CATEGORY BUTTONS GENERATED BY JS -->
 
-            </button>
+        <div
+            id="categoryContainer"
+            class="category-container"
+        >
 
         </div>
+
 
     </section>
 
 
 
-    <!-- =================================================
-         HERO
-    ================================================== -->
+    <!-- =====================================================
+         PRODUCTS
+    ====================================================== -->
 
-    <section class="catalogue-hero">
-
-
-        <div class="hero-content">
+    <section class="products-section">
 
 
-            <div class="hero-label">
+        <div class="section-label">
 
-                ⚡ ELECTRICAL MATERIALS
+            <h2>
+                Electrical Materials
+            </h2>
+
+        </div>
+
+
+        <!-- PRODUCT CARDS GENERATED BY JS -->
+
+        <div
+            id="productsGrid"
+            class="products-grid"
+        >
+
+        </div>
+
+
+        <!-- =================================================
+             NO PRODUCTS
+        ================================================== -->
+
+        <div
+            id="noProducts"
+            class="no-products"
+        >
+
+            <div class="no-products-icon">
+
+                🔎
 
             </div>
 
 
-            <h2>
-
-                Material
-                <span>Catalogue</span>
-
-            </h2>
+            <h3>
+                Material Not Found
+            </h3>
 
 
             <p>
-
-                Quality electrical materials,
-                trusted products and professional
-                electrical solutions.
-
+                Try another material name,
+                size or category.
             </p>
 
 
-            <div class="hero-actions">
+            <button
+                type="button"
+                class="reset-filters"
+                onclick="resetCatalogueFilters()"
+            >
+
+                Reset Search
+
+            </button>
+
+        </div>
 
 
-                <a href="https://wa.me/919026036445?text=Hello%20Sandeep%20ElectroFix%2C%20I%20want%20to%20enquire%20about%20electrical%20materials."
-                   target="_blank"
-                   rel="noopener"
-                   class="hero-whatsapp">
+    </section>
+
+
+
+    <!-- =====================================================
+         PRODUCT DETAILS MODAL
+    ====================================================== -->
+
+    <div
+        id="productModal"
+        class="product-modal"
+        aria-hidden="true"
+    >
+
+
+        <!-- BACKDROP -->
+
+        <div
+            class="modal-backdrop"
+        ></div>
+
+
+        <!-- MODAL BOX -->
+
+        <div
+            class="modal-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalProductTitle"
+        >
+
+
+            <!-- CLOSE -->
+
+            <button
+                type="button"
+                id="modalClose"
+                class="modal-close"
+                aria-label="Close product details"
+            >
+
+                ×
+
+            </button>
+
+
+            <!-- PRODUCT IMAGE -->
+
+            <div class="modal-product-image">
+
+                <img
+                    id="modalProductImage"
+                    src=""
+                    alt=""
+                >
+
+            </div>
+
+
+            <!-- PRODUCT CONTENT -->
+
+            <div class="modal-product-content">
+
+
+                <span
+                    id="modalProductTag"
+                    class="modal-product-tag"
+                >
+
+                    MATERIAL
+
+                </span>
+
+
+                <h2
+                    id="modalProductTitle"
+                >
+
+                    Material Name
+
+                </h2>
+
+
+                <p
+                    id="modalProductSize"
+                    class="modal-product-size"
+                >
+
+                    Size
+
+                </p>
+
+
+                <div
+                    id="modalProductPrice"
+                    class="modal-product-price"
+                >
+
+                    Price on Request
+
+                </div>
+
+
+                <p
+                    id="modalProductDescription"
+                    class="modal-product-description"
+                >
+
+                    Material description.
+
+                </p>
+
+
+                <!-- SPECIFICATIONS -->
+
+                <div class="modal-specifications">
+
+
+                    <h3>
+                        Specifications
+                    </h3>
+
+
+                    <ul
+                        id="modalSpecifications"
+                    >
+
+                    </ul>
+
+
+                </div>
+
+
+                <!-- WHATSAPP -->
+
+                <a
+                    href="#"
+                    id="modalWhatsapp"
+                    class="modal-whatsapp"
+                >
 
                     💬 Enquire on WhatsApp
 
@@ -254,556 +477,32 @@
 
         </div>
 
+    </div>
 
-        <div class="hero-visual">
 
-            <div class="hero-glow"></div>
 
-            <div class="hero-cart">
-
-                🛒
-
-            </div>
-
-            <div class="hero-bolt">
-
-                ⚡
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =================================================
-         QUICK BENEFITS
-    ================================================== -->
-
-    <section class="catalogue-benefits">
-
-
-        <div class="benefit-card">
-
-            <div class="benefit-icon">
-                ⭐
-            </div>
-
-            <div>
-
-                <strong>
-                    Quality
-                </strong>
-
-                <small>
-                    Products
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="benefit-card">
-
-            <div class="benefit-icon">
-                🛡️
-            </div>
-
-            <div>
-
-                <strong>
-                    Trusted
-                </strong>
-
-                <small>
-                    Materials
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="benefit-card">
-
-            <div class="benefit-icon">
-                💬
-            </div>
-
-            <div>
-
-                <strong>
-                    Easy
-                </strong>
-
-                <small>
-                    Enquiry
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="benefit-card">
-
-            <div class="benefit-icon">
-                📍
-            </div>
-
-            <div>
-
-                <strong>
-                    Lucknow
-                </strong>
-
-                <small>
-                    Service
-                </small>
-
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =================================================
-         CATEGORY SECTION
-    ================================================== -->
-
-    <section class="catalogue-section">
-
-
-        <div class="section-heading">
-
-            <div>
-
-                <span>
-                    EXPLORE
-                </span>
-
-                <h2>
-                    Categories
-                </h2>
-
-            </div>
-
-
-            <div class="material-count">
-
-                <strong id="materialCount">
-                    0
-                </strong>
-
-                <small>
-                    Products
-                </small>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- CATEGORY SCROLLER -->
-
-        <div class="category-scroller"
-             id="categoryScroller">
-
-
-            <!-- ALL -->
-
-            <button
-                type="button"
-                class="category-item active"
-                data-category="all">
-
-                <span class="category-icon">
-                    ▦
-                </span>
-
-                <span class="category-name">
-                    All
-                </span>
-
-            </button>
-
-
-            <!-- WIRES -->
-
-            <button
-                type="button"
-                class="category-item"
-                data-category="wire">
-
-                <span class="category-icon">
-                    🔌
-                </span>
-
-                <span class="category-name">
-                    Wires
-                </span>
-
-            </button>
-
-
-            <!-- SWITCHES -->
-
-            <button
-                type="button"
-                class="category-item"
-                data-category="switch">
-
-                <span class="category-icon">
-                    🔘
-                </span>
-
-                <span class="category-name">
-                    Switches
-                </span>
-
-            </button>
-
-
-            <!-- LIGHTS -->
-
-            <button
-                type="button"
-                class="category-item"
-                data-category="light">
-
-                <span class="category-icon">
-                    💡
-                </span>
-
-                <span class="category-name">
-                    Lights
-                </span>
-
-            </button>
-
-
-            <!-- PROTECTION -->
-
-            <button
-                type="button"
-                class="category-item"
-                data-category="protection">
-
-                <span class="category-icon">
-                    🛡️
-                </span>
-
-                <span class="category-name">
-                    Protection
-                </span>
-
-            </button>
-
-
-            <!-- CONDUIT -->
-
-            <button
-                type="button"
-                class="category-item"
-                data-category="conduit">
-
-                <span class="category-icon">
-                    🔧
-                </span>
-
-                <span class="category-name">
-                    Conduit
-                </span>
-
-            </button>
-
-
-            <!-- FAN -->
-
-            <button
-                type="button"
-                class="category-item"
-                data-category="fan">
-
-                <span class="category-icon">
-                    🌀
-                </span>
-
-                <span class="category-name">
-                    Fans
-                </span>
-
-            </button>
-
-
-            <!-- ACCESSORIES -->
-
-            <button
-                type="button"
-                class="category-item"
-                data-category="accessory">
-
-                <span class="category-icon">
-                    🧰
-                </span>
-
-                <span class="category-name">
-                    Accessories
-                </span>
-
-            </button>
-
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =================================================
-         PRODUCTS SECTION
-    ================================================== -->
-
-    <section class="catalogue-section products-section">
-
-
-        <div class="section-heading products-heading">
-
-            <div>
-
-                <span>
-                    ELECTRICAL MATERIALS
-                </span>
-
-                <h2>
-                    Our Products
-                </h2>
-
-            </div>
-
-
-            <div class="location-label">
-
-                📍 Lucknow
-
-            </div>
-
-        </div>
-
-
-
-        <!-- PRODUCT GRID -->
-
-        <div
-            class="products-grid"
-            id="productsGrid">
-
-            <!-- Products generated by JavaScript -->
-
-        </div>
-
-
-
-        <!-- NO RESULTS -->
-
-        <div
-            class="no-products"
-            id="noProducts">
-
-
-            <div class="no-products-icon">
-                🔍
-            </div>
-
-
-            <h3>
-                No Material Found
-            </h3>
-
-
-            <p>
-                Try another product name
-                or category.
-            </p>
-
-
-            <button
-                type="button"
-                id="resetCatalogue"
-                class="reset-btn">
-
-                Show All Materials
-
-            </button>
-
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =================================================
-         CUSTOM MATERIAL ENQUIRY
-    ================================================== -->
-
-    <section class="catalogue-section">
-
-
-        <div class="custom-enquiry">
-
-
-            <div class="custom-enquiry-icon">
-                🧾
-            </div>
-
-
-            <div class="custom-enquiry-content">
-
-                <span>
-                    CAN'T FIND YOUR MATERIAL?
-                </span>
-
-                <h2>
-                    Ask Us Directly
-                </h2>
-
-                <p>
-
-                    Send us the material name,
-                    size or quantity you need.
-
-                </p>
-
-
-                <a href="https://wa.me/919026036445?text=Hello%20Sandeep%20ElectroFix%2C%20I%20couldn't%20find%20the%20material%20I%20need%20in%20your%20catalogue.%20Please%20help%20me."
-                   target="_blank"
-                   rel="noopener"
-                   class="custom-whatsapp">
-
-                    💬 Ask on WhatsApp
-
-                </a>
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =================================================
-         LOCATION / CONTACT
-    ================================================== -->
-
-    <section class="catalogue-contact">
-
-
-        <div class="contact-icon">
-            ⚡
-        </div>
-
-
-        <h2>
-            Sandeep ElectroFix
-        </h2>
-
-
-        <p>
-            Professional Electrical Services
-        </p>
-
-
-        <p>
-            📍 Lucknow, Uttar Pradesh
-        </p>
-
-
-        <div class="contact-actions">
-
-
-            <a href="tel:+919026036445"
-               class="contact-call">
-
-                📞 Call
-
-            </a>
-
-
-            <a href="https://wa.me/919026036445"
-               target="_blank"
-               rel="noopener"
-               class="contact-wa">
-
-                💬 WhatsApp
-
-            </a>
-
-
-        </div>
-
-
-    </section>
-
-
-
-    <!-- =================================================
-         BACK TO DIGITAL CARD
-    ================================================== -->
-
-    <section class="back-card-section">
-
-
-        <a href="index.html"
-           class="back-card-btn">
-
-            ← Back to Digital Card
-
-        </a>
-
-
-    </section>
-
-
-
-    <!-- =================================================
+    <!-- =====================================================
          FOOTER
-    ================================================== -->
+    ====================================================== -->
 
     <footer class="catalogue-footer">
 
 
-        <div class="footer-logo">
-
-            ⚡
-
-        </div>
-
-
-        <h3>
-            SANDEEP ELECTROFIX
-        </h3>
-
-
         <p>
-            Powering Your Trust
+
+            © 2026
+            <strong>
+                Sandeep ElectroFix
+            </strong>
+
         </p>
 
 
         <p>
-            © 2026 Sandeep ElectroFix
+
+            Professional Electrical Services
+            • Lucknow
+
         </p>
 
 
@@ -811,195 +510,44 @@
 
 
 
-</div>
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
+    <script
+        src="material-catalogue.js?v=1.0.0"
+        defer
+    ></script>
 
 
-<!-- =====================================================
-     PRODUCT DETAILS MODAL
-====================================================== -->
+    <!-- =====================================================
+         RESET FILTER FUNCTION
+    ====================================================== -->
 
-<div
-    class="product-modal"
-    id="productModal"
-    aria-hidden="true">
+    <script>
 
+        function resetCatalogueFilters() {
 
-    <!-- BACKDROP -->
+            const input =
+                document.getElementById(
+                    "materialSearch"
+                );
 
-    <div
-        class="modal-backdrop"
-        id="modalBackdrop">
-    </div>
 
+            if (input) {
 
-    <!-- MODAL CARD -->
+                input.value = "";
 
-    <div
-        class="modal-card"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modalProductName">
+            }
 
 
-        <!-- CLOSE -->
+            window.location.reload();
 
-        <button
-            type="button"
-            class="modal-close"
-            id="modalClose"
-            aria-label="Close Product Details">
+        }
 
-            ✕
-
-        </button>
-
-
-        <!-- PRODUCT IMAGE -->
-
-        <div class="modal-product-image"
-             id="modalProductImage">
-
-            <!-- Generated by JS -->
-
-        </div>
-
-
-        <!-- PRODUCT INFO -->
-
-        <div class="modal-product-content">
-
-
-            <span
-                class="modal-product-tag"
-                id="modalProductTag">
-
-                MATERIAL
-
-            </span>
-
-
-            <h2
-                id="modalProductName">
-
-                Product Name
-
-            </h2>
-
-
-            <div
-                class="modal-product-size"
-                id="modalProductSize">
-
-                Size
-
-            </div>
-
-
-            <div
-                class="modal-product-price"
-                id="modalProductPrice">
-
-                Price on enquiry
-
-            </div>
-
-
-            <p
-                class="modal-product-description"
-                id="modalProductDescription">
-
-                Product description.
-
-            </p>
-
-
-            <!-- SPECIFICATIONS -->
-
-            <div class="modal-specifications">
-
-
-                <h3>
-                    Specifications
-                </h3>
-
-
-                <div
-                    id="modalProductSpecification">
-
-                </div>
-
-
-            </div>
-
-
-            <!-- WHATSAPP -->
-
-            <a
-                href="#"
-                target="_blank"
-                rel="noopener"
-                class="modal-whatsapp"
-                id="modalWhatsapp">
-
-                💬 Enquire on WhatsApp
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     CATALOGUE JAVASCRIPT
-====================================================== -->
-
-<script src="material-catalogue.js?v=1.0.0"></script>
-
-
-
-<!-- =====================================================
-     SERVICE WORKER
-====================================================== -->
-
-<script>
-
-    if ("serviceWorker" in navigator) {
-
-        window.addEventListener("load", function () {
-
-            navigator.serviceWorker
-                .register("sw.js")
-                .then(function () {
-
-                    console.log(
-                        "Sandeep ElectroFix Service Worker registered."
-                    );
-
-                })
-                .catch(function (error) {
-
-                    console.log(
-                        "Service Worker registration failed:",
-                        error
-                    );
-
-                });
-
-        });
-
-    }
-
-</script>
+    </script>
 
 
 </body>
 
 </html>
-
