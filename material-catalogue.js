@@ -46,6 +46,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 2,
         name: "FR PVC Wire",
@@ -66,6 +67,7 @@ const materials = [
             "Multiple colours available"
         ]
     },
+
 
     {
         id: 3,
@@ -88,6 +90,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 4,
         name: "FR PVC Wire",
@@ -108,6 +111,7 @@ const materials = [
             "Multiple colours available"
         ]
     },
+
 
     {
         id: 5,
@@ -130,6 +134,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 6,
         name: "Flexible Wire",
@@ -150,6 +155,7 @@ const materials = [
             "Multiple colours available"
         ]
     },
+
 
     {
         id: 7,
@@ -198,6 +204,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 9,
         name: "PVC Conduit Pipe",
@@ -218,6 +225,7 @@ const materials = [
             "Easy installation"
         ]
     },
+
 
     {
         id: 10,
@@ -240,6 +248,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 11,
         name: "Flexible Conduit Pipe",
@@ -261,6 +270,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 12,
         name: "Junction Box",
@@ -281,6 +291,7 @@ const materials = [
             "Easy installation"
         ]
     },
+
 
     {
         id: 13,
@@ -329,6 +340,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 15,
         name: "PVC Saddle",
@@ -349,6 +361,7 @@ const materials = [
             "Easy installation"
         ]
     },
+
 
     {
         id: 16,
@@ -371,6 +384,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 17,
         name: "Cable Tie",
@@ -391,6 +405,7 @@ const materials = [
             "Multiple pieces available"
         ]
     },
+
 
     {
         id: 18,
@@ -439,6 +454,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 20,
         name: "Modular Switch",
@@ -459,6 +475,7 @@ const materials = [
             "Available in different finishes"
         ]
     },
+
 
     {
         id: 21,
@@ -481,6 +498,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 22,
         name: "Modular Socket",
@@ -501,6 +519,7 @@ const materials = [
             "Indoor electrical use"
         ]
     },
+
 
     {
         id: 23,
@@ -523,6 +542,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 24,
         name: "Fan Regulator",
@@ -544,6 +564,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 25,
         name: "Bell Push",
@@ -564,6 +585,7 @@ const materials = [
             "Indoor use"
         ]
     },
+
 
     {
         id: 26,
@@ -612,6 +634,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 28,
         name: "DP MCB",
@@ -632,6 +655,7 @@ const materials = [
             "Select rating according to circuit design"
         ]
     },
+
 
     {
         id: 29,
@@ -654,6 +678,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 30,
         name: "RCCB",
@@ -674,6 +699,7 @@ const materials = [
             "Rating and sensitivity as required"
         ]
     },
+
 
     {
         id: 31,
@@ -696,6 +722,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 32,
         name: "Distribution Box",
@@ -717,6 +744,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 33,
         name: "Distribution Box",
@@ -737,6 +765,7 @@ const materials = [
             "Compact design"
         ]
     },
+
 
     {
         id: 34,
@@ -785,6 +814,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 36,
         name: "LED Panel Light",
@@ -805,6 +835,7 @@ const materials = [
             "Multiple wattages available"
         ]
     },
+
 
     {
         id: 37,
@@ -827,6 +858,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 38,
         name: "Ceiling Light",
@@ -848,6 +880,7 @@ const materials = [
         ]
     },
 
+
     {
         id: 39,
         name: "Lamp Holder",
@@ -868,6 +901,7 @@ const materials = [
             "Easy installation"
         ]
     },
+
 
     {
         id: 40,
@@ -911,7 +945,7 @@ const categories = [
 
     {
         name: "Conduit",
-        icon: "🧰"
+        icon: "🔌"
     },
 
     {
@@ -925,13 +959,13 @@ const categories = [
     },
 
     {
-        name: "Accessories",
-        icon: "🔩"
+        name: "Lighting",
+        icon: "💡"
     },
 
     {
-        name: "Lighting",
-        icon: "💡"
+        name: "Accessories",
+        icon: "🔩"
     }
 
 ];
@@ -966,6 +1000,10 @@ document.addEventListener(
 
         setupBackButton();
 
+        setupResetButton();
+
+        setupImageFallback();
+
         console.log(
             "⚡ Sandeep ElectroFix Material Catalogue Loaded"
         );
@@ -985,6 +1023,7 @@ function createCategories() {
             "categoryContainer"
         );
 
+
     if (!container) return;
 
 
@@ -1001,6 +1040,7 @@ function createCategories() {
 
 
             button.type = "button";
+
 
             button.className =
                 "category-item";
@@ -1082,7 +1122,9 @@ function createCategories() {
 function getFilteredProducts() {
 
     const query =
-        searchText.toLowerCase();
+        searchText
+            .toLowerCase()
+            .trim();
 
 
     return materials.filter(
@@ -1092,6 +1134,13 @@ function getFilteredProducts() {
                 selectedCategory === "All" ||
                 product.category ===
                 selectedCategory;
+
+
+            if (!query) {
+
+                return categoryMatch;
+
+            }
 
 
             const searchableText = [
@@ -1104,7 +1153,7 @@ function getFilteredProducts() {
 
                 product.description,
 
-                ...(product.specifications || [])
+                ...product.specifications
 
             ]
                 .join(" ")
@@ -1212,16 +1261,25 @@ function createProductCard(
 
             <img
                 src="${product.image}"
-                alt="${product.name} ${product.size}"
+                alt="${product.name} - ${product.size}"
                 loading="lazy"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             >
 
             <div
                 class="product-image-placeholder"
-                style="display:none;"
+                style="
+                    display:none;
+                    width:100%;
+                    height:100%;
+                    align-items:center;
+                    justify-content:center;
+                    font-size:55px;
+                "
             >
+
                 ${product.icon}
+
             </div>
 
         `;
@@ -1232,9 +1290,18 @@ function createProductCard(
 
             <div
                 class="product-image-placeholder"
-                style="display:flex;"
+                style="
+                    display:flex;
+                    width:100%;
+                    height:100%;
+                    align-items:center;
+                    justify-content:center;
+                    font-size:55px;
+                "
             >
+
                 ${product.icon}
+
             </div>
 
         `;
@@ -1277,16 +1344,22 @@ function createProductCard(
                 <button
                     type="button"
                     class="product-details-btn"
+                    data-id="${product.id}"
                 >
+
                     👁️ Details
+
                 </button>
 
 
                 <button
                     type="button"
                     class="product-whatsapp-btn"
+                    data-id="${product.id}"
                 >
+
                     💬 Enquire
+
                 </button>
 
             </div>
@@ -1308,28 +1381,36 @@ function createProductCard(
         );
 
 
-    detailsButton.addEventListener(
-        "click",
-        function () {
+    if (detailsButton) {
 
-            openProductModal(
-                product.id
-            );
+        detailsButton.addEventListener(
+            "click",
+            function () {
 
-        }
-    );
+                openProductModal(
+                    product.id
+                );
+
+            }
+        );
+
+    }
 
 
-    whatsappButton.addEventListener(
-        "click",
-        function () {
+    if (whatsappButton) {
 
-            sendWhatsAppEnquiry(
-                product
-            );
+        whatsappButton.addEventListener(
+            "click",
+            function () {
 
-        }
-    );
+                sendWhatsAppEnquiry(
+                    product
+                );
+
+            }
+        );
+
+    }
 
 
     return card;
@@ -1361,7 +1442,7 @@ function updateProductCounter(
 
 
 /* =========================================================
-   NO PRODUCTS
+   NO PRODUCT MESSAGE
 ========================================================= */
 
 function updateNoProducts(
@@ -1377,59 +1458,19 @@ function updateNoProducts(
     if (!message) return;
 
 
-    message.classList.toggle(
-        "show",
-        count === 0
-    );
+    if (count === 0) {
 
-}
-
-
-/* =========================================================
-   RESET FILTERS
-========================================================= */
-
-function resetFilters() {
-
-    selectedCategory =
-        "All";
-
-
-    searchText =
-        "";
-
-
-    const input =
-        document.getElementById(
-            "materialSearch"
+        message.classList.add(
+            "show"
         );
 
+    } else {
 
-    if (input) {
-
-        input.value = "";
-
-    }
-
-
-    const clearButton =
-        document.getElementById(
-            "clearSearch"
-        );
-
-
-    if (clearButton) {
-
-        clearButton.classList.remove(
+        message.classList.remove(
             "show"
         );
 
     }
-
-
-    createCategories();
-
-    renderProducts();
 
 }
 
@@ -1526,7 +1567,11 @@ function setupSearchToggle() {
     if (
         !toggle ||
         !panel
-    ) return;
+    ) {
+
+        return;
+
+    }
 
 
     toggle.addEventListener(
@@ -1537,36 +1582,93 @@ function setupSearchToggle() {
                 "show"
             );
 
+        }
+    );
 
-            if (
-                panel.classList.contains(
-                    "show"
-                )
-            ) {
-
-                const input =
-                    document.getElementById(
-                        "materialSearch"
-                    );
+}
 
 
-                if (input) {
+/* =========================================================
+   RESET BUTTON
+========================================================= */
 
-                    setTimeout(
-                        function () {
+function setupResetButton() {
 
-                            input.focus();
+    const button =
+        document.getElementById(
+            "resetFilters"
+        );
 
-                        },
-                        150
-                    );
 
-                }
+    if (!button) return;
 
-            }
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            resetFilters();
 
         }
     );
+
+}
+
+
+/* =========================================================
+   RESET FILTERS
+========================================================= */
+
+function resetFilters() {
+
+    selectedCategory =
+        "All";
+
+
+    searchText =
+        "";
+
+
+    const input =
+        document.getElementById(
+            "materialSearch"
+        );
+
+
+    const clearButton =
+        document.getElementById(
+            "clearSearch"
+        );
+
+
+    if (input) {
+
+        input.value = "";
+
+    }
+
+
+    if (clearButton) {
+
+        clearButton.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    createCategories();
+
+    renderProducts();
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
 
 }
 
@@ -1650,7 +1752,7 @@ function openProductModal(
             function (item) {
 
                 return item.id ===
-                    productId;
+                    Number(productId);
 
             }
         );
@@ -1711,48 +1813,36 @@ function openProductModal(
 
 
     /* =====================================================
-       MODAL IMAGE
+       IMAGE
     ===================================================== */
 
-    if (
-        image &&
-        product.image
-    ) {
-
-        image.src =
-            product.image;
-
-        image.alt =
-            `${product.name} ${product.size}`;
+    if (image) {
 
         image.style.display =
             "block";
 
+
+        image.src =
+            product.image || "";
+
+
+        image.alt =
+            `${product.name} - ${product.size}`;
+
+
         image.onerror =
             function () {
 
-                image.style.display =
+                this.style.display =
                     "none";
 
             };
-
-    } else if (image) {
-
-        image.removeAttribute(
-            "src"
-        );
-
-        image.alt =
-            product.name;
-
-        image.style.display =
-            "none";
 
     }
 
 
     /* =====================================================
-       MODAL CONTENT
+       TEXT
     ===================================================== */
 
     if (tag) {
@@ -1795,10 +1885,14 @@ function openProductModal(
     }
 
 
+    /* =====================================================
+       SPECIFICATIONS
+    ===================================================== */
+
     if (specifications) {
 
         specifications.innerHTML =
-            (product.specifications || [])
+            product.specifications
                 .map(
                     function (item) {
 
@@ -1827,6 +1921,20 @@ function openProductModal(
 
     if (whatsappButton) {
 
+        whatsappButton.href =
+            createWhatsAppURL(
+                product
+            );
+
+
+        whatsappButton.target =
+            "_blank";
+
+
+        whatsappButton.rel =
+            "noopener noreferrer";
+
+
         whatsappButton.onclick =
             function () {
 
@@ -1850,6 +1958,24 @@ function openProductModal(
 
     document.body.style.overflow =
         "hidden";
+
+
+    if (closeButtonExists()) {
+
+        setTimeout(
+            function () {
+
+                document
+                    .getElementById(
+                        "modalClose"
+                    )
+                    .focus();
+
+            },
+            100
+        );
+
+    }
 
 }
 
@@ -1881,15 +2007,27 @@ function closeProductModal() {
 
 
 /* =========================================================
-   WHATSAPP ENQUIRY
+   CLOSE BUTTON CHECK
 ========================================================= */
 
-function sendWhatsAppEnquiry(
+function closeButtonExists() {
+
+    return Boolean(
+        document.getElementById(
+            "modalClose"
+        )
+    );
+
+}
+
+
+/* =========================================================
+   WHATSAPP URL
+========================================================= */
+
+function createWhatsAppURL(
     product
 ) {
-
-    if (!product) return;
-
 
     const message =
         `Hello Sandeep ElectroFix 👋
@@ -1905,18 +2043,33 @@ ${product.size}
 📂 Category:
 ${product.category}
 
-💰 Price:
-${product.price}
-
-Please share the current availability and price.
+Please share the availability and price.
 
 Thank you.`;
 
 
+    return (
+        `https://wa.me/${WHATSAPP_NUMBER}` +
+        `?text=${encodeURIComponent(message)}`
+    );
+
+}
+
+
+/* =========================================================
+   WHATSAPP ENQUIRY
+========================================================= */
+
+function sendWhatsAppEnquiry(
+    product
+) {
+
+    if (!product) return;
+
+
     const url =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=` +
-        encodeURIComponent(
-            message
+        createWhatsAppURL(
+            product
         );
 
 
@@ -1949,10 +2102,8 @@ function setupBackButton() {
         function (event) {
 
             /*
-             * If browser history exists,
-             * go back.
-             *
-             * Otherwise use catalogue home.
+             * Agar previous page available hai
+             * to history back use hoga.
              */
 
             if (
@@ -1967,6 +2118,83 @@ function setupBackButton() {
             }
 
         }
+    );
+
+}
+
+
+/* =========================================================
+   IMAGE FALLBACK
+========================================================= */
+
+function setupImageFallback() {
+
+    document.addEventListener(
+        "error",
+        function (event) {
+
+            const element =
+                event.target;
+
+
+            if (
+                element.tagName !==
+                "IMG"
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                element.classList.contains(
+                    "product-fallback-handled"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            element.classList.add(
+                "product-fallback-handled"
+            );
+
+
+            /*
+             * Product card image fallback
+             */
+
+            if (
+                element.closest(
+                    ".product-image"
+                )
+            ) {
+
+                element.style.display =
+                    "none";
+
+
+                const placeholder =
+                    element.parentElement
+                        .querySelector(
+                            ".product-image-placeholder"
+                        );
+
+
+                if (placeholder) {
+
+                    placeholder.style.display =
+                        "flex";
+
+                }
+
+            }
+
+        },
+        true
     );
 
 }
@@ -1996,13 +2224,17 @@ window.SandeepMaterialCatalogue = {
 
 
 /* =========================================================
-   READY MESSAGE
+   CONSOLE
 ========================================================= */
 
 console.log(
-    "⚡ Sandeep ElectroFix Material Catalogue JS Ready"
+    "⚡ Material Catalogue JS Ready"
 );
 
 console.log(
     `📦 Total Materials: ${materials.length}`
+);
+
+console.log(
+    `📂 Total Categories: ${categories.length}`
 );
