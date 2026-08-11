@@ -2,7 +2,7 @@
    SANDEEP ELECTROFIX
    MATERIAL CATALOGUE
    PREMIUM JAVASCRIPT
-   Version 1.0.0
+   Version 2.0.0
 ========================================================= */
 
 
@@ -12,8 +12,7 @@
 
 const WHATSAPP_NUMBER = "919026036445";
 
-const CATALOGUE_HOME =
-    "index.html";
+const CATALOGUE_HOME = "index.html";
 
 
 /* =========================================================
@@ -21,324 +20,6 @@ const CATALOGUE_HOME =
 ========================================================= */
 
 const materials = [
-
-    {
-        id: 1,
-
-        name: "PVC Conduit Pipe",
-
-        category: "Conduit",
-
-        icon: "🔌",
-
-        size: "20mm",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "High quality PVC conduit pipe for concealed and surface electrical wiring.",
-
-        specifications: [
-            "20mm standard size",
-            "Suitable for house wiring",
-            "Durable PVC material",
-            "Easy installation"
-        ]
-    },
-
-
-    {
-        id: 2,
-
-        name: "PVC Conduit Pipe",
-
-        category: "Conduit",
-
-        icon: "🔌",
-
-        size: "25mm",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Heavy-duty PVC conduit pipe suitable for electrical wiring and cable protection.",
-
-        specifications: [
-            "25mm standard size",
-            "Strong PVC construction",
-            "Suitable for electrical installations",
-            "Good mechanical protection"
-        ]
-    },
-
-
-    {
-        id: 3,
-
-        name: "Modular Switch",
-
-        category: "Switches",
-
-        icon: "💡",
-
-        size: "6A / 10A / 16A",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Premium modular electrical switch suitable for residential and commercial applications.",
-
-        specifications: [
-            "Modern modular design",
-            "Smooth operation",
-            "Multiple ampere options",
-            "Suitable for standard modular plates"
-        ]
-    },
-
-
-    {
-        id: 4,
-
-        name: "Modular Socket",
-
-        category: "Switches",
-
-        icon: "🔌",
-
-        size: "6A / 16A",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Reliable modular socket for household electrical connections.",
-
-        specifications: [
-            "6A and 16A options",
-            "Strong terminals",
-            "Modular design",
-            "Suitable for residential wiring"
-        ]
-    },
-
-
-    {
-        id: 5,
-
-        name: "MCB",
-
-        category: "Protection",
-
-        icon: "⚡",
-
-        size: "6A – 63A",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Miniature Circuit Breaker for protection against overload and short circuit.",
-
-        specifications: [
-            "Multiple current ratings",
-            "Overload protection",
-            "Short-circuit protection",
-            "Suitable for distribution boards"
-        ]
-    },
-
-
-    {
-        id: 6,
-
-        name: "RCCB",
-
-        category: "Protection",
-
-        icon: "🛡️",
-
-        size: "2P / 4P",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Residual Current Circuit Breaker for protection against electrical leakage.",
-
-        specifications: [
-            "Earth leakage protection",
-            "2 pole and 4 pole options",
-            "Suitable for residential applications",
-            "Enhanced electrical safety"
-        ]
-    },
-
-
-    {
-        id: 7,
-
-        name: "Distribution Box",
-
-        category: "Protection",
-
-        icon: "📦",
-
-        size: "4 Way – 16 Way",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Electrical distribution box suitable for MCB and RCCB installation.",
-
-        specifications: [
-            "Multiple way options",
-            "Neat wiring arrangement",
-            "Suitable for residential DB",
-            "Easy maintenance"
-        ]
-    },
-
-
-    {
-        id: 8,
-
-        name: "Electrical Wire",
-
-        category: "Wires",
-
-        icon: "🧵",
-
-        size: "1.5 / 2.5 / 4 / 6 sq.mm",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Electrical copper wire suitable for different household wiring applications.",
-
-        specifications: [
-            "Multiple sizes available",
-            "Copper conductor",
-            "House wiring applications",
-            "Flexible insulation"
-        ]
-    },
-
-
-    {
-        id: 9,
-
-        name: "Flexible Wire",
-
-        category: "Wires",
-
-        icon: "〰️",
-
-        size: "0.75 – 2.5 sq.mm",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Flexible electrical wire for appliance and connection applications.",
-
-        specifications: [
-            "Flexible conductor",
-            "Easy installation",
-            "Multiple sizes",
-            "Suitable for electrical connections"
-        ]
-    },
-
-
-    {
-        id: 10,
-
-        name: "Cable Tie",
-
-        category: "Accessories",
-
-        icon: "🔗",
-
-        size: "Various Sizes",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "Strong nylon cable ties for electrical cable management.",
-
-        specifications: [
-            "Strong nylon material",
-            "Multiple sizes",
-            "Cable management",
-            "Easy locking mechanism"
-        ]
-    },
-
-
-    {
-        id: 11,
-
-        name: "Saddle Clamp",
-
-        category: "Accessories",
-
-        icon: "🔩",
-
-        size: "20mm / 25mm",
-
-        price: "Price on Request",
-
-        image: "",
-
-        description:
-            "PVC conduit saddle clamp for secure pipe fixing.",
-
-        specifications: [
-            "20mm and 25mm options",
-            "Secure pipe holding",
-            "Easy installation",
-            "Suitable for conduit work"
-        ]
-    },
-
-
-    {
-        id: 12,
-
-        name: "Ceiling Rose",
-
-        category: "Accessories",
-
-        icon: "💡",
-
-        size: "Standard",
-
-        price: "Price on Request",
-
-/* =========================================================
-   SANDEEP ELECTROFIX
-   MATERIAL CATALOGUE
-   PRODUCT DATA
-========================================================= */
-
-const products = [
 
     /* =====================================================
        WIRES & CABLES
@@ -365,7 +46,6 @@ const products = [
         ]
     },
 
-
     {
         id: 2,
         name: "FR PVC Wire",
@@ -386,7 +66,6 @@ const products = [
             "Multiple colours available"
         ]
     },
-
 
     {
         id: 3,
@@ -409,7 +88,6 @@ const products = [
         ]
     },
 
-
     {
         id: 4,
         name: "FR PVC Wire",
@@ -431,7 +109,6 @@ const products = [
         ]
     },
 
-
     {
         id: 5,
         name: "Flexible Wire",
@@ -439,7 +116,7 @@ const products = [
         size: "1.0 sq.mm",
         price: "Price on Request",
         image: "assets/materials/flexible-wire-1sqmm.jpg",
-        icon: "🔌",
+        icon: "〰️",
 
         description:
             "Flexible insulated wire for suitable electrical connections and equipment wiring.",
@@ -453,7 +130,6 @@ const products = [
         ]
     },
 
-
     {
         id: 6,
         name: "Flexible Wire",
@@ -461,7 +137,7 @@ const products = [
         size: "1.5 sq.mm",
         price: "Price on Request",
         image: "assets/materials/flexible-wire-1-5sqmm.jpg",
-        icon: "🔌",
+        icon: "〰️",
 
         description:
             "Flexible electrical wire suitable for equipment and general connection applications.",
@@ -475,7 +151,6 @@ const products = [
         ]
     },
 
-
     {
         id: 7,
         name: "Flexible Wire",
@@ -483,7 +158,7 @@ const products = [
         size: "2.5 sq.mm",
         price: "Price on Request",
         image: "assets/materials/flexible-wire-2-5sqmm.jpg",
-        icon: "🔌",
+        icon: "〰️",
 
         description:
             "Flexible electrical wire for suitable power connection and equipment wiring applications.",
@@ -499,7 +174,7 @@ const products = [
 
 
     /* =====================================================
-       CONDUIT & ACCESSORIES
+       CONDUIT
     ===================================================== */
 
     {
@@ -523,7 +198,6 @@ const products = [
         ]
     },
 
-
     {
         id: 9,
         name: "PVC Conduit Pipe",
@@ -544,7 +218,6 @@ const products = [
             "Easy installation"
         ]
     },
-
 
     {
         id: 10,
@@ -567,7 +240,6 @@ const products = [
         ]
     },
 
-
     {
         id: 11,
         name: "Flexible Conduit Pipe",
@@ -589,7 +261,6 @@ const products = [
         ]
     },
 
-
     {
         id: 12,
         name: "Junction Box",
@@ -610,7 +281,6 @@ const products = [
             "Easy installation"
         ]
     },
-
 
     {
         id: 13,
@@ -634,6 +304,10 @@ const products = [
     },
 
 
+    /* =====================================================
+       ACCESSORIES
+    ===================================================== */
+
     {
         id: 14,
         name: "PVC Saddle",
@@ -654,7 +328,6 @@ const products = [
             "Easy fitting"
         ]
     },
-
 
     {
         id: 15,
@@ -677,7 +350,6 @@ const products = [
         ]
     },
 
-
     {
         id: 16,
         name: "PVC Saddle",
@@ -699,7 +371,6 @@ const products = [
         ]
     },
 
-
     {
         id: 17,
         name: "Cable Tie",
@@ -720,7 +391,6 @@ const products = [
             "Multiple pieces available"
         ]
     },
-
 
     {
         id: 18,
@@ -769,7 +439,6 @@ const products = [
         ]
     },
 
-
     {
         id: 20,
         name: "Modular Switch",
@@ -790,7 +459,6 @@ const products = [
             "Available in different finishes"
         ]
     },
-
 
     {
         id: 21,
@@ -813,7 +481,6 @@ const products = [
         ]
     },
 
-
     {
         id: 22,
         name: "Modular Socket",
@@ -834,7 +501,6 @@ const products = [
             "Indoor electrical use"
         ]
     },
-
 
     {
         id: 23,
@@ -857,7 +523,6 @@ const products = [
         ]
     },
 
-
     {
         id: 24,
         name: "Fan Regulator",
@@ -879,7 +544,6 @@ const products = [
         ]
     },
 
-
     {
         id: 25,
         name: "Bell Push",
@@ -900,7 +564,6 @@ const products = [
             "Indoor use"
         ]
     },
-
 
     {
         id: 26,
@@ -949,7 +612,6 @@ const products = [
         ]
     },
 
-
     {
         id: 28,
         name: "DP MCB",
@@ -970,7 +632,6 @@ const products = [
             "Select rating according to circuit design"
         ]
     },
-
 
     {
         id: 29,
@@ -993,7 +654,6 @@ const products = [
         ]
     },
 
-
     {
         id: 30,
         name: "RCCB",
@@ -1014,7 +674,6 @@ const products = [
             "Rating and sensitivity as required"
         ]
     },
-
 
     {
         id: 31,
@@ -1037,7 +696,6 @@ const products = [
         ]
     },
 
-
     {
         id: 32,
         name: "Distribution Box",
@@ -1059,7 +717,6 @@ const products = [
         ]
     },
 
-
     {
         id: 33,
         name: "Distribution Box",
@@ -1080,7 +737,6 @@ const products = [
             "Compact design"
         ]
     },
-
 
     {
         id: 34,
@@ -1129,7 +785,6 @@ const products = [
         ]
     },
 
-
     {
         id: 36,
         name: "LED Panel Light",
@@ -1150,7 +805,6 @@ const products = [
             "Multiple wattages available"
         ]
     },
-
 
     {
         id: 37,
@@ -1173,7 +827,6 @@ const products = [
         ]
     },
 
-
     {
         id: 38,
         name: "Ceiling Light",
@@ -1195,7 +848,6 @@ const products = [
         ]
     },
 
-
     {
         id: 39,
         name: "Lamp Holder",
@@ -1216,7 +868,6 @@ const products = [
             "Easy installation"
         ]
     },
-
 
     {
         id: 40,
@@ -1241,6 +892,7 @@ const products = [
 
 ];
 
+
 /* =========================================================
    CATEGORY DATA
 ========================================================= */
@@ -1253,13 +905,13 @@ const categories = [
     },
 
     {
-        name: "Conduit",
-        icon: "🔌"
+        name: "Wires",
+        icon: "🧵"
     },
 
     {
-        name: "Wires",
-        icon: "🧵"
+        name: "Conduit",
+        icon: "🧰"
     },
 
     {
@@ -1275,6 +927,11 @@ const categories = [
     {
         name: "Accessories",
         icon: "🔩"
+    },
+
+    {
+        name: "Lighting",
+        icon: "💡"
     }
 
 ];
@@ -1310,7 +967,7 @@ document.addEventListener(
         setupBackButton();
 
         console.log(
-            "Sandeep ElectroFix Material Catalogue Loaded"
+            "⚡ Sandeep ElectroFix Material Catalogue Loaded"
         );
 
     }
@@ -1338,11 +995,12 @@ function createCategories() {
         function (category) {
 
             const button =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
 
             button.type = "button";
-
 
             button.className =
                 "category-item";
@@ -1423,6 +1081,10 @@ function createCategories() {
 
 function getFilteredProducts() {
 
+    const query =
+        searchText.toLowerCase();
+
+
     return materials.filter(
         function (product) {
 
@@ -1432,24 +1094,27 @@ function getFilteredProducts() {
                 selectedCategory;
 
 
+            const searchableText = [
+
+                product.name,
+
+                product.category,
+
+                product.size,
+
+                product.description,
+
+                ...(product.specifications || [])
+
+            ]
+                .join(" ")
+                .toLowerCase();
+
+
             const searchMatch =
-                product.name
-                    .toLowerCase()
-                    .includes(
-                        searchText.toLowerCase()
-                    ) ||
-
-                product.category
-                    .toLowerCase()
-                    .includes(
-                        searchText.toLowerCase()
-                    ) ||
-
-                product.size
-                    .toLowerCase()
-                    .includes(
-                        searchText.toLowerCase()
-                    );
+                searchableText.includes(
+                    query
+                );
 
 
             return (
@@ -1525,7 +1190,9 @@ function createProductCard(
 ) {
 
     const card =
-        document.createElement("article");
+        document.createElement(
+            "article"
+        );
 
 
     card.className =
@@ -1545,9 +1212,17 @@ function createProductCard(
 
             <img
                 src="${product.image}"
-                alt="${product.name}"
+                alt="${product.name} ${product.size}"
                 loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             >
+
+            <div
+                class="product-image-placeholder"
+                style="display:none;"
+            >
+                ${product.icon}
+            </div>
 
         `;
 
@@ -1557,13 +1232,9 @@ function createProductCard(
 
             <div
                 class="product-image-placeholder"
-                style="
-                    display:flex;
-                "
+                style="display:flex;"
             >
-
                 ${product.icon}
-
             </div>
 
         `;
@@ -1590,9 +1261,11 @@ function createProductCard(
                 ${product.name}
             </h3>
 
+
             <div class="product-size">
                 ${product.size}
             </div>
+
 
             <div class="product-price">
                 ${product.price}
@@ -1604,22 +1277,16 @@ function createProductCard(
                 <button
                     type="button"
                     class="product-details-btn"
-                    data-id="${product.id}"
                 >
-
                     👁️ Details
-
                 </button>
 
 
                 <button
                     type="button"
                     class="product-whatsapp-btn"
-                    data-id="${product.id}"
                 >
-
                     💬 Enquire
-
                 </button>
 
             </div>
@@ -1694,7 +1361,7 @@ function updateProductCounter(
 
 
 /* =========================================================
-   NO PRODUCT MESSAGE
+   NO PRODUCTS
 ========================================================= */
 
 function updateNoProducts(
@@ -1710,19 +1377,59 @@ function updateNoProducts(
     if (!message) return;
 
 
-    if (count === 0) {
+    message.classList.toggle(
+        "show",
+        count === 0
+    );
 
-        message.classList.add(
-            "show"
+}
+
+
+/* =========================================================
+   RESET FILTERS
+========================================================= */
+
+function resetFilters() {
+
+    selectedCategory =
+        "All";
+
+
+    searchText =
+        "";
+
+
+    const input =
+        document.getElementById(
+            "materialSearch"
         );
 
-    } else {
 
-        message.classList.remove(
+    if (input) {
+
+        input.value = "";
+
+    }
+
+
+    const clearButton =
+        document.getElementById(
+            "clearSearch"
+        );
+
+
+    if (clearButton) {
+
+        clearButton.classList.remove(
             "show"
         );
 
     }
+
+
+    createCategories();
+
+    renderProducts();
 
 }
 
@@ -1759,9 +1466,7 @@ function setupSearch() {
             renderProducts();
 
 
-            if (
-                clearButton
-            ) {
+            if (clearButton) {
 
                 clearButton.classList.toggle(
                     "show",
@@ -1832,6 +1537,34 @@ function setupSearchToggle() {
                 "show"
             );
 
+
+            if (
+                panel.classList.contains(
+                    "show"
+                )
+            ) {
+
+                const input =
+                    document.getElementById(
+                        "materialSearch"
+                    );
+
+
+                if (input) {
+
+                    setTimeout(
+                        function () {
+
+                            input.focus();
+
+                        },
+                        150
+                    );
+
+                }
+
+            }
+
         }
     );
 
@@ -1839,7 +1572,7 @@ function setupSearchToggle() {
 
 
 /* =========================================================
-   MODAL
+   MODAL SETUP
 ========================================================= */
 
 function setupModal() {
@@ -1905,7 +1638,7 @@ function setupModal() {
 
 
 /* =========================================================
-   OPEN MODAL
+   OPEN PRODUCT MODAL
 ========================================================= */
 
 function openProductModal(
@@ -1977,18 +1710,33 @@ function openProductModal(
         );
 
 
-    if (product.image) {
+    /* =====================================================
+       MODAL IMAGE
+    ===================================================== */
+
+    if (
+        image &&
+        product.image
+    ) {
 
         image.src =
             product.image;
 
         image.alt =
-            product.name;
+            `${product.name} ${product.size}`;
 
         image.style.display =
             "block";
 
-    } else {
+        image.onerror =
+            function () {
+
+                image.style.display =
+                    "none";
+
+            };
+
+    } else if (image) {
 
         image.removeAttribute(
             "src"
@@ -2003,41 +1751,73 @@ function openProductModal(
     }
 
 
-    tag.textContent =
-        product.category;
+    /* =====================================================
+       MODAL CONTENT
+    ===================================================== */
+
+    if (tag) {
+
+        tag.textContent =
+            product.category;
+
+    }
 
 
-    title.textContent =
-        product.name;
+    if (title) {
+
+        title.textContent =
+            product.name;
+
+    }
 
 
-    size.textContent =
-        product.size;
+    if (size) {
+
+        size.textContent =
+            product.size;
+
+    }
 
 
-    price.textContent =
-        product.price;
+    if (price) {
+
+        price.textContent =
+            product.price;
+
+    }
 
 
-    description.textContent =
-        product.description;
+    if (description) {
+
+        description.textContent =
+            product.description;
+
+    }
 
 
-    specifications.innerHTML =
-        product.specifications
-            .map(
-                function (item) {
+    if (specifications) {
 
-                    return `
-                        <li>
-                            ${item}
-                        </li>
-                    `;
+        specifications.innerHTML =
+            (product.specifications || [])
+                .map(
+                    function (item) {
 
-                }
-            )
-            .join("");
+                        return `
+                            <li>
+                                ${item}
+                            </li>
+                        `;
 
+                    }
+                )
+                .join("");
+
+    }
+
+
+    /* =====================================================
+       WHATSAPP BUTTON
+    ===================================================== */
 
     const whatsappButton =
         document.getElementById(
@@ -2059,6 +1839,10 @@ function openProductModal(
     }
 
 
+    /* =====================================================
+       SHOW MODAL
+    ===================================================== */
+
     modal.classList.add(
         "show"
     );
@@ -2071,7 +1855,7 @@ function openProductModal(
 
 
 /* =========================================================
-   CLOSE MODAL
+   CLOSE PRODUCT MODAL
 ========================================================= */
 
 function closeProductModal() {
@@ -2104,6 +1888,9 @@ function sendWhatsAppEnquiry(
     product
 ) {
 
+    if (!product) return;
+
+
     const message =
         `Hello Sandeep ElectroFix 👋
 
@@ -2118,7 +1905,10 @@ ${product.size}
 📂 Category:
 ${product.category}
 
-Please share the availability and price.
+💰 Price:
+${product.price}
+
+Please share the current availability and price.
 
 Thank you.`;
 
@@ -2133,7 +1923,7 @@ Thank you.`;
     window.open(
         url,
         "_blank",
-        "noopener"
+        "noopener,noreferrer"
     );
 
 }
@@ -2158,6 +1948,13 @@ function setupBackButton() {
         "click",
         function (event) {
 
+            /*
+             * If browser history exists,
+             * go back.
+             *
+             * Otherwise use catalogue home.
+             */
+
             if (
                 window.history.length >
                 1
@@ -2176,13 +1973,6 @@ function setupBackButton() {
 
 
 /* =========================================================
-   SETUP SEARCH TOGGLE
-========================================================= */
-
-setupSearchToggle();
-
-
-/* =========================================================
    GLOBAL ACCESS
 ========================================================= */
 
@@ -2190,15 +1980,29 @@ window.SandeepMaterialCatalogue = {
 
     materials,
 
+    categories,
+
     openProductModal,
 
     closeProductModal,
 
-    sendWhatsAppEnquiry
+    sendWhatsAppEnquiry,
+
+    resetFilters,
+
+    renderProducts
 
 };
 
 
+/* =========================================================
+   READY MESSAGE
+========================================================= */
+
 console.log(
-    "⚡ Material Catalogue JS Ready"
+    "⚡ Sandeep ElectroFix Material Catalogue JS Ready"
+);
+
+console.log(
+    `📦 Total Materials: ${materials.length}`
 );
