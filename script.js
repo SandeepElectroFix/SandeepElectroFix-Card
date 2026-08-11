@@ -1181,42 +1181,234 @@ faqs.forEach(item => {
                     );
 
                 });
+/* =========================================================
+   FAQ DATA
+========================================================= */
+
+const faqData = [
+
+    {
+        question: "What electrical services do you provide?",
+        answer:
+            "Sandeep ElectroFix provides house wiring, electrical installation, MCB & DB installation, false ceiling wiring, fan and light fitting, inverter wiring, electrical repair, fault finding, maintenance and other electrical services."
+    },
+
+    {
+        question: "Do you provide house wiring services?",
+        answer:
+            "Yes. We provide new house wiring, concealed wiring, surface wiring, slab piping, conduit installation and other residential electrical wiring services."
+    },
+
+    {
+        question: "Do you provide electrical repair services?",
+        answer:
+            "Yes. We provide electrical fault finding, switch and socket repair, MCB and DB related work, fan and light repair, wiring faults and other electrical repair services."
+    },
+
+    {
+        question: "How can I request a quotation?",
+        answer:
+            "You can request a quotation by using the Request a Quote form on this website or contact Sandeep ElectroFix directly through WhatsApp or phone."
+    },
+
+    {
+        question: "Which area do you serve?",
+        answer:
+            "Sandeep ElectroFix provides electrical services in Lucknow, Uttar Pradesh and nearby areas, subject to service availability."
+    },
+
+    {
+        question: "How can I contact Sandeep ElectroFix?",
+        answer:
+            "You can contact us by calling +91 90260 36445 or by sending an enquiry through WhatsApp."
+    },
+
+    {
+        question: "Do you provide installation and maintenance services?",
+        answer:
+            "Yes. We provide electrical installation, replacement, maintenance and troubleshooting services for residential and other suitable electrical requirements."
+    },
+
+    {
+        question: "How can I book an electrician?",
+        answer:
+            "You can call +91 90260 36445 or send your requirement through WhatsApp to discuss your electrical work and availability."
+    }
+
+];
 
 
-            container
-                .querySelectorAll(
-                    ".faq-question span:last-child"
-                )
-                .forEach(item => {
+/* =========================================================
+   SETUP FAQ
+========================================================= */
 
-                    item.textContent =
-                        "+";
+function setupFAQ() {
 
-                });
+    const container =
+        document.getElementById("faqContainer");
+
+    if (!container) {
+        console.log("FAQ container not found.");
+        return;
+    }
+
+    container.innerHTML = "";
 
 
-            if (!isOpen) {
+    faqData.forEach(function (faq, index) {
 
-                answer.classList.add(
-                    "open"
-                );
+        const item =
+            document.createElement("div");
 
-                icon.textContent =
-                    "−";
+        item.className = "faq-item";
+
+
+        item.innerHTML = `
+
+            <button
+                type="button"
+                class="faq-question"
+                aria-expanded="false"
+                aria-controls="faq-answer-${index}">
+
+                <span class="faq-question-text">
+                    ${faq.question}
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+
+            <div
+                class="faq-answer"
+                id="faq-answer-${index}">
+
+                <p>
+                    ${faq.answer}
+                </p>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(item);
+
+
+        const question =
+            item.querySelector(".faq-question");
+
+        const answer =
+            item.querySelector(".faq-answer");
+
+        const icon =
+            item.querySelector(".faq-icon");
+
+
+        question.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    item.classList.contains("active");
+
+
+                /* CLOSE ALL */
+
+                container
+                    .querySelectorAll(".faq-item")
+                    .forEach(function (otherItem) {
+
+                        otherItem.classList.remove(
+                            "active"
+                        );
+
+
+                        const otherQuestion =
+                            otherItem.querySelector(
+                                ".faq-question"
+                            );
+
+
+                        const otherAnswer =
+                            otherItem.querySelector(
+                                ".faq-answer"
+                            );
+
+
+                        const otherIcon =
+                            otherItem.querySelector(
+                                ".faq-icon"
+                            );
+
+
+                        if (otherQuestion) {
+
+                            otherQuestion
+                                .setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                        }
+
+
+                        if (otherAnswer) {
+
+                            otherAnswer.style.maxHeight =
+                                null;
+
+                        }
+
+
+                        if (otherIcon) {
+
+                            otherIcon.textContent =
+                                "+";
+
+                        }
+
+                    });
+
+
+                /* OPEN CLICKED ITEM */
+
+                if (!isOpen) {
+
+                    item.classList.add(
+                        "active"
+                    );
+
+
+                    question.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+
+                    answer.style.maxHeight =
+                        answer.scrollHeight + "px";
+
+
+                    icon.textContent =
+                        "−";
+
+                }
 
             }
+        );
 
-        }
+    });
+
+
+    console.log(
+        "FAQ loaded:",
+        faqData.length,
+        "questions"
     );
-
-
-    wrapper.appendChild(button);
-
-    wrapper.appendChild(answer);
-
-    container.appendChild(wrapper);
-
-});
 
 }
 
