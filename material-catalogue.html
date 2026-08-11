@@ -20,33 +20,28 @@
     >
 
     <meta
-        name="robots"
-        content="index, follow"
+        name="description"
+        content="Sandeep ElectroFix Material Catalogue - Electrical wires, conduit pipes, switches, sockets, MCB, RCCB, DB boxes, lighting and electrical accessories."
+    >
+
+    <meta
+        name="keywords"
+        content="electrical material, electrical shop, electrical wire, PVC conduit, MCB, RCCB, switches, sockets, electrical accessories, Lucknow electrician, Sandeep ElectroFix"
+    >
+
+    <meta
+        name="author"
+        content="Sandeep ElectroFix"
     >
 
 
     <!-- =====================================================
-         SEO
+         TITLE
     ====================================================== -->
 
     <title>
         Material Catalogue | Sandeep ElectroFix
     </title>
-
-    <meta
-        name="description"
-        content="Electrical material catalogue by Sandeep ElectroFix, Lucknow. Browse wires, conduit pipes, switches, MCB, RCCB, DB boxes and electrical accessories."
-    >
-
-
-    <!-- =====================================================
-         CANONICAL
-    ====================================================== -->
-
-    <link
-        rel="canonical"
-        href="https://sandeepelectrofix.github.io/SandeepElectroFix-Card/material-catalogue.html"
-    >
 
 
     <!-- =====================================================
@@ -87,8 +82,9 @@
 
     <link
         rel="stylesheet"
-        href="material-catalogue.css?v=1.0.0"
+        href="material-catalogue.css"
     >
+
 
 </head>
 
@@ -100,7 +96,11 @@
          BACKGROUND
     ====================================================== -->
 
-    <div class="catalogue-background"></div>
+    <div
+        class="catalogue-background"
+        aria-hidden="true"
+    ></div>
+
 
 
     <!-- =====================================================
@@ -110,18 +110,20 @@
     <header class="catalogue-header">
 
 
-        <!-- BACK TO DIGITAL CARD -->
+        <!-- BACK BUTTON -->
 
         <a
             href="index.html"
-            id="backButton"
             class="back-button"
-            aria-label="Back to Sandeep ElectroFix Digital Card"
+            id="backButton"
+            aria-label="Back to home"
+            title="Back"
         >
 
             ←
 
         </a>
+
 
 
         <!-- LOGO -->
@@ -133,6 +135,7 @@
         >
 
 
+
         <!-- TITLE -->
 
         <h1>
@@ -140,10 +143,18 @@
         </h1>
 
 
+
+        <!-- SUBTITLE -->
+
         <p class="catalogue-subtitle">
 
-            Electrical materials for
-            professional installation & wiring
+            Electrical Materials & Accessories
+
+            <br>
+
+            <span>
+                Sandeep ElectroFix • Lucknow
+            </span>
 
         </p>
 
@@ -156,8 +167,13 @@
          SEARCH TOOLBAR
     ====================================================== -->
 
-    <div class="catalogue-toolbar">
+    <section
+        class="catalogue-toolbar"
+        aria-label="Catalogue Search"
+    >
 
+
+        <!-- SEARCH BOX -->
 
         <div class="search-box">
 
@@ -165,17 +181,18 @@
             <input
                 type="search"
                 id="materialSearch"
-                placeholder="Search material, size or category..."
+                placeholder="Search material..."
                 autocomplete="off"
-                aria-label="Search electrical materials"
+                aria-label="Search materials"
             >
 
 
             <button
                 type="button"
-                id="clearSearch"
                 class="clear-search"
+                id="clearSearch"
                 aria-label="Clear search"
+                title="Clear search"
             >
 
                 ×
@@ -186,13 +203,15 @@
         </div>
 
 
-        <!-- SEARCH BUTTON -->
+
+        <!-- SEARCH TOGGLE -->
 
         <button
             type="button"
-            id="searchToggle"
             class="search-toggle"
+            id="searchToggle"
             aria-label="Toggle search"
+            title="Search"
         >
 
             🔍
@@ -200,7 +219,7 @@
         </button>
 
 
-    </div>
+    </section>
 
 
 
@@ -209,12 +228,24 @@
     ====================================================== -->
 
     <div
-        id="searchPanel"
         class="catalogue-search-panel"
+        id="searchPanel"
     >
 
-        <!-- Future advanced search filters
-             can be added here -->
+        <div
+            style="
+                padding:12px 14px;
+                border-radius:14px;
+                background:rgba(255,255,255,0.045);
+                border:1px solid rgba(255,255,255,0.08);
+                color:#9da9b9;
+                font-size:12px;
+            "
+        >
+
+            Search by material name, category or size.
+
+        </div>
 
     </div>
 
@@ -229,31 +260,31 @@
 
         <div class="section-label">
 
+
             <h2>
                 Categories
             </h2>
 
 
             <span
-                id="productCounter"
                 class="product-counter"
+                id="productCounter"
             >
-
                 0 Materials
-
             </span>
 
+
         </div>
 
 
-        <!-- CATEGORY BUTTONS GENERATED BY JS -->
+
+        <!-- CATEGORY BUTTONS CREATED BY JS -->
 
         <div
-            id="categoryContainer"
             class="category-container"
-        >
-
-        </div>
+            id="categoryContainer"
+            aria-label="Material Categories"
+        ></div>
 
 
     </section>
@@ -261,29 +292,19 @@
 
 
     <!-- =====================================================
-         PRODUCTS
+         PRODUCTS SECTION
     ====================================================== -->
 
-    <section class="products-section">
+    <main class="products-section">
 
 
-        <div class="section-label">
-
-            <h2>
-                Electrical Materials
-            </h2>
-
-        </div>
-
-
-        <!-- PRODUCT CARDS GENERATED BY JS -->
+        <!-- PRODUCT GRID -->
 
         <div
-            id="productsGrid"
             class="products-grid"
-        >
+            id="productsGrid"
+        ></div>
 
-        </div>
 
 
         <!-- =================================================
@@ -291,53 +312,66 @@
         ================================================== -->
 
         <div
-            id="noProducts"
             class="no-products"
+            id="noProducts"
         >
 
+
             <div class="no-products-icon">
-
                 🔎
-
             </div>
 
 
             <h3>
-                Material Not Found
+                No Material Found
             </h3>
 
 
-            <p>
-                Try another material name,
-                size or category.
+            <p
+                style="
+                    margin-top:6px;
+                    font-size:12px;
+                "
+            >
+                Try another material name, category or size.
             </p>
 
 
             <button
                 type="button"
                 class="reset-filters"
-                onclick="resetCatalogueFilters()"
+                id="resetFilters"
+                onclick="
+                    document.getElementById('materialSearch').value='';
+                    document.getElementById('clearSearch').classList.remove('show');
+                    window.SandeepMaterialCatalogue &&
+                    window.SandeepMaterialCatalogue.resetFilters &&
+                    window.SandeepMaterialCatalogue.resetFilters();
+                "
             >
 
                 Reset Search
 
             </button>
 
+
         </div>
 
 
-    </section>
+    </main>
 
 
 
     <!-- =====================================================
-         PRODUCT DETAILS MODAL
+         PRODUCT MODAL
     ====================================================== -->
 
     <div
-        id="productModal"
         class="product-modal"
-        aria-hidden="true"
+        id="productModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalProductTitle"
     >
 
 
@@ -345,26 +379,24 @@
 
         <div
             class="modal-backdrop"
+            aria-hidden="true"
         ></div>
+
 
 
         <!-- MODAL BOX -->
 
-        <div
-            class="modal-box"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modalProductTitle"
-        >
+        <div class="modal-box">
 
 
-            <!-- CLOSE -->
+            <!-- CLOSE BUTTON -->
 
             <button
                 type="button"
-                id="modalClose"
                 class="modal-close"
+                id="modalClose"
                 aria-label="Close product details"
+                title="Close"
             >
 
                 ×
@@ -372,9 +404,11 @@
             </button>
 
 
+
             <!-- PRODUCT IMAGE -->
 
             <div class="modal-product-image">
+
 
                 <img
                     id="modalProductImage"
@@ -382,7 +416,9 @@
                     alt=""
                 >
 
+
             </div>
+
 
 
             <!-- PRODUCT CONTENT -->
@@ -390,53 +426,58 @@
             <div class="modal-product-content">
 
 
+                <!-- CATEGORY -->
+
                 <span
-                    id="modalProductTag"
                     class="modal-product-tag"
+                    id="modalProductTag"
                 >
-
-                    MATERIAL
-
+                    CATEGORY
                 </span>
 
+
+
+                <!-- PRODUCT NAME -->
 
                 <h2
                     id="modalProductTitle"
                 >
-
-                    Material Name
-
+                    Product Name
                 </h2>
 
 
-                <p
-                    id="modalProductSize"
-                    class="modal-product-size"
-                >
 
-                    Size
-
-                </p>
-
+                <!-- PRODUCT SIZE -->
 
                 <div
-                    id="modalProductPrice"
-                    class="modal-product-price"
+                    class="modal-product-size"
+                    id="modalProductSize"
                 >
-
-                    Price on Request
-
+                    Size
                 </div>
 
 
-                <p
-                    id="modalProductDescription"
-                    class="modal-product-description"
+
+                <!-- PRODUCT PRICE -->
+
+                <div
+                    class="modal-product-price"
+                    id="modalProductPrice"
                 >
+                    Price on Request
+                </div>
 
-                    Material description.
 
+
+                <!-- DESCRIPTION -->
+
+                <p
+                    class="modal-product-description"
+                    id="modalProductDescription"
+                >
+                    Product description
                 </p>
+
 
 
                 <!-- SPECIFICATIONS -->
@@ -451,20 +492,20 @@
 
                     <ul
                         id="modalSpecifications"
-                    >
-
-                    </ul>
+                    ></ul>
 
 
                 </div>
+
 
 
                 <!-- WHATSAPP -->
 
                 <a
                     href="#"
-                    id="modalWhatsapp"
                     class="modal-whatsapp"
+                    id="modalWhatsapp"
+                    role="button"
                 >
 
                     💬 Enquire on WhatsApp
@@ -477,6 +518,7 @@
 
         </div>
 
+
     </div>
 
 
@@ -488,64 +530,57 @@
     <footer class="catalogue-footer">
 
 
-        <p>
-
-            © 2026
-            <strong>
-                Sandeep ElectroFix
-            </strong>
-
-        </p>
+        <strong>
+            ⚡ SANDEEP ELECTROFIX
+        </strong>
 
 
-        <p>
+        <br>
 
-            Professional Electrical Services
-            • Lucknow
 
-        </p>
+        Electrical Services • Materials • Solutions
 
+
+        <br><br>
+
+
+        Lucknow, Uttar Pradesh
+
+
+        <br>
+
+
+        ©
+        <span id="currentYear"></span>
+        Sandeep ElectroFix
 
     </footer>
 
 
 
     <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-
-    <script
-        src="material-catalogue.js?v=1.0.0"
-        defer
-    ></script>
-
-
-    <!-- =====================================================
-         RESET FILTER FUNCTION
+         YEAR
     ====================================================== -->
 
     <script>
 
-        function resetCatalogueFilters() {
-
-            const input =
-                document.getElementById(
-                    "materialSearch"
-                );
-
-
-            if (input) {
-
-                input.value = "";
-
-            }
-
-
-            window.location.reload();
-
-        }
+        document.getElementById(
+            "currentYear"
+        ).textContent =
+            new Date().getFullYear();
 
     </script>
+
+
+
+    <!-- =====================================================
+         MATERIAL CATALOGUE JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="material-catalogue.js"
+        defer
+    ></script>
 
 
 </body>
