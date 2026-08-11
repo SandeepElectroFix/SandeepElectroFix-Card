@@ -410,6 +410,8 @@ document.addEventListener(
 
         setupSearch();
 
+        setupSearchToggle();
+
         setupModal();
 
         setupBackButton();
