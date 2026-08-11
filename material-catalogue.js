@@ -1,28 +1,19 @@
 /* =========================================================
    SANDEEP ELECTROFIX
-   MATERIAL CATALOGUE JS
+   MATERIAL CATALOGUE
+   PREMIUM JAVASCRIPT
    Version 1.0.0
 ========================================================= */
 
-"use strict";
-
 
 /* =========================================================
-   CONFIG
+   SETTINGS
 ========================================================= */
 
-const CATALOGUE_CONFIG = {
+const WHATSAPP_NUMBER = "919026036445";
 
-    whatsapp:
-        "919026036445",
-
-    currency:
-        "₹",
-
-    currencyText:
-        "Price on Request"
-
-};
+const CATALOGUE_HOME =
+    "index.html";
 
 
 /* =========================================================
@@ -33,229 +24,324 @@ const materials = [
 
     {
         id: 1,
+
         name: "PVC Conduit Pipe",
+
         category: "Conduit",
-        categoryIcon: "🔌",
+
+        icon: "🔌",
+
         size: "20mm",
+
         price: "Price on Request",
-        image: "assets/materials/pvc-conduit.jpg",
-        icon: "🔧",
+
+        image: "",
+
         description:
-            "Electrical PVC conduit pipe for concealed and surface wiring.",
+            "High quality PVC conduit pipe for concealed and surface electrical wiring.",
+
         specifications: [
             "20mm standard size",
-            "Suitable for electrical wiring",
-            "Lightweight and durable",
-            "Suitable for residential work"
-        ]
-    },
-
-    {
-        id: 2,
-        name: "PVC Conduit Pipe",
-        category: "Conduit",
-        categoryIcon: "🔌",
-        size: "25mm",
-        price: "Price on Request",
-        image: "assets/materials/pvc-conduit-25mm.jpg",
-        icon: "🔧",
-        description:
-            "25mm PVC conduit pipe for electrical wiring and cable protection.",
-        specifications: [
-            "25mm standard size",
-            "Good mechanical protection",
-            "Suitable for concealed wiring",
-            "Durable PVC construction"
-        ]
-    },
-
-    {
-        id: 3,
-        name: "Modular Switch",
-        category: "Switches",
-        categoryIcon: "💡",
-        size: "6A / 16A",
-        price: "Price on Request",
-        image: "assets/materials/modular-switch.jpg",
-        icon: "💡",
-        description:
-            "Premium modular electrical switch for residential and commercial installations.",
-        specifications: [
-            "6A / 16A options",
-            "Modular design",
-            "Smooth operation",
-            "Suitable for standard modular plates"
-        ]
-    },
-
-    {
-        id: 4,
-        name: "Modular Socket",
-        category: "Switches",
-        categoryIcon: "💡",
-        size: "6A / 16A",
-        price: "Price on Request",
-        image: "assets/materials/modular-socket.jpg",
-        icon: "🔌",
-        description:
-            "Modular electrical socket for home and commercial electrical installations.",
-        specifications: [
-            "6A / 16A options",
-            "Modular fitting",
-            "Strong terminals",
-            "Suitable for standard modular plates"
-        ]
-    },
-
-    {
-        id: 5,
-        name: "MCB",
-        category: "Protection",
-        categoryIcon: "🛡️",
-        size: "6A – 63A",
-        price: "Price on Request",
-        image: "assets/materials/mcb.jpg",
-        icon: "⚡",
-        description:
-            "Miniature Circuit Breaker for protection against overload and short circuit.",
-        specifications: [
-            "Multiple current ratings",
-            "Overload protection",
-            "Short-circuit protection",
-            "Suitable for DB installation"
-        ]
-    },
-
-    {
-        id: 6,
-        name: "RCCB",
-        category: "Protection",
-        categoryIcon: "🛡️",
-        size: "2P / 4P",
-        price: "Price on Request",
-        image: "assets/materials/rccb.jpg",
-        icon: "🛡️",
-        description:
-            "Residual Current Circuit Breaker for protection against earth leakage.",
-        specifications: [
-            "2 Pole and 4 Pole options",
-            "Earth leakage protection",
-            "Suitable for residential DB",
-            "Electrical safety device"
-        ]
-    },
-
-    {
-        id: 7,
-        name: "Distribution Board",
-        category: "DB",
-        categoryIcon: "📦",
-        size: "4 Way – 12 Way",
-        price: "Price on Request",
-        image: "assets/materials/distribution-board.jpg",
-        icon: "📦",
-        description:
-            "Electrical distribution board for organized MCB and RCCB installation.",
-        specifications: [
-            "Multiple way options",
-            "Suitable for MCB/RCCB",
-            "Neat wiring arrangement",
-            "Residential and commercial use"
-        ]
-    },
-
-    {
-        id: 8,
-        name: "Flexible Conduit",
-        category: "Conduit",
-        categoryIcon: "🔌",
-        size: "20mm / 25mm",
-        price: "Price on Request",
-        image: "assets/materials/flexible-conduit.jpg",
-        icon: "〰️",
-        description:
-            "Flexible electrical conduit for wiring at bends and difficult locations.",
-        specifications: [
-            "Flexible construction",
-            "20mm / 25mm options",
-            "Useful for ceiling wiring",
+            "Suitable for house wiring",
+            "Durable PVC material",
             "Easy installation"
         ]
     },
 
+
     {
-        id: 9,
-        name: "Saddle Clamp",
-        category: "Accessories",
-        categoryIcon: "🔩",
-        size: "20mm / 25mm",
+        id: 2,
+
+        name: "PVC Conduit Pipe",
+
+        category: "Conduit",
+
+        icon: "🔌",
+
+        size: "25mm",
+
         price: "Price on Request",
-        image: "assets/materials/saddle-clamp.jpg",
-        icon: "🔩",
+
+        image: "",
+
         description:
-            "Saddle clamp for fixing electrical conduit pipes securely.",
+            "Heavy-duty PVC conduit pipe suitable for electrical wiring and cable protection.",
+
         specifications: [
-            "20mm / 25mm options",
-            "Conduit pipe fixing",
-            "Easy installation",
-            "Suitable for electrical work"
+            "25mm standard size",
+            "Strong PVC construction",
+            "Suitable for electrical installations",
+            "Good mechanical protection"
         ]
     },
 
+
     {
-        id: 10,
-        name: "Junction Box",
-        category: "Accessories",
-        categoryIcon: "📦",
-        size: "Standard",
+        id: 3,
+
+        name: "Modular Switch",
+
+        category: "Switches",
+
+        icon: "💡",
+
+        size: "6A / 10A / 16A",
+
         price: "Price on Request",
-        image: "assets/materials/junction-box.jpg",
+
+        image: "",
+
+        description:
+            "Premium modular electrical switch suitable for residential and commercial applications.",
+
+        specifications: [
+            "Modern modular design",
+            "Smooth operation",
+            "Multiple ampere options",
+            "Suitable for standard modular plates"
+        ]
+    },
+
+
+    {
+        id: 4,
+
+        name: "Modular Socket",
+
+        category: "Switches",
+
+        icon: "🔌",
+
+        size: "6A / 16A",
+
+        price: "Price on Request",
+
+        image: "",
+
+        description:
+            "Reliable modular socket for household electrical connections.",
+
+        specifications: [
+            "6A and 16A options",
+            "Strong terminals",
+            "Modular design",
+            "Suitable for residential wiring"
+        ]
+    },
+
+
+    {
+        id: 5,
+
+        name: "MCB",
+
+        category: "Protection",
+
+        icon: "⚡",
+
+        size: "6A – 63A",
+
+        price: "Price on Request",
+
+        image: "",
+
+        description:
+            "Miniature Circuit Breaker for protection against overload and short circuit.",
+
+        specifications: [
+            "Multiple current ratings",
+            "Overload protection",
+            "Short-circuit protection",
+            "Suitable for distribution boards"
+        ]
+    },
+
+
+    {
+        id: 6,
+
+        name: "RCCB",
+
+        category: "Protection",
+
+        icon: "🛡️",
+
+        size: "2P / 4P",
+
+        price: "Price on Request",
+
+        image: "",
+
+        description:
+            "Residual Current Circuit Breaker for protection against electrical leakage.",
+
+        specifications: [
+            "Earth leakage protection",
+            "2 pole and 4 pole options",
+            "Suitable for residential applications",
+            "Enhanced electrical safety"
+        ]
+    },
+
+
+    {
+        id: 7,
+
+        name: "Distribution Box",
+
+        category: "Protection",
+
         icon: "📦",
+
+        size: "4 Way – 16 Way",
+
+        price: "Price on Request",
+
+        image: "",
+
         description:
-            "Electrical junction box for safe wire connections and branching.",
+            "Electrical distribution box suitable for MCB and RCCB installation.",
+
         specifications: [
-            "Electrical wire junction",
-            "Strong enclosure",
-            "Suitable for concealed wiring",
-            "Multiple entry points"
+            "Multiple way options",
+            "Neat wiring arrangement",
+            "Suitable for residential DB",
+            "Easy maintenance"
         ]
     },
 
+
     {
-        id: 11,
+        id: 8,
+
         name: "Electrical Wire",
+
         category: "Wires",
-        categoryIcon: "🧵",
-        size: "1.5 / 2.5 / 4 / 6 sq.mm",
-        price: "Price on Request",
-        image: "assets/materials/electrical-wire.jpg",
+
         icon: "🧵",
+
+        size: "1.5 / 2.5 / 4 / 6 sq.mm",
+
+        price: "Price on Request",
+
+        image: "",
+
         description:
-            "Electrical copper wire for residential and commercial wiring applications.",
+            "Electrical copper wire suitable for different household wiring applications.",
+
         specifications: [
             "Multiple sizes available",
             "Copper conductor",
-            "Suitable for house wiring",
-            "Different colours available"
+            "House wiring applications",
+            "Flexible insulation"
         ]
     },
 
+
+    {
+        id: 9,
+
+        name: "Flexible Wire",
+
+        category: "Wires",
+
+        icon: "〰️",
+
+        size: "0.75 – 2.5 sq.mm",
+
+        price: "Price on Request",
+
+        image: "",
+
+        description:
+            "Flexible electrical wire for appliance and connection applications.",
+
+        specifications: [
+            "Flexible conductor",
+            "Easy installation",
+            "Multiple sizes",
+            "Suitable for electrical connections"
+        ]
+    },
+
+
+    {
+        id: 10,
+
+        name: "Cable Tie",
+
+        category: "Accessories",
+
+        icon: "🔗",
+
+        size: "Various Sizes",
+
+        price: "Price on Request",
+
+        image: "",
+
+        description:
+            "Strong nylon cable ties for electrical cable management.",
+
+        specifications: [
+            "Strong nylon material",
+            "Multiple sizes",
+            "Cable management",
+            "Easy locking mechanism"
+        ]
+    },
+
+
+    {
+        id: 11,
+
+        name: "Saddle Clamp",
+
+        category: "Accessories",
+
+        icon: "🔩",
+
+        size: "20mm / 25mm",
+
+        price: "Price on Request",
+
+        image: "",
+
+        description:
+            "PVC conduit saddle clamp for secure pipe fixing.",
+
+        specifications: [
+            "20mm and 25mm options",
+            "Secure pipe holding",
+            "Easy installation",
+            "Suitable for conduit work"
+        ]
+    },
+
+
     {
         id: 12,
+
         name: "Ceiling Rose",
+
         category: "Accessories",
-        categoryIcon: "🔩",
-        size: "Standard",
-        price: "Price on Request",
-        image: "assets/materials/ceiling-rose.jpg",
+
         icon: "💡",
+
+        size: "Standard",
+
+        price: "Price on Request",
+
+        image: "",
+
         description:
-            "Ceiling rose for connecting and supporting ceiling light or fan wiring.",
+            "Ceiling rose for electrical light and fan connection applications.",
+
         specifications: [
-            "Standard electrical fitting",
+            "Standard size",
             "Easy installation",
-            "Suitable for ceiling points",
-            "Residential use"
+            "Suitable for ceiling wiring",
+            "Compact design"
         ]
     }
 
@@ -263,67 +349,62 @@ const materials = [
 
 
 /* =========================================================
-   DOM ELEMENTS
+   CATEGORY DATA
 ========================================================= */
 
-const productContainer =
-    document.getElementById("productsContainer");
+const categories = [
 
-const categoryContainer =
-    document.getElementById("categoryContainer");
+    {
+        name: "All",
+        icon: "🛒"
+    },
 
-const searchInput =
-    document.getElementById("materialSearch");
+    {
+        name: "Conduit",
+        icon: "🔌"
+    },
 
-const clearSearchBtn =
-    document.getElementById("clearSearch");
+    {
+        name: "Wires",
+        icon: "🧵"
+    },
 
-const searchToggle =
-    document.getElementById("searchToggle");
+    {
+        name: "Switches",
+        icon: "💡"
+    },
 
-const searchPanel =
-    document.getElementById("catalogueSearch");
+    {
+        name: "Protection",
+        icon: "🛡️"
+    },
 
-const productCount =
-    document.getElementById("productCount");
+    {
+        name: "Accessories",
+        icon: "🔩"
+    }
 
-const noProducts =
-    document.getElementById("noProducts");
-
-const resetFilters =
-    document.getElementById("resetFilters");
-
-const productModal =
-    document.getElementById("productModal");
-
-const modalBackdrop =
-    document.getElementById("modalBackdrop");
-
-const modalClose =
-    document.getElementById("modalClose");
-
-const modalContent =
-    document.getElementById("modalProductContent");
+];
 
 
 /* =========================================================
    STATE
 ========================================================= */
 
-let activeCategory = "All";
+let selectedCategory = "All";
 
-let searchTerm = "";
+let searchText = "";
 
 
 /* =========================================================
-   INITIALIZE
+   DOM READY
 ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        renderCategories();
+        createCategories();
 
         renderProducts();
 
@@ -331,174 +412,112 @@ document.addEventListener(
 
         setupModal();
 
+        setupBackButton();
+
+        console.log(
+            "Sandeep ElectroFix Material Catalogue Loaded"
+        );
+
     }
 );
 
 
 /* =========================================================
-   CATEGORIES
+   CATEGORY CREATION
 ========================================================= */
 
-function getCategories() {
+function createCategories() {
 
-    const categories = [];
+    const container =
+        document.getElementById(
+            "categoryContainer"
+        );
 
-    materials.forEach(
-        function (material) {
+    if (!container) return;
+
+
+    container.innerHTML = "";
+
+
+    categories.forEach(
+        function (category) {
+
+            const button =
+                document.createElement("button");
+
+
+            button.type = "button";
+
+
+            button.className =
+                "category-item";
+
 
             if (
-                !categories.includes(
-                    material.category
-                )
+                category.name ===
+                selectedCategory
             ) {
 
-                categories.push(
-                    material.category
+                button.classList.add(
+                    "active"
                 );
 
             }
 
-        }
-    );
 
-    return categories;
+            button.innerHTML = `
 
-}
+                <span class="category-icon">
+                    ${category.icon}
+                </span>
 
+                <span class="category-name">
+                    ${category.name}
+                </span>
 
-/* =========================================================
-   RENDER CATEGORIES
-========================================================= */
-
-function renderCategories() {
-
-    if (!categoryContainer) return;
-
-    categoryContainer.innerHTML = "";
-
-    const allButton =
-        createCategoryButton(
-            "All",
-            "🛒",
-            "All"
-        );
-
-    categoryContainer.appendChild(
-        allButton
-    );
+            `;
 
 
-    getCategories().forEach(
-        function (category) {
+            button.addEventListener(
+                "click",
+                function () {
 
-            const material =
-                materials.find(
-                    item =>
-                        item.category === category
-                );
+                    selectedCategory =
+                        category.name;
 
-            const button =
-                createCategoryButton(
-                    category,
-                    material
-                        ? material.categoryIcon
-                        : "📦",
-                    category
-                );
 
-            categoryContainer.appendChild(
+                    document
+                        .querySelectorAll(
+                            ".category-item"
+                        )
+                        .forEach(
+                            function (item) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    renderProducts();
+
+                }
+            );
+
+
+            container.appendChild(
                 button
             );
 
         }
     );
-
-}
-
-
-/* =========================================================
-   CATEGORY BUTTON
-========================================================= */
-
-function createCategoryButton(
-    value,
-    icon,
-    label
-) {
-
-    const button =
-        document.createElement("button");
-
-    button.type = "button";
-
-    button.className =
-        "category-item";
-
-    if (
-        value === activeCategory
-    ) {
-
-        button.classList.add(
-            "active"
-        );
-
-    }
-
-    button.dataset.category =
-        value;
-
-    button.innerHTML = `
-
-        <span class="category-icon">
-            ${icon}
-        </span>
-
-        <span class="category-name">
-            ${label}
-        </span>
-
-    `;
-
-    button.addEventListener(
-        "click",
-        function () {
-
-            activeCategory =
-                value;
-
-            updateCategoryButtons();
-
-            renderProducts();
-
-        }
-    );
-
-    return button;
-
-}
-
-
-/* =========================================================
-   UPDATE CATEGORY BUTTONS
-========================================================= */
-
-function updateCategoryButtons() {
-
-    document
-        .querySelectorAll(
-            ".category-item"
-        )
-        .forEach(
-            function (button) {
-
-                button.classList.toggle(
-                    "active",
-                    button.dataset.category ===
-                    activeCategory
-                );
-
-            }
-        );
 
 }
 
@@ -510,31 +529,32 @@ function updateCategoryButtons() {
 function getFilteredProducts() {
 
     return materials.filter(
-        function (material) {
+        function (product) {
 
             const categoryMatch =
-                activeCategory === "All" ||
-                material.category ===
-                activeCategory;
-
-
-            const text =
-                (
-                    material.name +
-                    " " +
-                    material.category +
-                    " " +
-                    material.size +
-                    " " +
-                    material.description
-                ).toLowerCase();
+                selectedCategory === "All" ||
+                product.category ===
+                selectedCategory;
 
 
             const searchMatch =
-                !searchTerm ||
-                text.includes(
-                    searchTerm.toLowerCase()
-                );
+                product.name
+                    .toLowerCase()
+                    .includes(
+                        searchText.toLowerCase()
+                    ) ||
+
+                product.category
+                    .toLowerCase()
+                    .includes(
+                        searchText.toLowerCase()
+                    ) ||
+
+                product.size
+                    .toLowerCase()
+                    .includes(
+                        searchText.toLowerCase()
+                    );
 
 
             return (
@@ -554,22 +574,33 @@ function getFilteredProducts() {
 
 function renderProducts() {
 
-    if (!productContainer) return;
+    const container =
+        document.getElementById(
+            "productsGrid"
+        );
 
-    const filtered =
+
+    if (!container) return;
+
+
+    const filteredProducts =
         getFilteredProducts();
 
-    productContainer.innerHTML = "";
 
-    filtered.forEach(
-        function (material) {
+    container.innerHTML = "";
+
+
+    filteredProducts.forEach(
+        function (product, index) {
 
             const card =
                 createProductCard(
-                    material
+                    product,
+                    index
                 );
 
-            productContainer.appendChild(
+
+            container.appendChild(
                 card
             );
 
@@ -577,22 +608,14 @@ function renderProducts() {
     );
 
 
-    if (productCount) {
-
-        productCount.textContent =
-            filtered.length;
-
-    }
+    updateProductCounter(
+        filteredProducts.length
+    );
 
 
-    if (noProducts) {
-
-        noProducts.classList.toggle(
-            "show",
-            filtered.length === 0
-        );
-
-    }
+    updateNoProducts(
+        filteredProducts.length
+    );
 
 }
 
@@ -602,46 +625,55 @@ function renderProducts() {
 ========================================================= */
 
 function createProductCard(
-    material
+    product,
+    index
 ) {
 
     const card =
         document.createElement("article");
 
+
     card.className =
         "product-card";
 
 
-    const imageHTML =
-        material.image
-            ? `
+    card.style.animationDelay =
+        `${index * 0.04}s`;
 
-                <img
-                    src="${material.image}"
-                    alt="${escapeHTML(material.name)}"
-                    loading="lazy"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                >
 
-                <div
-                    class="product-image-placeholder"
-                    style="display:none;">
+    let imageHTML = "";
 
-                    ${material.icon}
 
-                </div>
+    if (product.image) {
 
-              `
-            : `
+        imageHTML = `
 
-                <div
-                    class="product-image-placeholder">
+            <img
+                src="${product.image}"
+                alt="${product.name}"
+                loading="lazy"
+            >
 
-                    ${material.icon}
+        `;
 
-                </div>
+    } else {
 
-              `;
+        imageHTML = `
+
+            <div
+                class="product-image-placeholder"
+                style="
+                    display:flex;
+                "
+            >
+
+                ${product.icon}
+
+            </div>
+
+        `;
+
+    }
 
 
     card.innerHTML = `
@@ -651,7 +683,7 @@ function createProductCard(
             ${imageHTML}
 
             <span class="product-category">
-                ${escapeHTML(material.category)}
+                ${product.category}
             </span>
 
         </div>
@@ -660,15 +692,15 @@ function createProductCard(
         <div class="product-info">
 
             <h3>
-                ${escapeHTML(material.name)}
+                ${product.name}
             </h3>
 
-            <p class="product-size">
-                ${escapeHTML(material.size)}
-            </p>
+            <div class="product-size">
+                ${product.size}
+            </div>
 
             <div class="product-price">
-                ${escapeHTML(material.price)}
+                ${product.price}
             </div>
 
 
@@ -676,7 +708,9 @@ function createProductCard(
 
                 <button
                     type="button"
-                    class="product-details-btn">
+                    class="product-details-btn"
+                    data-id="${product.id}"
+                >
 
                     👁️ Details
 
@@ -685,7 +719,9 @@ function createProductCard(
 
                 <button
                     type="button"
-                    class="product-whatsapp-btn">
+                    class="product-whatsapp-btn"
+                    data-id="${product.id}"
+                >
 
                     💬 Enquire
 
@@ -715,7 +751,7 @@ function createProductCard(
         function () {
 
             openProductModal(
-                material
+                product.id
             );
 
         }
@@ -726,8 +762,8 @@ function createProductCard(
         "click",
         function () {
 
-            enquireOnWhatsApp(
-                material
+            sendWhatsAppEnquiry(
+                product
             );
 
         }
@@ -740,88 +776,126 @@ function createProductCard(
 
 
 /* =========================================================
+   PRODUCT COUNTER
+========================================================= */
+
+function updateProductCounter(
+    count
+) {
+
+    const counter =
+        document.getElementById(
+            "productCounter"
+        );
+
+
+    if (!counter) return;
+
+
+    counter.textContent =
+        `${count} Materials`;
+
+}
+
+
+/* =========================================================
+   NO PRODUCT MESSAGE
+========================================================= */
+
+function updateNoProducts(
+    count
+) {
+
+    const message =
+        document.getElementById(
+            "noProducts"
+        );
+
+
+    if (!message) return;
+
+
+    if (count === 0) {
+
+        message.classList.add(
+            "show"
+        );
+
+    } else {
+
+        message.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
    SEARCH
 ========================================================= */
 
 function setupSearch() {
 
-    if (searchToggle) {
+    const input =
+        document.getElementById(
+            "materialSearch"
+        );
 
-        searchToggle.addEventListener(
+
+    const clearButton =
+        document.getElementById(
+            "clearSearch"
+        );
+
+
+    if (!input) return;
+
+
+    input.addEventListener(
+        "input",
+        function () {
+
+            searchText =
+                input.value.trim();
+
+
+            renderProducts();
+
+
+            if (
+                clearButton
+            ) {
+
+                clearButton.classList.toggle(
+                    "show",
+                    searchText.length > 0
+                );
+
+            }
+
+        }
+    );
+
+
+    if (clearButton) {
+
+        clearButton.addEventListener(
             "click",
             function () {
 
-                if (!searchPanel) return;
+                input.value = "";
 
-                searchPanel.classList.toggle(
+                searchText = "";
+
+                clearButton.classList.remove(
                     "show"
                 );
 
-
-                if (
-                    searchPanel.classList.contains(
-                        "show"
-                    ) &&
-                    searchInput
-                ) {
-
-                    setTimeout(
-                        function () {
-
-                            searchInput.focus();
-
-                        },
-                        100
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    if (searchInput) {
-
-        searchInput.addEventListener(
-            "input",
-            function () {
-
-                searchTerm =
-                    searchInput.value.trim();
-
                 renderProducts();
 
-            }
-        );
-
-    }
-
-
-    if (clearSearchBtn) {
-
-        clearSearchBtn.addEventListener(
-            "click",
-            function () {
-
-                if (searchInput) {
-
-                    searchInput.value =
-                        "";
-
-                }
-
-                searchTerm =
-                    "";
-
-                renderProducts();
-
-                if (searchInput) {
-
-                    searchInput.focus();
-
-                }
+                input.focus();
 
             }
         );
@@ -832,31 +906,36 @@ function setupSearch() {
 
 
 /* =========================================================
-   RESET FILTERS
+   SEARCH TOGGLE
 ========================================================= */
 
-if (resetFilters) {
+function setupSearchToggle() {
 
-    resetFilters.addEventListener(
+    const toggle =
+        document.getElementById(
+            "searchToggle"
+        );
+
+
+    const panel =
+        document.getElementById(
+            "searchPanel"
+        );
+
+
+    if (
+        !toggle ||
+        !panel
+    ) return;
+
+
+    toggle.addEventListener(
         "click",
         function () {
 
-            activeCategory =
-                "All";
-
-            searchTerm =
-                "";
-
-            if (searchInput) {
-
-                searchInput.value =
-                    "";
-
-            }
-
-            updateCategoryButtons();
-
-            renderProducts();
+            panel.classList.toggle(
+                "show"
+            );
 
         }
     );
@@ -865,14 +944,35 @@ if (resetFilters) {
 
 
 /* =========================================================
-   PRODUCT MODAL
+   MODAL
 ========================================================= */
 
 function setupModal() {
 
-    if (modalClose) {
+    const modal =
+        document.getElementById(
+            "productModal"
+        );
 
-        modalClose.addEventListener(
+
+    const closeButton =
+        document.getElementById(
+            "modalClose"
+        );
+
+
+    const backdrop =
+        document.querySelector(
+            ".modal-backdrop"
+        );
+
+
+    if (!modal) return;
+
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
             "click",
             closeProductModal
         );
@@ -880,9 +980,9 @@ function setupModal() {
     }
 
 
-    if (modalBackdrop) {
+    if (backdrop) {
 
-        modalBackdrop.addEventListener(
+        backdrop.addEventListener(
             "click",
             closeProductModal
         );
@@ -895,7 +995,8 @@ function setupModal() {
         function (event) {
 
             if (
-                event.key === "Escape"
+                event.key ===
+                "Escape"
             ) {
 
                 closeProductModal();
@@ -913,58 +1014,128 @@ function setupModal() {
 ========================================================= */
 
 function openProductModal(
-    material
+    productId
 ) {
 
-    if (
-        !productModal ||
-        !modalContent
-    ) {
+    const product =
+        materials.find(
+            function (item) {
 
-        return;
+                return item.id ===
+                    productId;
+
+            }
+        );
+
+
+    if (!product) return;
+
+
+    const modal =
+        document.getElementById(
+            "productModal"
+        );
+
+
+    if (!modal) return;
+
+
+    const image =
+        document.getElementById(
+            "modalProductImage"
+        );
+
+
+    const tag =
+        document.getElementById(
+            "modalProductTag"
+        );
+
+
+    const title =
+        document.getElementById(
+            "modalProductTitle"
+        );
+
+
+    const size =
+        document.getElementById(
+            "modalProductSize"
+        );
+
+
+    const price =
+        document.getElementById(
+            "modalProductPrice"
+        );
+
+
+    const description =
+        document.getElementById(
+            "modalProductDescription"
+        );
+
+
+    const specifications =
+        document.getElementById(
+            "modalSpecifications"
+        );
+
+
+    if (product.image) {
+
+        image.src =
+            product.image;
+
+        image.alt =
+            product.name;
+
+        image.style.display =
+            "block";
+
+    } else {
+
+        image.removeAttribute(
+            "src"
+        );
+
+        image.alt =
+            product.name;
+
+        image.style.display =
+            "none";
 
     }
 
 
-    const imageHTML =
-        material.image
-            ? `
-
-                <img
-                    src="${material.image}"
-                    alt="${escapeHTML(material.name)}"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                >
-
-                <div
-                    class="product-image-placeholder"
-                    style="display:none;">
-
-                    ${material.icon}
-
-                </div>
-
-              `
-            : `
-
-                <div
-                    class="product-image-placeholder">
-
-                    ${material.icon}
-
-                </div>
-
-              `;
+    tag.textContent =
+        product.category;
 
 
-    const specifications =
-        material.specifications
+    title.textContent =
+        product.name;
+
+
+    size.textContent =
+        product.size;
+
+
+    price.textContent =
+        product.price;
+
+
+    description.textContent =
+        product.description;
+
+
+    specifications.innerHTML =
+        product.specifications
             .map(
                 function (item) {
 
                     return `
                         <li>
-                            ${escapeHTML(item)}
+                            ${item}
                         </li>
                     `;
 
@@ -973,72 +1144,27 @@ function openProductModal(
             .join("");
 
 
-    modalContent.innerHTML = `
-
-        <div class="modal-product-image">
-
-            ${imageHTML}
-
-        </div>
+    const whatsappButton =
+        document.getElementById(
+            "modalWhatsapp"
+        );
 
 
-        <div class="modal-product-content">
+    if (whatsappButton) {
 
-            <span class="modal-product-tag">
-                SANDEEP ELECTROFIX MATERIAL
-            </span>
+        whatsappButton.onclick =
+            function () {
 
+                sendWhatsAppEnquiry(
+                    product
+                );
 
-            <h2>
-                ${escapeHTML(material.name)}
-            </h2>
+            };
 
-
-            <p class="modal-product-size">
-                Size / Specification:
-                ${escapeHTML(material.size)}
-            </p>
+    }
 
 
-            <div class="modal-product-price">
-                ${escapeHTML(material.price)}
-            </div>
-
-
-            <p class="modal-product-description">
-                ${escapeHTML(material.description)}
-            </p>
-
-
-            <div class="modal-specifications">
-
-                <h3>
-                    Specifications
-                </h3>
-
-                <ul>
-                    ${specifications}
-                </ul>
-
-            </div>
-
-
-            <a
-                href="${createWhatsAppLink(material)}"
-                class="modal-whatsapp"
-                target="_blank"
-                rel="noopener">
-
-                💬 Enquire on WhatsApp
-
-            </a>
-
-        </div>
-
-    `;
-
-
-    productModal.classList.add(
+    modal.classList.add(
         "show"
     );
 
@@ -1055,11 +1181,19 @@ function openProductModal(
 
 function closeProductModal() {
 
-    if (!productModal) return;
+    const modal =
+        document.getElementById(
+            "productModal"
+        );
 
-    productModal.classList.remove(
+
+    if (!modal) return;
+
+
+    modal.classList.remove(
         "show"
     );
+
 
     document.body.style.overflow =
         "";
@@ -1068,46 +1202,41 @@ function closeProductModal() {
 
 
 /* =========================================================
-   WHATSAPP
+   WHATSAPP ENQUIRY
 ========================================================= */
 
-function createWhatsAppLink(
-    material
+function sendWhatsAppEnquiry(
+    product
 ) {
 
     const message =
-        `Hello Sandeep ElectroFix,
+        `Hello Sandeep ElectroFix 👋
 
-I want to enquire about:
+I am interested in this material:
 
-Material: ${material.name}
-Category: ${material.category}
-Size: ${material.size}
+🛒 Material:
+${product.name}
 
-Please share availability and latest price.
+📏 Size:
+${product.size}
+
+📂 Category:
+${product.category}
+
+Please share the availability and price.
 
 Thank you.`;
 
-    return (
-        "https://wa.me/" +
-        CATALOGUE_CONFIG.whatsapp +
-        "?text=" +
+
+    const url =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=` +
         encodeURIComponent(
             message
-        )
-    );
+        );
 
-}
-
-
-function enquireOnWhatsApp(
-    material
-) {
 
     window.open(
-        createWhatsAppLink(
-            material
-        ),
+        url,
         "_blank",
         "noopener"
     );
@@ -1116,52 +1245,65 @@ function enquireOnWhatsApp(
 
 
 /* =========================================================
-   ESCAPE HTML
+   BACK BUTTON
 ========================================================= */
 
-function escapeHTML(
-    value
-) {
+function setupBackButton() {
 
-    return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
+    const button =
+        document.getElementById(
+            "backButton"
         );
+
+
+    if (!button) return;
+
+
+    button.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                window.history.length >
+                1
+            ) {
+
+                event.preventDefault();
+
+                window.history.back();
+
+            }
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   GLOBAL FUNCTION
+   SETUP SEARCH TOGGLE
+========================================================= */
+
+setupSearchToggle();
+
+
+/* =========================================================
+   GLOBAL ACCESS
 ========================================================= */
 
 window.SandeepMaterialCatalogue = {
 
     materials,
 
-    renderProducts,
-
     openProductModal,
 
     closeProductModal,
 
-    enquireOnWhatsApp
+    sendWhatsAppEnquiry
 
 };
+
+
+console.log(
+    "⚡ Material Catalogue JS Ready"
+);
