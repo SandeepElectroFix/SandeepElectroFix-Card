@@ -2,7 +2,7 @@
    SANDEEP ELECTROFIX CARD
    PROJECT 2 - DIGITAL BUSINESS CARD
    SERVICE WORKER
-   Version: 2.3.0
+   Version: 2.2.1
 ========================================================= */
 
 "use strict";
@@ -13,7 +13,7 @@
 ========================================================= */
 
 const CACHE_NAME =
-    "sandeep-electrofix-card-v2.3.0";
+    "sandeep-electrofix-card-v2.2.1";
 
 
 /* =========================================================
@@ -22,65 +22,32 @@ const CACHE_NAME =
 
 const STATIC_ASSETS = [
 
-    /* -------------------------
-       MAIN FILES
-    ------------------------- */
-
     "./",
     "./index.html",
     "./style.css",
-    "./script.js",
     "./config.js",
+    "./script.js",
+
     "./manifest.json",
 
-
-    /* -------------------------
-       MATERIAL CATALOGUE
-    ------------------------- */
-
     "./material-catalogue.html",
-    "./material-catalogue.css",
-    "./material-catalogue.js",
-
-
-    /* -------------------------
-       OUR WORK
-    ------------------------- */
-
     "./our-work.html",
-    "./our-work.css",
-    "./our-work.js",
 
-
-    /* -------------------------
-       DATA FILES
-    ------------------------- */
+    /* DATA */
 
     "./data/services.json",
     "./data/gallery.json",
     "./data/reviews.json",
     "./data/faq.json",
-    "./data/profile.json",
-    "./data/certificate.json",
 
-
-    /* -------------------------
-       MAIN ASSETS
-    ------------------------- */
+    /* ASSETS */
 
     "./assets/logo.png",
     "./assets/qr-card.png",
-    "./assets/Cover.jpg",
-
-
-    /* -------------------------
-       GALLERY
-    ------------------------- */
-
-    "./assets/gallery/work1.jpg",
-    "./assets/gallery/work2.jpg",
-    "./assets/gallery/work3.jpg",
-    "./assets/gallery/work4.jpg"
+    "./assets/work1.jpg",
+    "./assets/work2.jpg",
+    "./assets/work3.jpg",
+    "./assets/work4.jpg"
 
 ];
 
@@ -104,24 +71,22 @@ self.addEventListener(
                 .open(CACHE_NAME)
                 .then(cache => {
 
-                    console.log(
-                        "[SW] Caching static assets..."
-                    );
-
                     return cache.addAll(
                         STATIC_ASSETS
                     );
 
                 })
+
                 .then(() => {
 
                     console.log(
-                        "[SW] All static assets cached."
+                        "[SW] Static assets cached successfully."
                     );
 
                     return self.skipWaiting();
 
                 })
+
                 .catch(error => {
 
                     console.error(
@@ -154,6 +119,7 @@ self.addEventListener(
 
             caches
                 .keys()
+
                 .then(cacheNames => {
 
                     return Promise.all(
@@ -169,7 +135,7 @@ self.addEventListener(
                                 ) {
 
                                     console.log(
-                                        "[SW] Deleting old cache:",
+                                        "[SW] Removing old cache:",
                                         cacheName
                                     );
 
@@ -187,6 +153,7 @@ self.addEventListener(
                     );
 
                 })
+
                 .then(() => {
 
                     console.log(
@@ -206,7 +173,8 @@ self.addEventListener(
 /* =========================================================
    FETCH
    CACHE FIRST
-   NETWORK FALLBACK
+   → NETWORK
+   → OFFLINE FALLBACK
 ========================================================= */
 
 self.addEventListener(
@@ -217,9 +185,9 @@ self.addEventListener(
             event.request;
 
 
-        /* -------------------------
-           ONLY GET REQUESTS
-        ------------------------- */
+        /* -----------------------------------------
+           ONLY HANDLE GET REQUESTS
+        ----------------------------------------- */
 
         if (
             request.method !== "GET"
@@ -234,12 +202,12 @@ self.addEventListener(
 
             caches
                 .match(request)
+
                 .then(cachedResponse => {
 
-
-                    /* -------------------------
+                    /* ---------------------------------
                        CACHE HIT
-                    ------------------------- */
+                    --------------------------------- */
 
                     if (
                         cachedResponse
@@ -250,18 +218,17 @@ self.addEventListener(
                     }
 
 
-                    /* -------------------------
+                    /* ---------------------------------
                        NETWORK
-                    ------------------------- */
+                    --------------------------------- */
 
                     return fetch(request)
 
                         .then(networkResponse => {
 
-
-                            /* -------------------------
-                               VALID RESPONSE
-                            ------------------------- */
+                            /* -----------------------------
+                               CACHE VALID RESPONSE
+                            ----------------------------- */
 
                             if (
                                 networkResponse &&
@@ -292,11 +259,13 @@ self.addEventListener(
                         })
 
 
-                        /* -------------------------
+                        /* -----------------------------
                            OFFLINE FALLBACK
-                        ------------------------- */
+                        ----------------------------- */
 
                         .catch(() => {
+
+                            /* HTML PAGE */
 
                             if (
                                 request.destination ===
@@ -305,6 +274,20 @@ self.addEventListener(
 
                                 return caches.match(
                                     "./index.html"
+                                );
+
+                            }
+
+
+                            /* IMAGE */
+
+                            if (
+                                request.destination ===
+                                "image"
+                            ) {
+
+                                return caches.match(
+                                    "./assets/logo.png"
                                 );
 
                             }
@@ -323,7 +306,7 @@ self.addEventListener(
 
 
 /* =========================================================
-   MESSAGE CONTROL
+   MESSAGE HANDLER
 ========================================================= */
 
 self.addEventListener(
@@ -339,9 +322,9 @@ self.addEventListener(
         }
 
 
-        /* -------------------------
-           SKIP WAITING
-        ------------------------- */
+        /* -----------------------------------------
+           FORCE SERVICE WORKER UPDATE
+        ----------------------------------------- */
 
         if (
             event.data.type ===
@@ -353,9 +336,9 @@ self.addEventListener(
         }
 
 
-        /* -------------------------
+        /* -----------------------------------------
            CLEAR PROJECT CACHE
-        ------------------------- */
+        ----------------------------------------- */
 
         if (
             event.data.type ===
@@ -366,6 +349,7 @@ self.addEventListener(
 
                 caches
                     .keys()
+
                     .then(cacheNames => {
 
                         return Promise.all(
@@ -393,6 +377,7 @@ self.addEventListener(
                         );
 
                     })
+
                     .then(() => {
 
                         console.log(
