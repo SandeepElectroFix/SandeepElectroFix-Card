@@ -82,7 +82,7 @@ features: {
 
     faq: true,
 
-    offers: true,
+    offers: false,
 
     contactForm: true,
 
