@@ -2,7 +2,7 @@
    SANDEEP ELECTROFIX CARD
    PROJECT 2 - DIGITAL BUSINESS CARD
    SERVICE WORKER
-   Version: 2.2.1
+   Version: 2.3.0
 ========================================================= */
 
 "use strict";
@@ -13,7 +13,7 @@
 ========================================================= */
 
 const CACHE_NAME =
-    "sandeep-electrofix-card-v2.2.1";
+    "sandeep-electrofix-card-v2.3.0";
 
 
 /* =========================================================
@@ -38,6 +38,8 @@ const STATIC_ASSETS = [
     "./our-work.css",
     "./our-work.js",
 
+    /* DATA */
+
     "./data/services.json",
     "./data/gallery.json",
     "./data/reviews.json",
@@ -45,8 +47,12 @@ const STATIC_ASSETS = [
     "./data/profile.json",
     "./data/certificate.json",
 
+    /* MAIN ASSETS */
+
     "./assets/logo.png",
     "./assets/qr-card.png",
+
+    /* GALLERY */
 
     "./assets/gallery/work1.jpg",
     "./assets/gallery/work2.jpg",
@@ -74,6 +80,7 @@ self.addEventListener(
 
             caches
                 .open(CACHE_NAME)
+
                 .then(cache => {
 
                     return cache.addAll(
@@ -85,7 +92,7 @@ self.addEventListener(
                 .then(() => {
 
                     console.log(
-                        "[SW] Static assets cached successfully."
+                        "[SW] All static assets cached."
                     );
 
                     return self.skipWaiting();
@@ -133,14 +140,19 @@ self.addEventListener(
                             cacheName => {
 
                                 if (
+
                                     cacheName.startsWith(
                                         "sandeep-electrofix-card-"
-                                    ) &&
+                                    )
+
+                                    &&
+
                                     cacheName !== CACHE_NAME
+
                                 ) {
 
                                     console.log(
-                                        "[SW] Removing old cache:",
+                                        "[SW] Deleting old cache:",
                                         cacheName
                                     );
 
@@ -176,10 +188,7 @@ self.addEventListener(
 
 
 /* =========================================================
-   FETCH
-   CACHE FIRST
-   → NETWORK
-   → OFFLINE FALLBACK
+   FETCH HANDLER
 ========================================================= */
 
 self.addEventListener(
@@ -191,7 +200,7 @@ self.addEventListener(
 
 
         /* -----------------------------------------
-           ONLY HANDLE GET REQUESTS
+           ONLY GET REQUESTS
         ----------------------------------------- */
 
         if (
@@ -203,16 +212,86 @@ self.addEventListener(
         }
 
 
+        /* -----------------------------------------
+           HTML DOCUMENTS
+           NETWORK FIRST
+        ----------------------------------------- */
+
+        if (
+            request.destination === "document"
+        ) {
+
+            event.respondWith(
+
+                fetch(request)
+
+                    .then(networkResponse => {
+
+                        if (
+                            networkResponse &&
+                            networkResponse.status === 200
+                        ) {
+
+                            const responseClone =
+                                networkResponse.clone();
+
+                            caches
+                                .open(CACHE_NAME)
+                                .then(cache => {
+
+                                    cache.put(
+                                        request,
+                                        responseClone
+                                    );
+
+                                });
+
+                        }
+
+                        return networkResponse;
+
+                    })
+
+                    .catch(() => {
+
+                        return caches.match(
+                            request
+                        )
+
+                        .then(cachedPage => {
+
+                            if (cachedPage) {
+
+                                return cachedPage;
+
+                            }
+
+                            return caches.match(
+                                "./index.html"
+                            );
+
+                        });
+
+                    })
+
+            );
+
+            return;
+
+        }
+
+
+        /* -----------------------------------------
+           OTHER FILES
+           CACHE FIRST
+        ----------------------------------------- */
+
         event.respondWith(
 
             caches
                 .match(request)
 
                 .then(cachedResponse => {
-
-                    /* ---------------------------------
-                       CACHE HIT
-                    --------------------------------- */
 
                     if (
                         cachedResponse
@@ -223,17 +302,9 @@ self.addEventListener(
                     }
 
 
-                    /* ---------------------------------
-                       NETWORK
-                    --------------------------------- */
-
                     return fetch(request)
 
                         .then(networkResponse => {
-
-                            /* -----------------------------
-                               CACHE VALID RESPONSE
-                            ----------------------------- */
 
                             if (
                                 networkResponse &&
@@ -244,9 +315,9 @@ self.addEventListener(
                                 const responseClone =
                                     networkResponse.clone();
 
-
                                 caches
                                     .open(CACHE_NAME)
+
                                     .then(cache => {
 
                                         cache.put(
@@ -258,33 +329,13 @@ self.addEventListener(
 
                             }
 
-
                             return networkResponse;
 
                         })
 
-
-                        /* -----------------------------
-                           OFFLINE FALLBACK
-                        ----------------------------- */
-
                         .catch(() => {
 
-                            /* HTML PAGE */
-
-                            if (
-                                request.destination ===
-                                "document"
-                            ) {
-
-                                return caches.match(
-                                    "./index.html"
-                                );
-
-                            }
-
-
-                            /* IMAGE */
+                            /* IMAGE FALLBACK */
 
                             if (
                                 request.destination ===
@@ -328,7 +379,7 @@ self.addEventListener(
 
 
         /* -----------------------------------------
-           FORCE SERVICE WORKER UPDATE
+           FORCE UPDATE
         ----------------------------------------- */
 
         if (
@@ -400,7 +451,7 @@ self.addEventListener(
 
 
 /* =========================================================
-   SERVICE WORKER READY
+   SERVICE WORKER LOADED
 ========================================================= */
 
 console.log(
