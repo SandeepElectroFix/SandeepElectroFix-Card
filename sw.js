@@ -31,23 +31,28 @@ const STATIC_ASSETS = [
     "./manifest.json",
 
     "./material-catalogue.html",
-    "./our-work.html",
+    "./material-catalogue.css",
+    "./material-catalogue.js",
 
-    /* DATA */
+    "./our-work.html",
+    "./our-work.css",
+    "./our-work.js",
 
     "./data/services.json",
     "./data/gallery.json",
     "./data/reviews.json",
     "./data/faq.json",
-
-    /* ASSETS */
+    "./data/profile.json",
+    "./data/certificate.json",
 
     "./assets/logo.png",
     "./assets/qr-card.png",
-    "./assets/work1.jpg",
-    "./assets/work2.jpg",
-    "./assets/work3.jpg",
-    "./assets/work4.jpg"
+
+    "./assets/gallery/work1.jpg",
+    "./assets/gallery/work2.jpg",
+    "./assets/gallery/work3.jpg",
+    "./assets/gallery/work4.jpg",
+    "./assets/gallery/Cover.jpg"
 
 ];
 
