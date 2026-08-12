@@ -167,22 +167,22 @@ services: [
 gallery: [
 
     {
-        image: "assets/work1.jpg",
+        image: "assets/gallery/work1.jpg",
         title: "Electrical Work"
     },
 
     {
-        image: "assets/work2.jpg",
+        image: "assets/gallery/work2.jpg",
         title: "House Wiring"
     },
 
     {
-        image: "assets/work3.jpg",
+        image: "assets/gallery/work3.jpg",
         title: "Electrical Installation"
     },
 
     {
-        image: "assets/work4.jpg",
+        image: "assets/gallery/work4.jpg",
         title: "Professional Electrical Work"
     }
 
