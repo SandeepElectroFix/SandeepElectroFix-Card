@@ -1,7 +1,8 @@
 /* =========================================================
    SANDEEP ELECTROFIX CARD
+   PROJECT 2 - DIGITAL BUSINESS CARD
    SERVICE WORKER
-   Version: 2.1.0
+   Version: 2.3.0
 ========================================================= */
 
 "use strict";
@@ -12,7 +13,7 @@
 ========================================================= */
 
 const CACHE_NAME =
-    "sandeep-electrofix-card-v2.2.0";
+    "sandeep-electrofix-card-v2.3.0";
 
 
 /* =========================================================
@@ -21,19 +22,66 @@ const CACHE_NAME =
 
 const STATIC_ASSETS = [
 
+    /* -------------------------
+       MAIN FILES
+    ------------------------- */
+
     "./",
     "./index.html",
     "./style.css",
     "./script.js",
+    "./config.js",
     "./manifest.json",
+
+
+    /* -------------------------
+       MATERIAL CATALOGUE
+    ------------------------- */
+
     "./material-catalogue.html",
+    "./material-catalogue.css",
+    "./material-catalogue.js",
+
+
+    /* -------------------------
+       OUR WORK
+    ------------------------- */
+
     "./our-work.html",
+    "./our-work.css",
+    "./our-work.js",
+
+
+    /* -------------------------
+       DATA FILES
+    ------------------------- */
+
     "./data/services.json",
     "./data/gallery.json",
     "./data/reviews.json",
     "./data/faq.json",
+    "./data/profile.json",
+    "./data/certificate.json",
+
+
+    /* -------------------------
+       MAIN ASSETS
+    ------------------------- */
+
     "./assets/logo.png",
-    "./assets/qr-card.png"
+    "./assets/qr-card.png",
+    "./assets/Cover.jpg",
+
+
+    /* -------------------------
+       GALLERY
+    ------------------------- */
+
+    "./assets/gallery/work1.jpg",
+    "./assets/gallery/work2.jpg",
+    "./assets/gallery/work3.jpg",
+    "./assets/gallery/work4.jpg"
+
 ];
 
 
@@ -56,6 +104,10 @@ self.addEventListener(
                 .open(CACHE_NAME)
                 .then(cache => {
 
+                    console.log(
+                        "[SW] Caching static assets..."
+                    );
+
                     return cache.addAll(
                         STATIC_ASSETS
                     );
@@ -64,7 +116,7 @@ self.addEventListener(
                 .then(() => {
 
                     console.log(
-                        "[SW] Static assets cached"
+                        "[SW] All static assets cached."
                     );
 
                     return self.skipWaiting();
@@ -113,8 +165,7 @@ self.addEventListener(
                                     cacheName.startsWith(
                                         "sandeep-electrofix-card-"
                                     ) &&
-                                    cacheName !==
-                                        CACHE_NAME
+                                    cacheName !== CACHE_NAME
                                 ) {
 
                                     console.log(
@@ -139,7 +190,7 @@ self.addEventListener(
                 .then(() => {
 
                     console.log(
-                        "[SW] Old caches cleaned"
+                        "[SW] Old caches removed."
                     );
 
                     return self.clients.claim();
@@ -154,7 +205,8 @@ self.addEventListener(
 
 /* =========================================================
    FETCH
-   Cache First → Network → Offline Fallback
+   CACHE FIRST
+   NETWORK FALLBACK
 ========================================================= */
 
 self.addEventListener(
@@ -165,7 +217,9 @@ self.addEventListener(
             event.request;
 
 
-        /* Only GET requests */
+        /* -------------------------
+           ONLY GET REQUESTS
+        ------------------------- */
 
         if (
             request.method !== "GET"
@@ -197,7 +251,7 @@ self.addEventListener(
 
 
                     /* -------------------------
-                       NETWORK REQUEST
+                       NETWORK
                     ------------------------- */
 
                     return fetch(request)
@@ -206,7 +260,7 @@ self.addEventListener(
 
 
                             /* -------------------------
-                               CACHE VALID RESPONSE
+                               VALID RESPONSE
                             ------------------------- */
 
                             if (
@@ -269,7 +323,7 @@ self.addEventListener(
 
 
 /* =========================================================
-   MESSAGE
+   MESSAGE CONTROL
 ========================================================= */
 
 self.addEventListener(
@@ -286,7 +340,7 @@ self.addEventListener(
 
 
         /* -------------------------
-           FORCE NEW SERVICE WORKER
+           SKIP WAITING
         ------------------------- */
 
         if (
@@ -342,7 +396,7 @@ self.addEventListener(
                     .then(() => {
 
                         console.log(
-                            "[SW] All project caches cleared"
+                            "[SW] Project caches cleared."
                         );
 
                     })
@@ -356,7 +410,7 @@ self.addEventListener(
 
 
 /* =========================================================
-   READY
+   SERVICE WORKER READY
 ========================================================= */
 
 console.log(
