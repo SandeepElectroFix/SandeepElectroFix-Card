@@ -31,7 +31,7 @@ const STATIC_ASSETS = [
     "./data/services.json",
     "./data/gallery.json",
     "./data/reviews.json",
-    "./data/faq.json"
+    "./data/faq.json",
     "./assets/logo.png",
     "./assets/qr-card.png"
 ];
