@@ -26,13 +26,14 @@ const STATIC_ASSETS = [
     "./style.css",
     "./script.js",
     "./manifest.json",
-    "./assets/logo.png",
-
+    "./material-catalogue.html",
+    "./our-work.html",
     "./data/services.json",
     "./data/gallery.json",
     "./data/reviews.json",
     "./data/faq.json"
-
+    "./assets/logo.png",
+    "./assets/qr-card.png"
 ];
 
 
