@@ -26,7 +26,12 @@ const STATIC_ASSETS = [
     "./style.css",
     "./script.js",
     "./manifest.json",
-    "./assets/logo.png"
+    "./assets/logo.png",
+
+    "./data/services.json",
+    "./data/gallery.json",
+    "./data/reviews.json",
+    "./data/faq.json"
 
 ];
 
