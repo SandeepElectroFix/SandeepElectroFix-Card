@@ -1,333 +1,359 @@
 /* =========================================================
    SANDEEP ELECTROFIX CARD
    SERVICE WORKER
-   Version: 2.0.0
+   Version: 2.1.0
 ========================================================= */
 
-const CACHE_NAME = "sandeep-electrofix-card-v2.0.0";
+"use strict";
+
+
+/* =========================================================
+   CACHE VERSION
+========================================================= */
+
+const CACHE_NAME =
+    "sandeep-electrofix-card-v2.1.0";
+
 
 /* =========================================================
    STATIC ASSETS
 ========================================================= */
 
 const STATIC_ASSETS = [
+
     "./",
     "./index.html",
     "./style.css",
     "./script.js",
     "./manifest.json",
     "./assets/logo.png"
+
 ];
+
 
 /* =========================================================
    INSTALL
 ========================================================= */
 
-self.addEventListener("install", (event) => {
+self.addEventListener(
+    "install",
+    event => {
 
-    console.log("[SW] Installing:", CACHE_NAME);
+        console.log(
+            "[SW] Installing:",
+            CACHE_NAME
+        );
 
-    event.waitUntil(
+        event.waitUntil(
 
-        caches.open(CACHE_NAME)
-            .then((cache) => {
+            caches
+                .open(CACHE_NAME)
+                .then(cache => {
 
-                return cache.addAll(STATIC_ASSETS);
+                    return cache.addAll(
+                        STATIC_ASSETS
+                    );
 
-            })
-            .then(() => {
+                })
+                .then(() => {
 
-                console.log("[SW] Static assets cached");
+                    console.log(
+                        "[SW] Static assets cached"
+                    );
 
-                return self.skipWaiting();
+                    return self.skipWaiting();
 
-            })
-            .catch((error) => {
+                })
+                .catch(error => {
 
-                console.error(
-                    "[SW] Cache installation failed:",
-                    error
-                );
+                    console.error(
+                        "[SW] Cache installation failed:",
+                        error
+                    );
 
-            })
+                })
 
-    );
+        );
 
-});
+    }
+);
+
 
 /* =========================================================
    ACTIVATE
 ========================================================= */
 
-self.addEventListener("activate", (event) => {
+self.addEventListener(
+    "activate",
+    event => {
 
-    console.log("[SW] Activating:", CACHE_NAME);
+        console.log(
+            "[SW] Activating:",
+            CACHE_NAME
+        );
 
-    event.waitUntil(
+        event.waitUntil(
 
-        caches.keys()
-            .then((cacheNames) => {
+            caches
+                .keys()
+                .then(cacheNames => {
 
-                return Promise.all(
+                    return Promise.all(
 
-                    cacheNames.map((cacheName) => {
+                        cacheNames.map(
+                            cacheName => {
 
-                        if (
-                            cacheName.startsWith(
-                                "sandeep-electrofix-card-"
-                            ) &&
-                            cacheName !== CACHE_NAME
-                        ) {
+                                if (
+                                    cacheName.startsWith(
+                                        "sandeep-electrofix-card-"
+                                    ) &&
+                                    cacheName !==
+                                        CACHE_NAME
+                                ) {
 
-                            console.log(
-                                "[SW] Deleting old cache:",
-                                cacheName
-                            );
+                                    console.log(
+                                        "[SW] Deleting old cache:",
+                                        cacheName
+                                    );
 
-                            return caches.delete(cacheName);
+                                    return caches.delete(
+                                        cacheName
+                                    );
 
-                        }
+                                }
 
-                    })
+                                return null;
 
-                );
+                            }
+                        )
 
-            })
-            .then(() => {
+                    );
 
-                console.log("[SW] Old caches cleaned");
+                })
+                .then(() => {
 
-                return self.clients.claim();
+                    console.log(
+                        "[SW] Old caches cleaned"
+                    );
 
-            })
+                    return self.clients.claim();
 
-    );
+                })
 
-});
+        );
+
+    }
+);
+
 
 /* =========================================================
    FETCH
+   Cache First → Network → Offline Fallback
 ========================================================= */
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener(
+    "fetch",
+    event => {
 
-    const request = event.request;
+        const request =
+            event.request;
 
-    /*
-       Only handle GET requests.
-    */
 
-    if (request.method !== "GET") {
-        return;
+        /* Only GET requests */
+
+        if (
+            request.method !== "GET"
+        ) {
+
+            return;
+
+        }
+
+
+        event.respondWith(
+
+            caches
+                .match(request)
+                .then(cachedResponse => {
+
+
+                    /* -------------------------
+                       CACHE HIT
+                    ------------------------- */
+
+                    if (
+                        cachedResponse
+                    ) {
+
+                        return cachedResponse;
+
+                    }
+
+
+                    /* -------------------------
+                       NETWORK REQUEST
+                    ------------------------- */
+
+                    return fetch(request)
+
+                        .then(networkResponse => {
+
+
+                            /* -------------------------
+                               CACHE VALID RESPONSE
+                            ------------------------- */
+
+                            if (
+                                networkResponse &&
+                                networkResponse.status === 200 &&
+                                networkResponse.type === "basic"
+                            ) {
+
+                                const responseClone =
+                                    networkResponse.clone();
+
+
+                                caches
+                                    .open(CACHE_NAME)
+                                    .then(cache => {
+
+                                        cache.put(
+                                            request,
+                                            responseClone
+                                        );
+
+                                    });
+
+                            }
+
+
+                            return networkResponse;
+
+                        })
+
+
+                        /* -------------------------
+                           OFFLINE FALLBACK
+                        ------------------------- */
+
+                        .catch(() => {
+
+                            if (
+                                request.destination ===
+                                "document"
+                            ) {
+
+                                return caches.match(
+                                    "./index.html"
+                                );
+
+                            }
+
+
+                            return Response.error();
+
+                        });
+
+                })
+
+        );
+
     }
+);
 
-    event.respondWith(
-
-        caches.match(request)
-            .then((cachedResponse) => {
-
-                /*
-                   If file is already cached,
-                   return cached version.
-                */
-
-                if (cachedResponse) {
-
-                    return cachedResponse;
-
-                }
-
-                /*
-                   Otherwise request it from network.
-                */
-
-                return fetch(request)
-                    .then((networkResponse) => {
-
-                        /*
-                           Cache only successful responses.
-                        */
-
-                        if (
-                            networkResponse &&
-                            networkResponse.status === 200 &&
-                            networkResponse.type === "basic"
-                        ) {
-
-                            const responseClone =
-                                networkResponse.clone();
-
-                            caches.open(CACHE_NAME)
-                                .then((cache) => {
-
-                                    cache.put(
-                                        request,
-                                        responseClone
-                                    );
-
-                                });
-
-                        }
-
-                        return networkResponse;
-
-                    })
-                    .catch(() => {
-
-                        /*
-                           Offline fallback for HTML pages.
-                        */
-
-                        if (
-                            request.destination === "document"
-                        ) {
-
-                            return caches.match(
-                                "./index.html"
-                            );
-
-                        }
-
-                    });
-
-            })
-
-    );
-
-});
 
 /* =========================================================
    MESSAGE
-   Allows manual cache refresh from script.js
 ========================================================= */
 
-self.addEventListener("message", (event) => {
+self.addEventListener(
+    "message",
+    event => {
 
-    if (!event.data) {
-        return;
-    }
+        if (
+            !event.data
+        ) {
 
-    if (event.data.type === "SKIP_WAITING") {
+            return;
 
-        self.skipWaiting();
+        }
 
-    }
 
-    if (event.data.type === "CLEAR_CACHE") {
+        /* -------------------------
+           FORCE NEW SERVICE WORKER
+        ------------------------- */
 
-        caches.keys()
-            .then((cacheNames) => {
+        if (
+            event.data.type ===
+            "SKIP_WAITING"
+        ) {
 
-                return Promise.all(
+            self.skipWaiting();
 
-                    cacheNames.map((cacheName) => {
+        }
 
-                        if (
-                            cacheName.startsWith(
-                                "sandeep-electrofix-card-"
+
+        /* -------------------------
+           CLEAR PROJECT CACHE
+        ------------------------- */
+
+        if (
+            event.data.type ===
+            "CLEAR_CACHE"
+        ) {
+
+            event.waitUntil(
+
+                caches
+                    .keys()
+                    .then(cacheNames => {
+
+                        return Promise.all(
+
+                            cacheNames.map(
+                                cacheName => {
+
+                                    if (
+                                        cacheName.startsWith(
+                                            "sandeep-electrofix-card-"
+                                        )
+                                    ) {
+
+                                        return caches.delete(
+                                            cacheName
+                                        );
+
+                                    }
+
+                                    return null;
+
+                                }
                             )
-                        ) {
 
-                            return caches.delete(cacheName);
-
-                        }
-
-                    })
-
-                );
-
-            })
-            .then(() => {
-
-                console.log("[SW] All project caches cleared");
-
-            });
-
-    }
-
-});
-});
-
-/* =========================================================
-   FETCH
-========================================================= */
-
-self.addEventListener("fetch", (event) => {
-
-    const request = event.request;
-
-    // Only handle GET requests
-    if (request.method !== "GET") {
-        return;
-    }
-
-    event.respondWith(
-
-        caches.match(request)
-            .then((cachedResponse) => {
-
-                if (cachedResponse) {
-
-                    return cachedResponse;
-
-                }
-
-                return fetch(request)
-                    .then((networkResponse) => {
-
-                        // Cache only valid responses
-                        if (
-                            networkResponse &&
-                            networkResponse.status === 200 &&
-                            networkResponse.type === "basic"
-                        ) {
-
-                            const responseClone =
-                                networkResponse.clone();
-
-                            caches.open(CACHE_NAME)
-                                .then((cache) => {
-
-                                    cache.put(
-                                        request,
-                                        responseClone
-                                    );
-
-                                });
-
-                        }
-
-                        return networkResponse;
-
-                    })
-                    .catch(() => {
-
-                        // Offline fallback
-                        return caches.match(
-                            "./index.html"
                         );
 
-                    });
+                    })
+                    .then(() => {
 
-            })
+                        console.log(
+                            "[SW] All project caches cleared"
+                        );
 
-    );
+                    })
 
-});
+            );
 
-/* =========================================================
-   MESSAGE
-========================================================= */
-
-self.addEventListener("message", (event) => {
-
-    if (
-        event.data &&
-        event.data.type === "SKIP_WAITING"
-    ) {
-
-        self.skipWaiting();
+        }
 
     }
+);
 
-});
+
+/* =========================================================
+   READY
+========================================================= */
+
+console.log(
+    "[SW] Sandeep ElectroFix Card loaded:",
+    CACHE_NAME
+);
