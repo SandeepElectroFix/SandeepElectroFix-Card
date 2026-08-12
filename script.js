@@ -2667,3 +2667,57 @@ window.addEventListener(
 
     }
 );
+/* =========================================================
+   SERVICE WORKER REGISTRATION
+========================================================= */
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./sw.js")
+            .then(registration => {
+
+                console.log(
+                    "[SW] Registered successfully:",
+                    registration.scope
+                );
+
+                /* Check for new SW version */
+
+                registration.update();
+
+            })
+            .catch(error => {
+
+                console.error(
+                    "[SW] Registration failed:",
+                    error
+                );
+
+            });
+
+    });
+
+}
+
+
+/* =========================================================
+   SERVICE WORKER UPDATE
+========================================================= */
+
+if ("serviceWorker" in navigator) {
+
+    navigator.serviceWorker.addEventListener(
+        "controllerchange",
+        () => {
+
+            console.log(
+                "[SW] New version activated."
+            );
+
+        }
+    );
+
+}
