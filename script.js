@@ -2723,3 +2723,111 @@ if ("serviceWorker" in navigator) {
     );
 
 }
+
+/* =========================================================
+   DISCOUNT SYSTEM
+========================================================= */
+
+function initializeDiscount() {
+
+    const section =
+        document.getElementById(
+            "discount-section"
+        );
+
+    if (!section) return;
+
+
+    const discount =
+        APP.discount || {};
+
+
+    /* DISCOUNT OFF */
+
+    if (discount.enabled !== true) {
+
+        section.style.display = "none";
+
+        return;
+
+    }
+
+
+    /* ELEMENTS */
+
+    const title =
+        document.getElementById(
+            "discountTitle"
+        );
+
+    const percentage =
+        document.getElementById(
+            "discountPercentage"
+        );
+
+    const message =
+        document.getElementById(
+            "discountMessage"
+        );
+
+    const validity =
+        document.getElementById(
+            "discountValidity"
+        );
+
+
+    /* TITLE */
+
+    if (title) {
+
+        title.textContent =
+            discount.title ||
+            "Special Discount";
+
+    }
+
+
+    /* PERCENTAGE */
+
+    const discountPercentage =
+        Number(
+            discount.percentage
+        ) || 0;
+
+
+    if (percentage) {
+
+        percentage.textContent =
+            discountPercentage;
+
+    }
+
+
+    /* MESSAGE */
+
+    if (message) {
+
+        message.textContent =
+            discount.message ||
+            `Get ${discountPercentage}% OFF on Electrical Services`;
+
+    }
+
+
+    /* VALIDITY */
+
+    if (validity) {
+
+        validity.textContent =
+            discount.validity ||
+            "Limited Time Offer";
+
+    }
+
+
+    console.log(
+        "Discount loaded:",
+        discountPercentage + "%"
+    );
+
+}
