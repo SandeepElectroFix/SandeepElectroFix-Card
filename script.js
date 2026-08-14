@@ -186,7 +186,131 @@ function showToast(message) {
 
 }
 
+/* =========================================================
+   DISCOUNT / OFFER SYSTEM
+========================================================= */
 
+function initializeDiscount() {
+
+    const discount = APP.discount;
+
+    const offerSection =
+        document.getElementById("discount-offer");
+
+    if (!offerSection) return;
+
+
+    /* DISCOUNT OFF */
+
+    if (
+        !discount ||
+        discount.enabled !== true ||
+        discount.showOnCard === false
+    ) {
+
+        offerSection.style.display = "none";
+
+        return;
+
+    }
+
+
+    /* DISCOUNT ON */
+
+    offerSection.style.display = "";
+
+
+    const title =
+        offerSection.querySelector(
+            ".discount-title"
+        );
+
+
+    const message =
+        offerSection.querySelector(
+            ".discount-message"
+        );
+
+
+    const value =
+        offerSection.querySelector(
+            ".discount-value"
+        );
+
+
+    const validity =
+        offerSection.querySelector(
+            ".discount-validity"
+        );
+
+
+    if (title) {
+
+        title.textContent =
+            discount.title ||
+            "Special Discount";
+
+    }
+
+
+    if (message) {
+
+        message.textContent =
+            discount.message ||
+            "Special discount available.";
+
+    }
+
+
+    /* DISCOUNT VALUE */
+
+    if (value) {
+
+        if (
+            discount.type === "fixed"
+        ) {
+
+            value.textContent =
+                "₹" +
+                Number(discount.value || 0) +
+                " OFF";
+
+        }
+        else {
+
+            value.textContent =
+                Number(discount.value || 0) +
+                "% OFF";
+
+        }
+
+    }
+
+
+    /* VALIDITY */
+
+    if (validity) {
+
+        if (discount.validUntil) {
+
+            validity.textContent =
+                "Valid until " +
+                discount.validUntil;
+
+            validity.style.display =
+                "";
+
+        }
+        else {
+
+            validity.style.display =
+                "none";
+
+        }
+
+    }
+
+}
 /* =========================================================
    FEATURE CONTROLS
 ========================================================= */
