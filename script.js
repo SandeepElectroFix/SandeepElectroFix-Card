@@ -102,7 +102,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeFeatureControls();
 
     initializeDiscount();
-
+   
+    initializeDiscountCalculator();
+   
     initializeShare();
 
     initializeSaveContact();
@@ -2829,5 +2831,185 @@ function initializeDiscount() {
         "Discount loaded:",
         discountPercentage + "%"
     );
+
+}
+
+
+/* =========================================================
+   DISCOUNT CALCULATOR
+========================================================= */
+
+function initializeDiscountCalculator() {
+
+    const totalInput =
+        document.getElementById(
+            "serviceTotal"
+        );
+
+    const calculation =
+        document.getElementById(
+            "discountCalculation"
+        );
+
+    const originalAmount =
+        document.getElementById(
+            "originalAmount"
+        );
+
+    const discountPercent =
+        document.getElementById(
+            "quoteDiscountPercent"
+        );
+
+    const discountAmount =
+        document.getElementById(
+            "discountAmount"
+        );
+
+    const finalAmount =
+        document.getElementById(
+            "finalAmount"
+        );
+
+
+    if (
+        !totalInput ||
+        !calculation
+    ) {
+
+        return;
+
+    }
+
+
+    function calculateDiscount() {
+
+        const total =
+            Number(
+                totalInput.value
+            ) || 0;
+
+
+        const discount =
+            APP.discount || {};
+
+
+        const enabled =
+            discount.enabled === true;
+
+
+        const percentage =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    Number(
+                        discount.percentage
+                    ) || 0
+                )
+            );
+
+
+        /* NO TOTAL */
+
+        if (total <= 0) {
+
+            calculation.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        /* DISCOUNT OFF */
+
+        if (!enabled) {
+
+            calculation.style.display =
+                "block";
+
+
+            originalAmount.textContent =
+                formatCurrency(total);
+
+
+            discountPercent.textContent =
+                "0";
+
+
+            discountAmount.textContent =
+                "- ₹0";
+
+
+            finalAmount.textContent =
+                formatCurrency(total);
+
+            return;
+
+        }
+
+
+        /* CALCULATE */
+
+        const savedAmount =
+            total *
+            percentage /
+            100;
+
+
+        const payableAmount =
+            total -
+            savedAmount;
+
+
+        calculation.style.display =
+            "block";
+
+
+        originalAmount.textContent =
+            formatCurrency(total);
+
+
+        discountPercent.textContent =
+            percentage;
+
+
+        discountAmount.textContent =
+            "- " +
+            formatCurrency(savedAmount);
+
+
+        finalAmount.textContent =
+            formatCurrency(payableAmount);
+
+    }
+
+
+    totalInput.addEventListener(
+        "input",
+        calculateDiscount
+    );
+
+
+    calculateDiscount();
+
+}
+
+
+/* =========================================================
+   CURRENCY FORMAT
+========================================================= */
+
+function formatCurrency(amount) {
+
+    return new Intl.NumberFormat(
+        "en-IN",
+        {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 0
+        }
+    ).format(amount);
 
 }
