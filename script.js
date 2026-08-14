@@ -1486,6 +1486,167 @@ function initializeContact() {
 
 }
 
+/* =========================================================
+   CURRENT LOCATION
+========================================================= */
+
+function initializeCurrentLocation() {
+
+    const button =
+        $("#getLocationBtn");
+
+    const input =
+        $("#customerLocation");
+
+    const status =
+        $("#locationStatus");
+
+
+    if (!button || !input) return;
+
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            if (!navigator.geolocation) {
+
+                showToast(
+                    "Location is not supported by your browser."
+                );
+
+                if (status) {
+                    status.textContent =
+                        "❌ Location is not supported.";
+                }
+
+                return;
+            }
+
+
+            button.disabled = true;
+
+            button.textContent =
+                "📍 Getting Location...";
+
+
+            if (status) {
+
+                status.textContent =
+                    "Please allow location access...";
+
+            }
+
+
+            navigator.geolocation.getCurrentPosition(
+
+                function (position) {
+
+                    const latitude =
+                        position.coords.latitude;
+
+                    const longitude =
+                        position.coords.longitude;
+
+
+                    /* GOOGLE MAPS LINK */
+
+                    const mapsURL =
+                        `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+
+                    /* PUT LINK INTO INPUT */
+
+                    input.value =
+                        mapsURL;
+
+
+                    /* STATUS */
+
+                    if (status) {
+
+                        status.textContent =
+                            "✅ Current location added successfully.";
+
+                    }
+
+
+                    button.disabled = false;
+
+                    button.textContent =
+                        "📍 Location Added";
+
+
+                    showToast(
+                        "Current location added."
+                    );
+
+                },
+
+
+                function (error) {
+
+                    button.disabled = false;
+
+                    button.textContent =
+                        "📍 Use My Current Location";
+
+
+                    if (status) {
+
+                        if (error.code === 1) {
+
+                            status.textContent =
+                                "❌ Location permission denied.";
+
+                        }
+
+                        else if (error.code === 2) {
+
+                            status.textContent =
+                                "❌ Location unavailable.";
+
+                        }
+
+                        else if (error.code === 3) {
+
+                            status.textContent =
+                                "❌ Location request timed out.";
+
+                        }
+
+                        else {
+
+                            status.textContent =
+                                "❌ Unable to get location.";
+
+                        }
+
+                    }
+
+
+                    showToast(
+                        "Unable to get your location."
+                    );
+
+                },
+
+
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 0
+                }
+
+            );
+
+        }
+    );
+
+}
+
+
+
 
 /* =========================================================
    FOOTER
@@ -2337,6 +2498,8 @@ function initializeApp() {
     initializeQR();
 
     initializeContact();
+
+    initializeCurrentLocation();
 
     initializeFooter();
 
