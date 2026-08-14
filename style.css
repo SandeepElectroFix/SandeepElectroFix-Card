@@ -2440,3 +2440,146 @@ REDUCED MOTION
     }
 
 }
+
+
+/* =========================================
+   DISCOUNT / SPECIAL OFFER
+========================================= */
+
+.discount-offer {
+
+    width: min(100% - 28px, 950px);
+
+    margin: 0 auto 28px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,197,66,0.12),
+            rgba(0,191,255,0.08)
+        );
+
+    border:
+        1px solid
+        rgba(245,197,66,0.35);
+
+    border-radius: var(--radius);
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,0.30);
+
+    backdrop-filter: blur(15px);
+
+}
+
+
+.discount-badge {
+
+    display: inline-block;
+
+    padding: 6px 14px;
+
+    margin-bottom: 12px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(245,197,66,0.14);
+
+    border:
+        1px solid
+        rgba(245,197,66,0.30);
+
+    color: var(--gold-light);
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+}
+
+
+.discount-title {
+
+    margin-bottom: 8px !important;
+
+}
+
+
+.discount-value {
+
+    font-size: clamp(
+        2.5rem,
+        10vw,
+        4rem
+    );
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    color: var(--gold);
+
+    text-shadow:
+        0 0 20px
+        rgba(245,197,66,0.25);
+
+    margin: 12px 0 15px;
+
+}
+
+
+.discount-message {
+
+    color: var(--muted);
+
+    font-size: 0.9rem;
+
+    max-width: 600px;
+
+    margin: 0 auto 8px;
+
+}
+
+
+.discount-validity {
+
+    color: var(--blue-light);
+
+    font-size: 0.78rem;
+
+    margin-bottom: 18px;
+
+}
+
+
+.discount-btn {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            #dcae25
+        );
+
+    color: #111827;
+
+    box-shadow:
+        0 8px 25px
+        rgba(245,197,66,0.20);
+
+}
+
+
+.discount-btn:hover {
+
+    transform: translateY(-3px);
+
+}
