@@ -2,6 +2,7 @@
    SANDEEP ELECTROFIX
    PROJECT 2 - DIGITAL CARD
    MASTER CONFIGURATION
+   VERSION 3.0
    ========================================================= */
 
 const CONFIG = {
@@ -54,11 +55,29 @@ const CONFIG = {
 
 
     /* =====================================================
-       FEATURES
-       ADMIN PANEL SE ON / OFF
+       MASTER FEATURE CONTROL
+       
+       true  = SHOW
+       false = HIDE
+       
+       IMPORTANT:
+       YAHI SE FEATURES CONTROL HONGE
     ===================================================== */
 
     features: {
+
+
+        /* =================================================
+           MAIN SECTIONS
+        ================================================= */
+
+        hero: true,
+
+        quickAccess: true,
+
+        about: true,
+
+        services: true,
 
         gallery: true,
 
@@ -66,19 +85,140 @@ const CONFIG = {
 
         googleMaps: true,
 
-        youtube: true,
+        contactForm: true,
 
         faq: true,
 
+        qrCode: true,
+
+        contact: true,
+
+        footer: true,
+
+
+        /* =================================================
+           HERO ITEMS
+        ================================================= */
+
+        heroItems: {
+
+            logo: true,
+
+            tagline: true,
+
+            location: true,
+
+            callButton: true,
+
+            whatsappButton: true,
+
+            themeButton: true,
+
+            languageSwitcher: true
+
+        },
+
+
+        /* =================================================
+           QUICK ACCESS
+        ================================================= */
+
+        quickAccessItems: {
+
+            materialCatalogue: true,
+
+            call: true,
+
+            whatsapp: true,
+
+            website: true,
+
+            googleMaps: true,
+
+            facebook: true,
+
+            instagram: true,
+
+            youtube: true,
+
+            email: true,
+
+            saveContact: true,
+
+            share: true,
+
+            ourWork: true
+
+        },
+
+
+        /* =================================================
+           SERVICES CONTROL
+        ================================================= */
+
+        serviceSettings: {
+
+            showMainServices: true,
+
+            showSubItems: true,
+
+            showDescription: true,
+
+            showPrices: true,
+
+            showUnits: true
+
+        },
+
+
+        /* =================================================
+           OFFERS / DISCOUNT
+        ================================================= */
+
         offers: true,
 
-        contactForm: true,
+        discountOffer: true,
 
-        visitorCounter: false,
+        discountSection: true,
+
+
+        /* =================================================
+           OTHER FEATURES
+        ================================================= */
 
         darkMode: true,
 
-        qrCode: true
+        languageSwitcher: true,
+
+        visitorCounter: false,
+
+        youtube: true,
+
+
+        /* =================================================
+           MOBILE BOTTOM NAVIGATION
+        ================================================= */
+
+        bottomNavigation: true,
+
+
+        /* =================================================
+           BOTTOM NAVIGATION ITEMS
+        ================================================= */
+
+        bottomNavItems: {
+
+            home: true,
+
+            services: true,
+
+            work: true,
+
+            quote: true,
+
+            call: true
+
+        }
 
     },
 
@@ -114,7 +254,13 @@ const CONFIG = {
 
     services: [
 
+
+        /* =================================================
+           HOUSE WIRING
+        ================================================= */
+
         {
+
             id: "house-wiring",
 
             show: true,
@@ -129,6 +275,7 @@ const CONFIG = {
             items: [
 
                 {
+
                     id: "concealed-wiring",
 
                     show: true,
@@ -138,9 +285,11 @@ const CONFIG = {
                     price: 25,
 
                     unit: "sq.ft"
+
                 },
 
                 {
+
                     id: "surface-wiring",
 
                     show: true,
@@ -150,9 +299,11 @@ const CONFIG = {
                     price: 18,
 
                     unit: "sq.ft"
+
                 },
 
                 {
+
                     id: "point-wiring",
 
                     show: true,
@@ -162,9 +313,11 @@ const CONFIG = {
                     price: 350,
 
                     unit: "point"
+
                 },
 
                 {
+
                     id: "fan-point",
 
                     show: true,
@@ -174,9 +327,11 @@ const CONFIG = {
                     price: 450,
 
                     unit: "point"
+
                 },
 
                 {
+
                     id: "light-point",
 
                     show: true,
@@ -186,6 +341,7 @@ const CONFIG = {
                     price: 300,
 
                     unit: "point"
+
                 }
 
             ]
@@ -198,6 +354,7 @@ const CONFIG = {
         ================================================= */
 
         {
+
             id: "fan-light",
 
             show: true,
@@ -212,6 +369,7 @@ const CONFIG = {
             items: [
 
                 {
+
                     id: "ceiling-fan",
 
                     show: true,
@@ -221,9 +379,11 @@ const CONFIG = {
                     price: 300,
 
                     unit: "piece"
+
                 },
 
                 {
+
                     id: "wall-fan",
 
                     show: true,
@@ -233,9 +393,11 @@ const CONFIG = {
                     price: 250,
 
                     unit: "piece"
+
                 },
 
                 {
+
                     id: "led-light",
 
                     show: true,
@@ -245,6 +407,7 @@ const CONFIG = {
                     price: 150,
 
                     unit: "piece"
+
                 }
 
             ]
@@ -257,6 +420,7 @@ const CONFIG = {
         ================================================= */
 
         {
+
             id: "mcb-db",
 
             show: true,
@@ -271,6 +435,7 @@ const CONFIG = {
             items: [
 
                 {
+
                     id: "mcb-installation",
 
                     show: true,
@@ -280,9 +445,11 @@ const CONFIG = {
                     price: 150,
 
                     unit: "piece"
+
                 },
 
                 {
+
                     id: "db-installation",
 
                     show: true,
@@ -292,9 +459,11 @@ const CONFIG = {
                     price: 500,
 
                     unit: "piece"
+
                 },
 
                 {
+
                     id: "rccb-installation",
 
                     show: true,
@@ -304,6 +473,7 @@ const CONFIG = {
                     price: 300,
 
                     unit: "piece"
+
                 }
 
             ]
@@ -316,6 +486,7 @@ const CONFIG = {
         ================================================= */
 
         {
+
             id: "false-ceiling",
 
             show: true,
@@ -330,6 +501,7 @@ const CONFIG = {
             items: [
 
                 {
+
                     id: "ceiling-light-point",
 
                     show: true,
@@ -339,9 +511,11 @@ const CONFIG = {
                     price: 250,
 
                     unit: "point"
+
                 },
 
                 {
+
                     id: "ceiling-fan-point",
 
                     show: true,
@@ -351,6 +525,7 @@ const CONFIG = {
                     price: 400,
 
                     unit: "point"
+
                 }
 
             ]
@@ -363,6 +538,7 @@ const CONFIG = {
         ================================================= */
 
         {
+
             id: "inverter",
 
             show: true,
@@ -377,6 +553,7 @@ const CONFIG = {
             items: [
 
                 {
+
                     id: "inverter-wiring",
 
                     show: true,
@@ -386,9 +563,11 @@ const CONFIG = {
                     price: 800,
 
                     unit: "job"
+
                 },
 
                 {
+
                     id: "changeover",
 
                     show: true,
@@ -398,6 +577,7 @@ const CONFIG = {
                     price: 500,
 
                     unit: "job"
+
                 }
 
             ]
@@ -410,6 +590,7 @@ const CONFIG = {
         ================================================= */
 
         {
+
             id: "repair",
 
             show: true,
@@ -424,6 +605,7 @@ const CONFIG = {
             items: [
 
                 {
+
                     id: "minor-repair",
 
                     show: true,
@@ -433,9 +615,11 @@ const CONFIG = {
                     price: 300,
 
                     unit: "job"
+
                 },
 
                 {
+
                     id: "fault-repair",
 
                     show: true,
@@ -445,6 +629,7 @@ const CONFIG = {
                     price: 500,
 
                     unit: "job"
+
                 }
 
             ]
@@ -457,6 +642,7 @@ const CONFIG = {
         ================================================= */
 
         {
+
             id: "fault-finding",
 
             show: true,
@@ -471,6 +657,7 @@ const CONFIG = {
             items: [
 
                 {
+
                     id: "basic-fault",
 
                     show: true,
@@ -480,9 +667,11 @@ const CONFIG = {
                     price: 300,
 
                     unit: "visit"
+
                 },
 
                 {
+
                     id: "detailed-fault",
 
                     show: true,
@@ -492,6 +681,7 @@ const CONFIG = {
                     price: 500,
 
                     unit: "visit"
+
                 }
 
             ]
@@ -504,6 +694,7 @@ const CONFIG = {
         ================================================= */
 
         {
+
             id: "commercial",
 
             show: true,
@@ -518,6 +709,7 @@ const CONFIG = {
             items: [
 
                 {
+
                     id: "commercial-point",
 
                     show: true,
@@ -527,9 +719,11 @@ const CONFIG = {
                     price: 450,
 
                     unit: "point"
+
                 },
 
                 {
+
                     id: "shop-wiring",
 
                     show: true,
@@ -539,6 +733,7 @@ const CONFIG = {
                     price: 1500,
 
                     unit: "job"
+
                 }
 
             ]
@@ -555,6 +750,7 @@ const CONFIG = {
     gallery: [
 
         {
+
             id: "work-1",
 
             show: true,
@@ -562,9 +758,11 @@ const CONFIG = {
             image: "assets/gallery/work1.jpg",
 
             title: "Electrical Work"
+
         },
 
         {
+
             id: "work-2",
 
             show: true,
@@ -572,9 +770,11 @@ const CONFIG = {
             image: "assets/gallery/work2.jpg",
 
             title: "House Wiring"
+
         },
 
         {
+
             id: "work-3",
 
             show: true,
@@ -582,9 +782,11 @@ const CONFIG = {
             image: "assets/gallery/work3.jpg",
 
             title: "Electrical Installation"
+
         },
 
         {
+
             id: "work-4",
 
             show: true,
@@ -592,6 +794,7 @@ const CONFIG = {
             image: "assets/gallery/work4.jpg",
 
             title: "Professional Electrical Work"
+
         }
 
     ],
@@ -604,6 +807,7 @@ const CONFIG = {
     reviews: [
 
         {
+
             id: "review-1",
 
             show: true,
@@ -614,9 +818,11 @@ const CONFIG = {
 
             text:
                 "Professional electrical service with good workmanship."
+
         },
 
         {
+
             id: "review-2",
 
             show: true,
@@ -627,9 +833,11 @@ const CONFIG = {
 
             text:
                 "Good quality electrical work and proper guidance."
+
         },
 
         {
+
             id: "review-3",
 
             show: true,
@@ -640,6 +848,7 @@ const CONFIG = {
 
             text:
                 "Reliable electrician service in Lucknow."
+
         }
 
     ],
@@ -652,6 +861,7 @@ const CONFIG = {
     faq: [
 
         {
+
             id: "faq-1",
 
             show: true,
@@ -661,9 +871,11 @@ const CONFIG = {
 
             answer:
                 "We provide house wiring, false ceiling wiring, MCB & DB installation, fan and light fitting, inverter wiring, electrical repair, fault finding and maintenance services."
+
         },
 
         {
+
             id: "faq-2",
 
             show: true,
@@ -673,9 +885,11 @@ const CONFIG = {
 
             answer:
                 "Yes. We provide professional electrical wiring services for new construction, renovation and existing homes."
+
         },
 
         {
+
             id: "faq-3",
 
             show: true,
@@ -685,9 +899,11 @@ const CONFIG = {
 
             answer:
                 "Yes. We provide electrical fault finding, repair and maintenance services."
+
         },
 
         {
+
             id: "faq-4",
 
             show: true,
@@ -697,9 +913,11 @@ const CONFIG = {
 
             answer:
                 "Use the Request a Quote form on this digital card and send your enquiry directly through WhatsApp."
+
         },
 
         {
+
             id: "faq-5",
 
             show: true,
@@ -709,6 +927,7 @@ const CONFIG = {
 
             answer:
                 "Sandeep ElectroFix provides electrical services in Lucknow, Uttar Pradesh."
+
         }
 
     ],
@@ -746,3 +965,13 @@ const CONFIG = {
 ========================================================= */
 
 window.CONFIG = CONFIG;
+
+
+/* =========================================================
+   CONFIG LOADED MESSAGE
+========================================================= */
+
+console.log(
+    "Sandeep ElectroFix Master Config Loaded",
+    CONFIG
+);
