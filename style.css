@@ -2270,3 +2270,173 @@ REDUCED MOTION
     }
 
 }
+
+
+/* =========================================
+   PRICE & DISCOUNT CALCULATOR
+========================================= */
+
+.price-box {
+
+    padding: 18px;
+
+    background:
+        rgba(0, 191, 255, 0.04);
+
+    border:
+        1px solid
+        rgba(0, 191, 255, 0.15);
+
+    border-radius: 18px;
+
+    text-align: left;
+
+}
+
+
+.price-box > label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--gold-light);
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+}
+
+
+#serviceTotal {
+
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border-radius: 14px;
+
+    border:
+        1px solid
+        var(--card-border);
+
+    outline: none;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 0.95rem;
+
+}
+
+
+/* =========================================
+   CALCULATION
+========================================= */
+
+.discount-calculation {
+
+    margin-top: 15px;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(245, 197, 66, 0.06);
+
+    border:
+        1px solid
+        rgba(245, 197, 66, 0.18);
+
+}
+
+
+.discount-calculation > div {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 7px 0;
+
+    color: var(--muted);
+
+    font-size: 0.82rem;
+
+}
+
+
+.discount-calculation strong {
+
+    color: var(--text);
+
+}
+
+
+.discount-calculation > div:nth-child(2) strong {
+
+    color: var(--gold-light);
+
+}
+
+
+/* =========================================
+   FINAL PRICE
+========================================= */
+
+.discount-calculation .final-price {
+
+    margin-top: 7px;
+
+    padding-top: 12px;
+
+    border-top:
+        1px solid
+        var(--card-border);
+
+    color: var(--text);
+
+    font-size: 0.95rem;
+
+    font-weight: 700;
+
+}
+
+
+.discount-calculation .final-price strong {
+
+    color: var(--green);
+
+    font-size: 1.15rem;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .price-box {
+
+        padding: 15px;
+
+    }
+
+    .discount-calculation > div {
+
+        font-size: 0.78rem;
+
+    }
+
+}
