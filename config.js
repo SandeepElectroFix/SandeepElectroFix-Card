@@ -336,31 +336,3 @@ window.CONFIG = CONFIG;
 
 
 
-
-
-/* =====================================
-   DISCOUNT SETTINGS
-====================================== */
-
-discount: {
-
-    /* true = Discount दिखाई देगा
-       false = Discount पूरी तरह hide रहेगा */
-
-    enabled: true,
-
-    /* Discount percentage */
-    percentage: 10,
-
-    /* Discount heading */
-    title: "Special Discount",
-
-    /* Customer को दिखने वाला message */
-    message:
-        "Get 10% OFF on Electrical Services",
-
-    /* Validity / offer timing */
-    validity:
-        "Limited Time Offer"
-
-},
