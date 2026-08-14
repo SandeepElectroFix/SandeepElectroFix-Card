@@ -1,338 +1,748 @@
-/* =========================================
-SANDEEP ELECTROFIX
-PROJECT 2 - DIGITAL CARD
-CONFIGURATION
-========================================= */
+/* =========================================================
+   SANDEEP ELECTROFIX
+   PROJECT 2 - DIGITAL CARD
+   MASTER CONFIGURATION
+   ========================================================= */
 
 const CONFIG = {
 
-/* =====================================
-   BUSINESS INFORMATION
-====================================== */
+    /* =====================================================
+       BUSINESS INFORMATION
+    ===================================================== */
 
-businessName: "Sandeep ElectroFix",
+    business: {
 
-ownerName: "Sandeep Verma",
+        name: "Sandeep ElectroFix",
 
-tagline: "Powering Your Trust",
+        owner: "Sandeep Verma",
 
-phone: "+919026036445",
+        tagline: "Powering Your Trust",
 
-whatsapp: "919026036445",
+        phone: "+919026036445",
 
-email: "SandeepElectroFix@gmail.com",
+        whatsapp: "919026036445",
 
-location: "Lucknow, Uttar Pradesh",
+        email: "SandeepElectroFix@gmail.com",
 
-website:
-    "https://sandeepelectrofix.github.io/",
+        location: "Lucknow, Uttar Pradesh",
 
+        website:
+            "https://sandeepelectrofix.github.io/",
 
-/* =====================================
-   SOCIAL MEDIA
-====================================== */
+        cardWebsite:
+            "https://sandeepelectrofix.github.io/SandeepElectroFix-Card/",
 
-facebook:
-    "https://www.facebook.com/SandeepElectroFix",
+        googleMaps:
+            "https://maps.app.goo.gl/XYZnm7sFAVRT68Vs7",
 
-instagram:
-    "https://www.instagram.com/sandeep_electrofix",
+        facebook:
+            "https://www.facebook.com/SandeepElectroFix",
 
-youtube:
-    "https://youtube.com/@sandeepelectrofix",
+        instagram:
+            "https://www.instagram.com/sandeep_electrofix",
 
+        youtube:
+            "https://youtube.com/@sandeepelectrofix",
 
-/* =====================================
-   GOOGLE MAPS
-====================================== */
+        logo:
+            "assets/logo.png",
 
-googleMaps:
-    "https://maps.app.goo.gl/XYZnm7sFAVRT68Vs7",
+        cardQR:
+            "assets/qr-card.png"
 
-
-/* =====================================
-   LOGO
-====================================== */
-
-logo:
-    "assets/logo.png",
-
-
-/* =====================================
-   DIGITAL CARD QR
-====================================== */
-
-cardQR:
-    "assets/qr-card.png",
-
-
-/* =====================================
-   FEATURE CONTROLS
-====================================== */
-
-features: {
-
-    gallery: true,
-
-    reviews: false,
-
-    googleMaps: true,
-
-    youtube: true,
-
-    faq: true,
-
-    offers: false,
-
-    contactForm: true,
-
-    visitorCounter: false,
-
-    darkMode: true,
-
-    qrCode: true,
-
-    enabled: true
-},
-/* =====================================
-   DISCOUNT / OFFER SETTINGS
-====================================== */
-
-discount: {
-
-    /* DISCOUNT ON / OFF */
-
-    enabled: true,
-
-    /* DISCOUNT TYPE
-       "percentage" = %
-       "fixed"      = ₹
-    */
-
-    type: "percentage",
-
-    /* DISCOUNT VALUE */
-
-    value: 10,
-
-    /* OFFER TITLE */
-
-    title: "Special Discount",
-
-    /* OFFER MESSAGE */
-
-    message:
-        "Get special discount on selected electrical services.",
-
-    /* OPTIONAL VALIDITY */
-
-    validUntil: "",
-
-    /* EXAMPLE:
-       "31 August 2026"
-    */
-
-    /* SHOW DISCOUNT ON CARD */
-
-    showOnCard: true
-
-},
-
-/* =====================================
-   SERVICES
-====================================== */
-
-services: [
-
-    {
-        icon: "🏠",
-        title: "House Wiring",
-        description:
-            "Safe and professional house wiring for new and existing homes."
     },
 
-    {
-        icon: "💡",
-        title: "Fan & Light Fitting",
-        description:
-            "Professional installation of fans, lights and electrical fittings."
+
+    /* =====================================================
+       FEATURES
+       ADMIN PANEL SE ON / OFF
+    ===================================================== */
+
+    features: {
+
+        gallery: true,
+
+        reviews: false,
+
+        googleMaps: true,
+
+        youtube: true,
+
+        faq: true,
+
+        offers: true,
+
+        contactForm: true,
+
+        visitorCounter: false,
+
+        darkMode: true,
+
+        qrCode: true
+
     },
 
-    {
-        icon: "⚡",
-        title: "MCB & DB Installation",
-        description:
-            "MCB, DB and electrical protection system installation."
+
+    /* =====================================================
+       DISCOUNT
+    ===================================================== */
+
+    discount: {
+
+        enabled: true,
+
+        type: "percentage",
+
+        value: 10,
+
+        title: "Special Discount",
+
+        message:
+            "Get special discount on selected electrical services.",
+
+        validUntil: "",
+
+        showOnCard: true
+
     },
 
-    {
-        icon: "🔌",
-        title: "False Ceiling Wiring",
-        description:
-            "Neat and safe wiring for false ceiling lights and electrical points."
-    },
 
-    {
-        icon: "🔋",
-        title: "Inverter Wiring",
-        description:
-            "Professional inverter and backup power wiring solutions."
-    },
+    /* =====================================================
+       SERVICES
+       MAIN MENU + SUB MENU + FIXED RATE
+    ===================================================== */
 
-    {
-        icon: "🛠️",
-        title: "Electrical Repair",
-        description:
-            "Electrical repair and maintenance for homes and shops."
-    },
+    services: [
 
-    {
-        icon: "🔎",
-        title: "Fault Finding",
-        description:
-            "Electrical fault detection and troubleshooting."
-    },
+        {
+            id: "house-wiring",
 
-    {
-        icon: "🏢",
-        title: "Commercial Wiring",
-        description:
-            "Electrical wiring and installation for shops and commercial spaces."
+            show: true,
+
+            icon: "🏠",
+
+            title: "House Wiring",
+
+            description:
+                "Professional house wiring for new and existing homes.",
+
+            items: [
+
+                {
+                    id: "concealed-wiring",
+
+                    show: true,
+
+                    title: "Concealed Wiring",
+
+                    price: 25,
+
+                    unit: "sq.ft"
+                },
+
+                {
+                    id: "surface-wiring",
+
+                    show: true,
+
+                    title: "Surface Wiring",
+
+                    price: 18,
+
+                    unit: "sq.ft"
+                },
+
+                {
+                    id: "point-wiring",
+
+                    show: true,
+
+                    title: "Point Wiring",
+
+                    price: 350,
+
+                    unit: "point"
+                },
+
+                {
+                    id: "fan-point",
+
+                    show: true,
+
+                    title: "Fan Point",
+
+                    price: 450,
+
+                    unit: "point"
+                },
+
+                {
+                    id: "light-point",
+
+                    show: true,
+
+                    title: "Light Point",
+
+                    price: 300,
+
+                    unit: "point"
+                }
+
+            ]
+
+        },
+
+
+        /* =================================================
+           FAN & LIGHT
+        ================================================= */
+
+        {
+            id: "fan-light",
+
+            show: true,
+
+            icon: "💡",
+
+            title: "Fan & Light Fitting",
+
+            description:
+                "Professional installation of fans, lights and fittings.",
+
+            items: [
+
+                {
+                    id: "ceiling-fan",
+
+                    show: true,
+
+                    title: "Ceiling Fan Installation",
+
+                    price: 300,
+
+                    unit: "piece"
+                },
+
+                {
+                    id: "wall-fan",
+
+                    show: true,
+
+                    title: "Wall Fan Installation",
+
+                    price: 250,
+
+                    unit: "piece"
+                },
+
+                {
+                    id: "led-light",
+
+                    show: true,
+
+                    title: "LED Light Installation",
+
+                    price: 150,
+
+                    unit: "piece"
+                }
+
+            ]
+
+        },
+
+
+        /* =================================================
+           MCB & DB
+        ================================================= */
+
+        {
+            id: "mcb-db",
+
+            show: true,
+
+            icon: "⚡",
+
+            title: "MCB & DB Installation",
+
+            description:
+                "MCB, DB and electrical protection system installation.",
+
+            items: [
+
+                {
+                    id: "mcb-installation",
+
+                    show: true,
+
+                    title: "MCB Installation",
+
+                    price: 150,
+
+                    unit: "piece"
+                },
+
+                {
+                    id: "db-installation",
+
+                    show: true,
+
+                    title: "DB Installation",
+
+                    price: 500,
+
+                    unit: "piece"
+                },
+
+                {
+                    id: "rccb-installation",
+
+                    show: true,
+
+                    title: "RCCB Installation",
+
+                    price: 300,
+
+                    unit: "piece"
+                }
+
+            ]
+
+        },
+
+
+        /* =================================================
+           FALSE CEILING
+        ================================================= */
+
+        {
+            id: "false-ceiling",
+
+            show: true,
+
+            icon: "🔌",
+
+            title: "False Ceiling Wiring",
+
+            description:
+                "Neat and safe wiring for false ceiling lights and electrical points.",
+
+            items: [
+
+                {
+                    id: "ceiling-light-point",
+
+                    show: true,
+
+                    title: "Ceiling Light Point",
+
+                    price: 250,
+
+                    unit: "point"
+                },
+
+                {
+                    id: "ceiling-fan-point",
+
+                    show: true,
+
+                    title: "Ceiling Fan Point",
+
+                    price: 400,
+
+                    unit: "point"
+                }
+
+            ]
+
+        },
+
+
+        /* =================================================
+           INVERTER
+        ================================================= */
+
+        {
+            id: "inverter",
+
+            show: true,
+
+            icon: "🔋",
+
+            title: "Inverter Wiring",
+
+            description:
+                "Professional inverter and backup power wiring.",
+
+            items: [
+
+                {
+                    id: "inverter-wiring",
+
+                    show: true,
+
+                    title: "Basic Inverter Wiring",
+
+                    price: 800,
+
+                    unit: "job"
+                },
+
+                {
+                    id: "changeover",
+
+                    show: true,
+
+                    title: "Inverter Changeover",
+
+                    price: 500,
+
+                    unit: "job"
+                }
+
+            ]
+
+        },
+
+
+        /* =================================================
+           ELECTRICAL REPAIR
+        ================================================= */
+
+        {
+            id: "repair",
+
+            show: true,
+
+            icon: "🛠️",
+
+            title: "Electrical Repair",
+
+            description:
+                "Electrical repair and maintenance for homes and shops.",
+
+            items: [
+
+                {
+                    id: "minor-repair",
+
+                    show: true,
+
+                    title: "Minor Electrical Repair",
+
+                    price: 300,
+
+                    unit: "job"
+                },
+
+                {
+                    id: "fault-repair",
+
+                    show: true,
+
+                    title: "Electrical Fault Repair",
+
+                    price: 500,
+
+                    unit: "job"
+                }
+
+            ]
+
+        },
+
+
+        /* =================================================
+           FAULT FINDING
+        ================================================= */
+
+        {
+            id: "fault-finding",
+
+            show: true,
+
+            icon: "🔎",
+
+            title: "Fault Finding",
+
+            description:
+                "Electrical fault detection and troubleshooting.",
+
+            items: [
+
+                {
+                    id: "basic-fault",
+
+                    show: true,
+
+                    title: "Basic Fault Finding",
+
+                    price: 300,
+
+                    unit: "visit"
+                },
+
+                {
+                    id: "detailed-fault",
+
+                    show: true,
+
+                    title: "Detailed Fault Finding",
+
+                    price: 500,
+
+                    unit: "visit"
+                }
+
+            ]
+
+        },
+
+
+        /* =================================================
+           COMMERCIAL
+        ================================================= */
+
+        {
+            id: "commercial",
+
+            show: true,
+
+            icon: "🏢",
+
+            title: "Commercial Wiring",
+
+            description:
+                "Electrical wiring for shops and commercial spaces.",
+
+            items: [
+
+                {
+                    id: "commercial-point",
+
+                    show: true,
+
+                    title: "Commercial Point Wiring",
+
+                    price: 450,
+
+                    unit: "point"
+                },
+
+                {
+                    id: "shop-wiring",
+
+                    show: true,
+
+                    title: "Shop Wiring",
+
+                    price: 1500,
+
+                    unit: "job"
+                }
+
+            ]
+
+        }
+
+    ],
+
+
+    /* =====================================================
+       GALLERY
+    ===================================================== */
+
+    gallery: [
+
+        {
+            id: "work-1",
+
+            show: true,
+
+            image: "assets/gallery/work1.jpg",
+
+            title: "Electrical Work"
+        },
+
+        {
+            id: "work-2",
+
+            show: true,
+
+            image: "assets/gallery/work2.jpg",
+
+            title: "House Wiring"
+        },
+
+        {
+            id: "work-3",
+
+            show: true,
+
+            image: "assets/gallery/work3.jpg",
+
+            title: "Electrical Installation"
+        },
+
+        {
+            id: "work-4",
+
+            show: true,
+
+            image: "assets/gallery/work4.jpg",
+
+            title: "Professional Electrical Work"
+        }
+
+    ],
+
+
+    /* =====================================================
+       REVIEWS
+    ===================================================== */
+
+    reviews: [
+
+        {
+            id: "review-1",
+
+            show: true,
+
+            name: "Customer",
+
+            rating: 5,
+
+            text:
+                "Professional electrical service with good workmanship."
+        },
+
+        {
+            id: "review-2",
+
+            show: true,
+
+            name: "Customer",
+
+            rating: 5,
+
+            text:
+                "Good quality electrical work and proper guidance."
+        },
+
+        {
+            id: "review-3",
+
+            show: true,
+
+            name: "Customer",
+
+            rating: 5,
+
+            text:
+                "Reliable electrician service in Lucknow."
+        }
+
+    ],
+
+
+    /* =====================================================
+       FAQ
+    ===================================================== */
+
+    faq: [
+
+        {
+            id: "faq-1",
+
+            show: true,
+
+            question:
+                "What electrical services do you provide?",
+
+            answer:
+                "We provide house wiring, false ceiling wiring, MCB & DB installation, fan and light fitting, inverter wiring, electrical repair, fault finding and maintenance services."
+        },
+
+        {
+            id: "faq-2",
+
+            show: true,
+
+            question:
+                "Do you provide house wiring services?",
+
+            answer:
+                "Yes. We provide professional electrical wiring services for new construction, renovation and existing homes."
+        },
+
+        {
+            id: "faq-3",
+
+            show: true,
+
+            question:
+                "Do you provide electrical repair services?",
+
+            answer:
+                "Yes. We provide electrical fault finding, repair and maintenance services."
+        },
+
+        {
+            id: "faq-4",
+
+            show: true,
+
+            question:
+                "How can I request a quotation?",
+
+            answer:
+                "Use the Request a Quote form on this digital card and send your enquiry directly through WhatsApp."
+        },
+
+        {
+            id: "faq-5",
+
+            show: true,
+
+            question:
+                "Which area do you serve?",
+
+            answer:
+                "Sandeep ElectroFix provides electrical services in Lucknow, Uttar Pradesh."
+        }
+
+    ],
+
+
+    /* =====================================================
+       QUOTE FORM
+    ===================================================== */
+
+    quote: {
+
+        enabled: true,
+
+        whatsappNumber:
+            "919026036445",
+
+        defaultMessage:
+            "Hello Sandeep ElectroFix, I would like to enquire about electrical service.",
+
+        requireName: true,
+
+        requirePhone: true,
+
+        requireService: true,
+
+        requireLocation: true
+
     }
-
-],
-
-
-/* =====================================
-   GALLERY
-====================================== */
-
-gallery: [
-
-    {
-        image: "assets/gallery/work1.jpg",
-        title: "Electrical Work"
-    },
-
-    {
-        image: "assets/gallery/work2.jpg",
-        title: "House Wiring"
-    },
-
-    {
-        image: "assets/gallery/work3.jpg",
-        title: "Electrical Installation"
-    },
-
-    {
-        image: "assets/gallery/work4.jpg",
-        title: "Professional Electrical Work"
-    }
-
-],
-
-
-/* =====================================
-   CUSTOMER REVIEWS
-====================================== */
-
-reviews: [
-
-    {
-        name: "Customer",
-        rating: 5,
-        text:
-            "Professional electrical service with good workmanship."
-    },
-
-    {
-        name: "Customer",
-        rating: 5,
-        text:
-            "Good quality electrical work and proper guidance."
-    },
-
-    {
-        name: "Customer",
-        rating: 5,
-        text:
-            "Reliable electrician service in Lucknow."
-    }
-
-],
-
-
-/* =====================================
-   FAQ
-====================================== */
-
-faq: [
-
-    {
-        question:
-            "What electrical services do you provide?",
-
-        answer:
-            "We provide house wiring, false ceiling wiring, MCB & DB installation, fan and light fitting, inverter wiring, electrical repair, fault finding and maintenance services."
-    },
-
-    {
-        question:
-            "Do you provide house wiring services?",
-
-        answer:
-            "Yes. We provide professional electrical wiring services for new construction, renovation and existing homes."
-    },
-
-    {
-        question:
-            "Do you provide electrical repair services?",
-
-        answer:
-            "Yes. We provide electrical fault finding, repair and maintenance services."
-    },
-
-    {
-        question:
-            "How can I request a quotation?",
-
-        answer:
-            "Use the Request a Quote form on this digital card and send your enquiry directly through WhatsApp."
-    },
-
-    {
-        question:
-            "Which area do you serve?",
-
-        answer:
-            "Sandeep ElectroFix provides electrical services in Lucknow, Uttar Pradesh."
-    }
-
-],
-
-
-/* =====================================
-   WHATSAPP QUOTE SETTINGS
-====================================== */
-
-quote: {
-
-    whatsappNumber:
-        "919026036445",
-
-    defaultMessage:
-        "Hello Sandeep ElectroFix, I would like to enquire about electrical service."
-
-}
 
 };
 
-/* =========================================
-EXPORT / GLOBAL ACCESS
-========================================= */
+
+/* =========================================================
+   GLOBAL ACCESS
+========================================================= */
 
 window.CONFIG = CONFIG;
-
-
-
-
