@@ -101,6 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initializeFeatureControls();
 
+    initializeDiscount();
+
     initializeShare();
 
     initializeSaveContact();
