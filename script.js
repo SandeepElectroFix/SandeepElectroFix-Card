@@ -1,7 +1,8 @@
 /* =========================================================
-   SANDEEP ELECTROFIX - DIGITAL CARD
-   PROJECT 2
-   script.js - FINAL CLEAN VERSION
+   SANDEEP ELECTROFIX
+   PROJECT 2 - DIGITAL CARD
+   MASTER CONTROLLER
+   VERSION 3.0
    ========================================================= */
 
 "use strict";
@@ -12,14 +13,1677 @@
 ========================================================= */
 
 const APP = window.CONFIG || {};
+
 const FEATURES = APP.features || {};
+
+const BUSINESS = APP.business || {};
+
+console.log("Sandeep ElectroFix Master Controller Loaded");
 
 
 /* =========================================================
-   TRANSLATIONS
+   HELPER
 ========================================================= */
 
-const translations = {
+function $(selector) {
+    return document.querySelector(selector);
+}
+
+function $$(selector) {
+    return document.querySelectorAll(selector);
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message) {
+
+    const oldToast = $(".toast");
+
+    if (oldToast) {
+        oldToast.remove();
+    }
+
+    const toast = document.createElement("div");
+
+    toast.className = "toast";
+
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
+
+/* =========================================================
+   MASTER SHOW / HIDE
+========================================================= */
+
+function setVisibility(element, show) {
+
+    if (!element) return;
+
+    element.style.display = show ? "" : "none";
+
+}
+
+
+/* =========================================================
+   FIND SECTION
+========================================================= */
+
+function getSection(selector) {
+
+    return document.querySelector(selector);
+
+}
+
+
+/* =========================================================
+   HERO CONTROL
+========================================================= */
+
+function initializeHero() {
+
+    const hero = $(".hero");
+
+    if (!hero) return;
+
+    setVisibility(
+        hero,
+        FEATURES.hero !== false
+    );
+
+
+    const heroItems =
+        FEATURES.heroItems || {};
+
+
+    /* LOGO */
+
+    const logo =
+        hero.querySelector(".hero-logo");
+
+    setVisibility(
+        logo,
+        heroItems.logo !== false
+    );
+
+
+    /* TAGLINE */
+
+    const tagline =
+        hero.querySelector(".tagline");
+
+    setVisibility(
+        tagline,
+        heroItems.tagline !== false
+    );
+
+
+    /* LOCATION */
+
+    const location =
+        hero.querySelector(".location");
+
+    setVisibility(
+        location,
+        heroItems.location !== false
+    );
+
+
+    /* HERO CALL */
+
+    const call =
+        hero.querySelector(".call-btn");
+
+    setVisibility(
+        call,
+        heroItems.callButton !== false
+    );
+
+
+    /* HERO WHATSAPP */
+
+    const whatsapp =
+        hero.querySelector(".whatsapp-btn");
+
+    setVisibility(
+        whatsapp,
+        heroItems.whatsappButton !== false
+    );
+
+
+    /* THEME */
+
+    const theme =
+        $("#themeToggle");
+
+    setVisibility(
+        theme,
+        heroItems.themeButton !== false &&
+        FEATURES.darkMode !== false
+    );
+
+
+    /* LANGUAGE */
+
+    const language =
+        $(".language-switcher");
+
+    setVisibility(
+        language,
+        heroItems.languageSwitcher !== false &&
+        FEATURES.languageSwitcher !== false
+    );
+
+}
+
+
+/* =========================================================
+   QUICK ACCESS MASTER
+========================================================= */
+
+function initializeQuickAccess() {
+
+    const section =
+        $(".quick-actions");
+
+    if (!section) return;
+
+    setVisibility(
+        section,
+        FEATURES.quickAccess !== false
+    );
+
+
+    const items =
+        FEATURES.quickAccessItems || {};
+
+
+    const cards =
+        section.querySelectorAll(".grid > a.card");
+
+
+    cards.forEach(card => {
+
+        const text =
+            card.innerText
+                .trim()
+                .toLowerCase();
+
+
+        let show = true;
+
+
+        if (text.includes("material catalogue")) {
+            show = items.materialCatalogue !== false;
+        }
+
+        else if (
+            text === "call" ||
+            text.startsWith("call\n")
+        ) {
+            show = items.call !== false;
+        }
+
+        else if (text.includes("whatsapp")) {
+            show = items.whatsapp !== false;
+        }
+
+        else if (text.includes("website")) {
+            show = items.website !== false;
+        }
+
+        else if (text.includes("google maps")) {
+            show = items.googleMaps !== false;
+        }
+
+        else if (text.includes("facebook")) {
+            show = items.facebook !== false;
+        }
+
+        else if (text.includes("instagram")) {
+            show = items.instagram !== false;
+        }
+
+        else if (text.includes("youtube")) {
+            show = items.youtube !== false;
+        }
+
+        else if (text.includes("email")) {
+            show = items.email !== false;
+        }
+
+        else if (text.includes("save contact")) {
+            show = items.saveContact !== false;
+        }
+
+        else if (text.includes("share")) {
+            show = items.share !== false;
+        }
+
+        else if (text.includes("our work")) {
+            show = items.ourWork !== false;
+        }
+
+
+        setVisibility(card, show);
+
+    });
+
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+function initializeAbout() {
+
+    const about =
+        $(".about");
+
+    setVisibility(
+        about,
+        FEATURES.about !== false
+    );
+
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+function loadServices() {
+
+    const section =
+        $("#services");
+
+    const container =
+        $("#serviceContainer");
+
+    if (!section || !container) return;
+
+
+    setVisibility(
+        section,
+        FEATURES.services !== false
+    );
+
+
+    if (FEATURES.services === false) {
+        return;
+    }
+
+
+    const settings =
+        FEATURES.serviceSettings || {};
+
+
+    const services =
+        Array.isArray(APP.services)
+            ? APP.services
+            : [];
+
+
+    container.innerHTML = "";
+
+
+    services.forEach(service => {
+
+        if (service.show === false) {
+            return;
+        }
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "service-card";
+
+
+        /* =================================================
+           MAIN SERVICE
+        ================================================= */
+
+        let html = `
+
+            <div class="service-header">
+
+                <div class="service-icon">
+                    ${service.icon || "⚡"}
+                </div>
+
+                <div>
+
+                    <h3>
+                        ${escapeHTML(service.title)}
+                    </h3>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        /* DESCRIPTION */
+
+        if (
+            settings.showDescription !== false &&
+            service.description
+        ) {
+
+            html += `
+
+                <p class="service-description">
+                    ${escapeHTML(service.description)}
+                </p>
+
+            `;
+
+        }
+
+
+        /* =================================================
+           SUB SERVICES
+        ================================================= */
+
+        if (
+            settings.showSubItems !== false &&
+            Array.isArray(service.items)
+        ) {
+
+            html += `
+                <div class="service-items">
+            `;
+
+
+            service.items.forEach(item => {
+
+                if (item.show === false) {
+                    return;
+                }
+
+
+                html += `
+
+                    <div class="service-item">
+
+                        <div class="service-item-name">
+                            ${escapeHTML(item.title)}
+                        </div>
+
+                `;
+
+
+                /* PRICE */
+
+                if (
+                    settings.showPrices !== false &&
+                    item.price !== undefined
+                ) {
+
+                    html += `
+
+                        <div class="service-price">
+                            ₹${Number(item.price).toLocaleString("en-IN")}
+
+                    `;
+
+
+                    /* UNIT */
+
+                    if (
+                        settings.showUnits !== false &&
+                        item.unit
+                    ) {
+
+                        html += `
+                            / ${escapeHTML(item.unit)}
+                        `;
+
+                    }
+
+
+                    html += `
+                        </div>
+                    `;
+
+                }
+
+
+                html += `
+                    </div>
+                `;
+
+            });
+
+
+            html += `
+                </div>
+            `;
+
+        }
+
+
+        card.innerHTML = html;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+function initializeGallery() {
+
+    const section =
+        $("#gallery");
+
+    const container =
+        $("#galleryContainer");
+
+
+    if (!section || !container) return;
+
+
+    setVisibility(
+        section,
+        FEATURES.gallery !== false
+    );
+
+
+    if (FEATURES.gallery === false) {
+        return;
+    }
+
+
+    const gallery =
+        Array.isArray(APP.gallery)
+            ? APP.gallery
+            : [];
+
+
+    container.innerHTML = "";
+
+
+    gallery.forEach(item => {
+
+        if (item.show === false) {
+            return;
+        }
+
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className =
+            "gallery-item";
+
+
+        wrapper.innerHTML = `
+
+            <img
+                src="${escapeAttribute(item.image)}"
+                alt="${escapeAttribute(item.title || "Electrical Work")}"
+                loading="lazy"
+            >
+
+            ${
+                item.title
+                ? `<span>${escapeHTML(item.title)}</span>`
+                : ""
+            }
+
+        `;
+
+
+        const image =
+            wrapper.querySelector("img");
+
+
+        if (image) {
+
+            image.addEventListener(
+                "click",
+                () => openLightbox(
+                    image.src,
+                    item.title
+                )
+            );
+
+        }
+
+
+        container.appendChild(wrapper);
+
+    });
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+function openLightbox(src, title) {
+
+    const lightbox =
+        $("#lightbox");
+
+    const image =
+        $("#lightboxImage");
+
+
+    if (!lightbox || !image) return;
+
+
+    image.src = src;
+
+    image.alt =
+        title || "Sandeep ElectroFix Work";
+
+
+    lightbox.classList.add("active");
+
+    lightbox.style.display =
+        "flex";
+
+}
+
+
+function closeLightbox() {
+
+    const lightbox =
+        $("#lightbox");
+
+    if (!lightbox) return;
+
+
+    lightbox.classList.remove("active");
+
+    lightbox.style.display =
+        "none";
+
+}
+
+
+function initializeLightbox() {
+
+    const close =
+        $("#closeLightbox");
+
+    if (close) {
+
+        close.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+    }
+
+
+    const lightbox =
+        $("#lightbox");
+
+    if (lightbox) {
+
+        lightbox.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   REVIEWS
+========================================================= */
+
+function loadReviews() {
+
+    const section =
+        $("#reviews");
+
+    const container =
+        $("#reviewContainer");
+
+
+    if (!section || !container) return;
+
+
+    setVisibility(
+        section,
+        FEATURES.reviews !== false
+    );
+
+
+    if (FEATURES.reviews === false) {
+        return;
+    }
+
+
+    const reviews =
+        Array.isArray(APP.reviews)
+            ? APP.reviews
+            : [];
+
+
+    container.innerHTML = "";
+
+
+    reviews.forEach(review => {
+
+        if (review.show === false) {
+            return;
+        }
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "review-card";
+
+
+        const stars =
+            "⭐".repeat(
+                Math.max(
+                    0,
+                    Math.min(
+                        5,
+                        Number(review.rating) || 0
+                    )
+                )
+            );
+
+
+        card.innerHTML = `
+
+            <div class="review-stars">
+                ${stars}
+            </div>
+
+            <p>
+                "${escapeHTML(review.text || "")}"
+            </p>
+
+            <strong>
+                ${escapeHTML(review.name || "Customer")}
+            </strong>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   GOOGLE MAPS
+========================================================= */
+
+function initializeGoogleMaps() {
+
+    const section =
+        $("#google-maps");
+
+
+    if (!section) return;
+
+
+    setVisibility(
+        section,
+        FEATURES.googleMaps !== false
+    );
+
+
+    if (
+        FEATURES.googleMaps === false
+    ) {
+        return;
+    }
+
+
+    const links =
+        section.querySelectorAll("a");
+
+
+    links.forEach(link => {
+
+        if (
+            link.href.includes("maps.app.goo.gl")
+        ) {
+
+            link.href =
+                BUSINESS.googleMaps ||
+                link.href;
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   QUOTE FORM
+========================================================= */
+
+function initializeQuoteForm() {
+
+    const section =
+        $("#contact-form");
+
+    const sendButton =
+        $("#sendQuoteBtn");
+
+
+    if (!section) return;
+
+
+    const quoteConfig =
+        APP.quote || {};
+
+
+    const enabled =
+        FEATURES.contactForm !== false &&
+        quoteConfig.enabled !== false;
+
+
+    setVisibility(
+        section,
+        enabled
+    );
+
+
+    if (!enabled || !sendButton) {
+        return;
+    }
+
+
+    sendButton.addEventListener(
+        "click",
+        sendQuote
+    );
+
+}
+
+
+/* =========================================================
+   SEND QUOTE
+========================================================= */
+
+function sendQuote() {
+
+    const name =
+        $("#customerName")?.value.trim() || "";
+
+    const phone =
+        $("#customerPhone")?.value.trim() || "";
+
+    const service =
+        $("#serviceName")?.value.trim() || "";
+
+    const message =
+        $("#customerMessage")?.value.trim() || "";
+
+    const location =
+        $("#customerLocation")?.value.trim() || "";
+
+    const total =
+        $("#serviceTotal")?.value.trim() || "";
+
+
+    const quote =
+        APP.quote || {};
+
+
+    /* REQUIRED CHECKS */
+
+    if (
+        quote.requireName &&
+        !name
+    ) {
+
+        showToast("Please enter your name.");
+
+        $("#customerName")?.focus();
+
+        return;
+
+    }
+
+
+    if (
+        quote.requirePhone &&
+        !phone
+    ) {
+
+        showToast("Please enter your mobile number.");
+
+        $("#customerPhone")?.focus();
+
+        return;
+
+    }
+
+
+    if (
+        quote.requireService &&
+        !service
+    ) {
+
+        showToast("Please select a service.");
+
+        $("#serviceName")?.focus();
+
+        return;
+
+    }
+
+
+    if (
+        quote.requireLocation &&
+        !location
+    ) {
+
+        showToast(
+            "Please share your service location."
+        );
+
+        $("#customerLocation")?.focus();
+
+        return;
+
+    }
+
+
+    let text =
+
+`Hello ${BUSINESS.name || "Sandeep ElectroFix"},
+
+I would like to enquire about electrical service.
+
+Name: ${name}
+Mobile: ${phone}
+Service: ${service}`;
+
+
+    if (total) {
+
+        text +=
+            `\nEstimated Total: ₹${total}`;
+
+    }
+
+
+    if (message) {
+
+        text +=
+            `\nWork Details: ${message}`;
+
+    }
+
+
+    if (location) {
+
+        text +=
+            `\nService Location: ${location}`;
+
+    }
+
+
+    text +=
+        "\n\nThank you.";
+
+
+    const number =
+        quote.whatsappNumber ||
+        BUSINESS.whatsapp;
+
+
+    const url =
+        `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+
+
+    window.open(
+        url,
+        "_blank",
+        "noopener"
+    );
+
+}
+
+
+/* =========================================================
+   DISCOUNT CALCULATION
+========================================================= */
+
+function initializeDiscountCalculation() {
+
+    const input =
+        $("#serviceTotal");
+
+    const box =
+        $("#discountCalculation");
+
+
+    if (!input || !box) return;
+
+
+    input.addEventListener(
+        "input",
+        calculateDiscount
+    );
+
+
+    calculateDiscount();
+
+}
+
+
+function calculateDiscount() {
+
+    const input =
+        $("#serviceTotal");
+
+    const box =
+        $("#discountCalculation");
+
+
+    if (!input || !box) return;
+
+
+    const total =
+        Number(input.value);
+
+
+    const discount =
+        APP.discount || {};
+
+
+    if (
+        !discount.enabled ||
+        !total ||
+        total <= 0
+    ) {
+
+        box.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    const percentage =
+        Number(discount.value) || 0;
+
+
+    const discountAmount =
+        total * percentage / 100;
+
+
+    const finalAmount =
+        total - discountAmount;
+
+
+    box.style.display =
+        "block";
+
+
+    const original =
+        $("#originalAmount");
+
+    const discountElement =
+        $("#discountAmount");
+
+    const final =
+        $("#finalAmount");
+
+    const percent =
+        $("#quoteDiscountPercent");
+
+
+    if (original) {
+
+        original.textContent =
+            `₹${total.toLocaleString("en-IN")}`;
+
+    }
+
+
+    if (discountElement) {
+
+        discountElement.textContent =
+            `- ₹${discountAmount.toLocaleString("en-IN")}`;
+
+    }
+
+
+    if (final) {
+
+        final.textContent =
+            `₹${finalAmount.toLocaleString("en-IN")}`;
+
+    }
+
+
+    if (percent) {
+
+        percent.textContent =
+            percentage;
+
+    }
+
+}
+
+
+/* =========================================================
+   DISCOUNT SECTIONS
+========================================================= */
+
+function initializeDiscountSections() {
+
+    const discount =
+        APP.discount || {};
+
+
+    const mainOffer =
+        $("#discount-offer");
+
+    const discountSection =
+        $("#discount-section");
+
+
+    const enabled =
+        FEATURES.offers !== false &&
+        FEATURES.discountOffer !== false &&
+        discount.enabled !== false;
+
+
+    setVisibility(
+        mainOffer,
+        enabled
+    );
+
+
+    setVisibility(
+        discountSection,
+        FEATURES.discountSection !== false &&
+        enabled
+    );
+
+
+    if (!enabled) {
+        return;
+    }
+
+
+    /* MAIN OFFER */
+
+    if (mainOffer) {
+
+        const title =
+            mainOffer.querySelector(".discount-title");
+
+        const message =
+            mainOffer.querySelector(".discount-message");
+
+        const value =
+            mainOffer.querySelector(".discount-value");
+
+        const validity =
+            mainOffer.querySelector(".discount-validity");
+
+
+        if (title) {
+            title.textContent =
+                discount.title ||
+                "Special Discount";
+        }
+
+
+        if (message) {
+            message.textContent =
+                discount.message || "";
+        }
+
+
+        if (value) {
+
+            value.textContent =
+                discount.type === "percentage"
+                    ? `${discount.value}% OFF`
+                    : `₹${discount.value} OFF`;
+
+        }
+
+
+        if (validity) {
+
+            validity.textContent =
+                discount.validUntil
+                    ? `Valid until ${discount.validUntil}`
+                    : "Valid for limited time";
+
+        }
+
+    }
+
+
+    /* SECOND DISCOUNT */
+
+    const title =
+        $("#discountTitle");
+
+    const percentage =
+        $("#discountPercentage");
+
+    const message =
+        $("#discountMessage");
+
+    const validity =
+        $("#discountValidity");
+
+
+    if (title) {
+
+        title.textContent =
+            discount.title ||
+            "Special Discount";
+
+    }
+
+
+    if (percentage) {
+
+        percentage.textContent =
+            discount.value || 0;
+
+    }
+
+
+    if (message) {
+
+        message.textContent =
+            discount.message || "";
+
+    }
+
+
+    if (validity) {
+
+        validity.textContent =
+            discount.validUntil
+                ? `Valid until ${discount.validUntil}`
+                : "Limited Time Offer";
+
+    }
+
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+function initializeFAQ() {
+
+    const section =
+        $("#faq");
+
+    const container =
+        $("#faqContainer");
+
+
+    if (!section || !container) return;
+
+
+    setVisibility(
+        section,
+        FEATURES.faq !== false
+    );
+
+
+    if (FEATURES.faq === false) {
+        return;
+    }
+
+
+    const faq =
+        Array.isArray(APP.faq)
+            ? APP.faq
+            : [];
+
+
+    container.innerHTML = "";
+
+
+    faq.forEach(item => {
+
+        if (item.show === false) {
+            return;
+        }
+
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className =
+            "faq-item";
+
+
+        wrapper.innerHTML = `
+
+            <button
+                type="button"
+                class="faq-question">
+
+                <span>
+                    ${escapeHTML(item.question)}
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    ${escapeHTML(item.answer)}
+                </p>
+
+            </div>
+
+        `;
+
+
+        const question =
+            wrapper.querySelector(
+                ".faq-question"
+            );
+
+
+        question.addEventListener(
+            "click",
+            () => {
+
+                wrapper.classList.toggle(
+                    "active"
+                );
+
+            }
+        );
+
+
+        container.appendChild(wrapper);
+
+    });
+
+}
+
+
+/* =========================================================
+   QR CODE
+========================================================= */
+
+function initializeQR() {
+
+    const section =
+        $("#qr-section");
+
+    const image =
+        $("#cardQR");
+
+
+    if (!section) return;
+
+
+    setVisibility(
+        section,
+        FEATURES.qrCode !== false
+    );
+
+
+    if (
+        FEATURES.qrCode === false
+    ) {
+        return;
+    }
+
+
+    if (
+        image &&
+        BUSINESS.cardQR
+    ) {
+
+        image.src =
+            BUSINESS.cardQR;
+
+    }
+
+
+    const button =
+        $("#downloadQR");
+
+
+    if (
+        button &&
+        image
+    ) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const link =
+                    document.createElement("a");
+
+                link.href =
+                    image.src;
+
+                link.download =
+                    "Sandeep-ElectroFix-QR.png";
+
+                document.body.appendChild(link);
+
+                link.click();
+
+                link.remove();
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+function initializeContact() {
+
+    const section =
+        $(".contact");
+
+
+    if (!section) return;
+
+
+    setVisibility(
+        section,
+        FEATURES.contact !== false
+    );
+
+
+    if (
+        FEATURES.contact === false
+    ) {
+        return;
+    }
+
+
+    const links =
+        section.querySelectorAll("a");
+
+
+    links.forEach(link => {
+
+        if (
+            link.href.startsWith("tel:")
+        ) {
+
+            link.href =
+                `tel:${BUSINESS.phone}`;
+
+        }
+
+
+        if (
+            link.href.includes("wa.me")
+        ) {
+
+            link.href =
+                `https://wa.me/${BUSINESS.whatsapp}`;
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+function initializeFooter() {
+
+    const footer =
+        $("footer");
+
+
+    setVisibility(
+        footer,
+        FEATURES.footer !== false
+    );
+
+
+    if (!footer) return;
+
+
+    const year =
+        footer.querySelector("p");
+
+
+    if (year) {
+
+        year.textContent =
+            `© ${new Date().getFullYear()} ${BUSINESS.name}`;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAV
+========================================================= */
+
+function initializeBottomNavigation() {
+
+    const nav =
+        $(".mobile-bottom-nav");
+
+
+    if (!nav) return;
+
+
+    setVisibility(
+        nav,
+        FEATURES.bottomNavigation !== false
+    );
+
+
+    if (
+        FEATURES.bottomNavigation === false
+    ) {
+        return;
+    }
+
+
+    const items =
+        FEATURES.bottomNavItems || {};
+
+
+    const links =
+        nav.querySelectorAll(
+            ".bottom-nav-item"
+        );
+
+
+    links.forEach(link => {
+
+        const text =
+            link.innerText
+                .trim()
+                .toLowerCase();
+
+
+        let show = true;
+
+
+        if (text.includes("home")) {
+            show = items.home !== false;
+        }
+
+        else if (text.includes("services")) {
+            show = items.services !== false;
+        }
+
+        else if (text.includes("work")) {
+            show = items.work !== false;
+        }
+
+        else if (text.includes("quote")) {
+            show = items.quote !== false;
+        }
+
+        else if (text.includes("call")) {
+            show = items.call !== false;
+        }
+
+
+        setVisibility(link, show);
+
+    });
+
+}
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function initializeTheme() {
+
+    const button =
+        $("#themeToggle");
+
+
+    if (!button) return;
+
+
+    if (
+        FEATURES.darkMode === false
+    ) {
+
+        button.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    function updateButton() {
+
+        const light =
+            document.documentElement
+                .classList.contains(
+                    "saved-light-theme"
+                );
+
+
+        button.textContent =
+            light
+                ? "🌙 Dark Mode"
+                : "☀️ Light Mode";
+
+    }
+
+
+    button.addEventListener(
+        "click",
+        function() {
+
+            const isLight =
+                document.documentElement
+                    .classList.toggle(
+                        "saved-light-theme"
+                    );
+
+
+            try {
+
+                localStorage.setItem(
+                    "sandeepTheme",
+                    isLight
+                        ? "light"
+                        : "dark"
+                );
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "Theme storage unavailable"
+                );
+
+            }
+
+
+            updateButton();
+
+        }
+    );
+
+
+    updateButton();
+
+}
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+const TRANSLATIONS = {
 
     en: {
 
@@ -56,15 +1720,15 @@ const translations = {
 
     hi: {
 
-        tagline: "आपका विश्वास, हमारी शक्ति",
+        tagline: "आपके भरोसे की शक्ति",
 
         location: "📍 लखनऊ, उत्तर प्रदेश",
 
         callNow: "📞 अभी कॉल करें",
 
-        whatsapp: "💬 व्हाट्सऐप",
+        whatsapp: "💬 WhatsApp",
 
-        quickAccess: "त्वरित संपर्क",
+        quickAccess: "त्वरित पहुँच",
 
         about: "हमारे बारे में",
 
@@ -72,517 +1736,132 @@ const translations = {
 
         ourWork: "हमारा काम",
 
-        customerReviews: "ग्राहक समीक्षाएँ",
+        customerReviews: "ग्राहक समीक्षा",
 
-        visitUs: "📍 यहाँ आएँ",
+        visitUs: "📍 हमसे मिलें",
 
-        requestQuote: "सेवा के लिए अनुरोध करें",
+        requestQuote: "कोटेशन माँगें",
 
-        faq: "अक्सर पूछे जाने वाले सवाल",
+        faq: "अक्सर पूछे जाने वाले प्रश्न",
 
         scanSave: "📱 स्कैन करें और सेव करें",
 
-        contact: "संपर्क करें"
+        contact: "संपर्क"
 
     }
 
 };
 
 
-/* =========================================================
-   DOM READY
-========================================================= */
+function initializeLanguage() {
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    initializeTheme();
-
-    initializeLanguage();
-
-    initializeFeatureControls();
-
-    initializeDiscount();
-   
-    initializeDiscountCalculator();
-   
-    initializeShare();
-
-    initializeSaveContact();
-
-    initializeQuoteForm();
-
-    initializeLocation();
-
-    initializeFAQ();
-
-    initializeGallery();
-
-    initializeQR();
-
-    initializeTopButton();
-
-    initializeMobileNavigation();
-
-    initializeRipple();
-
-    loadServices();
-
-    loadReviews();
-
-    updateBusinessLinks();
-
-    updateFooterYear();
-
-    initializeAnimations();
-
-});
+    const buttons =
+        $$(".language-btn");
 
 
-/* =========================================================
-   TOAST
-========================================================= */
-
-function showToast(message) {
-
-    const oldToast =
-        document.querySelector(".toast");
-
-    if (oldToast) {
-        oldToast.remove();
+    if (!buttons.length) {
+        return;
     }
 
 
-    const toast =
-        document.createElement("div");
+    buttons.forEach(button => {
 
-    toast.className = "toast";
+        button.addEventListener(
+            "click",
+            function() {
 
-    toast.textContent = message;
+                const lang =
+                    button.dataset.lang;
 
-    document.body.appendChild(toast);
 
+                setLanguage(lang);
 
-    requestAnimationFrame(() => {
-
-        toast.classList.add("show");
+            }
+        );
 
     });
 
 
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-
-        setTimeout(() => {
-
-            if (toast.parentNode) {
-                toast.remove();
-            }
-
-        }, 300);
-
-    }, 2500);
+    setLanguage("en");
 
 }
 
-/* =========================================================
-   DISCOUNT / OFFER SYSTEM
-========================================================= */
 
-function initializeDiscount() {
+function setLanguage(lang) {
 
-    const discount = APP.discount;
+    const data =
+        TRANSLATIONS[lang] ||
+        TRANSLATIONS.en;
 
-    const offerSection =
-        document.getElementById("discount-offer");
 
-    if (!offerSection) return;
+    $$("[data-i18n]")
+        .forEach(element => {
 
+            const key =
+                element.dataset.i18n;
 
-    /* DISCOUNT OFF */
 
-    if (
-        !discount ||
-        discount.enabled !== true ||
-        discount.showOnCard === false
-    ) {
+            if (data[key]) {
 
-        offerSection.style.display = "none";
-
-        return;
-
-    }
-
-
-    /* DISCOUNT ON */
-
-    offerSection.style.display = "";
-
-
-    const title =
-        offerSection.querySelector(
-            ".discount-title"
-        );
-
-
-    const message =
-        offerSection.querySelector(
-            ".discount-message"
-        );
-
-
-    const value =
-        offerSection.querySelector(
-            ".discount-value"
-        );
-
-
-    const validity =
-        offerSection.querySelector(
-            ".discount-validity"
-        );
-
-
-    if (title) {
-
-        title.textContent =
-            discount.title ||
-            "Special Discount";
-
-    }
-
-
-    if (message) {
-
-        message.textContent =
-            discount.message ||
-            "Special discount available.";
-
-    }
-
-
-    /* DISCOUNT VALUE */
-
-    if (value) {
-
-        if (
-            discount.type === "fixed"
-        ) {
-
-            value.textContent =
-                "₹" +
-                Number(discount.value || 0) +
-                " OFF";
-
-        }
-        else {
-
-            value.textContent =
-                Number(discount.value || 0) +
-                "% OFF";
-
-        }
-
-    }
-
-
-    /* VALIDITY */
-
-    if (validity) {
-
-        if (discount.validUntil) {
-
-            validity.textContent =
-                "Valid until " +
-                discount.validUntil;
-
-            validity.style.display =
-                "";
-
-        }
-        else {
-
-            validity.style.display =
-                "none";
-
-        }
-
-    }
-
-}
-/* =========================================================
-   FEATURE CONTROLS
-========================================================= */
-
-function initializeFeatureControls() {
-
-    toggleSection(
-        "gallery",
-        FEATURES.gallery !== false
-    );
-
-
-    toggleSection(
-        "reviews",
-        FEATURES.reviews !== false
-    );
-
-
-    toggleSection(
-        "google-maps",
-        FEATURES.googleMaps !== false
-    );
-
-
-    toggleSection(
-        "faq",
-        FEATURES.faq !== false
-    );
-
-
-    toggleSection(
-        "contact-form",
-        FEATURES.contactForm !== false
-    );
-
-
-    toggleSection(
-        "qr-section",
-        FEATURES.qrCode !== false
-    );
-
-
-    toggleSection(
-        "offers",
-        FEATURES.offers === true
-    );
-
-
-    toggleSection(
-        "youtube",
-        FEATURES.youtube === true
-    );
-
-}
-
-
-function toggleSection(id, enabled) {
-
-    const section =
-        document.getElementById(id);
-
-    if (!section) return;
-
-    section.style.display =
-        enabled ? "" : "none";
-
-}
-
-
-/* =========================================================
-   BUSINESS LINKS
-========================================================= */
-
-function updateBusinessLinks() {
-
-    const phone =
-        APP.phone ||
-        "+919026036445";
-
-
-    const whatsapp =
-        APP.whatsapp ||
-        "919026036445";
-
-
-    const website =
-        APP.website ||
-        "https://sandeepelectrofix.github.io/";
-
-
-    const maps =
-        APP.googleMaps ||
-        "https://maps.app.goo.gl/XYZnm7sFAVRT68Vs7";
-
-
-    const facebook =
-        APP.facebook ||
-        "https://www.facebook.com/SandeepElectroFix";
-
-
-    const instagram =
-        APP.instagram ||
-        "https://www.instagram.com/sandeep_electrofix";
-
-
-    const youtube =
-        APP.youtube ||
-        "https://youtube.com/@sandeepelectrofix";
-
-
-    const email =
-        APP.email ||
-        "SandeepElectroFix@gmail.com";
-
-
-    /* PHONE */
-
-    document
-        .querySelectorAll('a[href^="tel:"]')
-        .forEach(link => {
-
-            link.href =
-                "tel:" +
-                phone.replace(/\s/g, "");
-
-        });
-
-
-    /* WHATSAPP */
-
-    document
-        .querySelectorAll('a[href*="wa.me"]')
-        .forEach(link => {
-
-            link.href =
-                "https://wa.me/" +
-                whatsapp.replace(/\D/g, "");
-
-        });
-
-
-    /* WEBSITE */
-
-    document
-        .querySelectorAll(
-            'a[href*="sandeepelectrofix.github.io"]'
-        )
-        .forEach(link => {
-
-            const text =
-                link.textContent
-                    .trim()
-                    .toLowerCase();
-
-            if (
-                text.includes("website")
-            ) {
-
-                link.href = website;
+                element.textContent =
+                    data[key];
 
             }
 
         });
 
 
-    /* GOOGLE MAPS */
+    $$(".language-btn")
+        .forEach(button => {
 
-    document
-        .querySelectorAll(
-            'a[href*="maps.app.goo.gl"], a[href*="share.google"]'
-        )
-        .forEach(link => {
-
-            link.href = maps;
-
-            link.target = "_blank";
-
-            link.rel = "noopener";
+            button.classList.toggle(
+                "active",
+                button.dataset.lang === lang
+            );
 
         });
 
 
-    /* FACEBOOK */
+    try {
 
-    document
-        .querySelectorAll(
-            'a[href*="facebook.com"]'
-        )
-        .forEach(link => {
+        localStorage.setItem(
+            "sandeepLanguage",
+            lang
+        );
 
-            link.href = facebook;
+    }
 
-            link.target = "_blank";
-
-            link.rel = "noopener";
-
-        });
-
-
-    /* INSTAGRAM */
-
-    document
-        .querySelectorAll(
-            'a[href*="instagram.com"]'
-        )
-        .forEach(link => {
-
-            link.href = instagram;
-
-            link.target = "_blank";
-
-            link.rel = "noopener";
-
-        });
-
-
-    /* YOUTUBE */
-
-    document
-        .querySelectorAll(
-            'a[href*="youtube.com"]'
-        )
-        .forEach(link => {
-
-            link.href = youtube;
-
-            link.target = "_blank";
-
-            link.rel = "noopener";
-
-        });
-
-
-    /* EMAIL */
-
-    document
-        .querySelectorAll(
-            'a[href^="mailto:"]'
-        )
-        .forEach(link => {
-
-            link.href =
-                "mailto:" + email;
-
-        });
+    catch (error) {}
 
 }
 
 
 /* =========================================================
-   SHARE CARD
+   SHARE
 ========================================================= */
 
 function initializeShare() {
 
-    const shareButtons =
-        document.querySelectorAll(
-            ".share-icon"
+    const shareCards =
+        $$(
+            '.card[href="#"]'
         );
 
 
-    shareButtons.forEach(icon => {
+    shareCards.forEach(card => {
 
-        const button =
-            icon.closest("a, button, .card");
+        if (
+            !card.innerText
+                .toLowerCase()
+                .includes("share")
+        ) {
+            return;
+        }
 
-        if (!button) return;
 
-
-        button.addEventListener(
+        card.addEventListener(
             "click",
-            async event => {
+            async function(event) {
 
                 event.preventDefault();
 
@@ -590,13 +1869,13 @@ function initializeShare() {
                 const shareData = {
 
                     title:
-                        APP.businessName ||
-                        "Sandeep ElectroFix",
+                        BUSINESS.name,
 
                     text:
-                        "Professional Electrical Services in Lucknow",
+                        `Check out ${BUSINESS.name}`,
 
                     url:
+                        BUSINESS.cardWebsite ||
                         window.location.href
 
                 };
@@ -612,48 +1891,38 @@ function initializeShare() {
                             shareData
                         );
 
-                        return;
-
                     }
 
-
-                    if (
-                        navigator.clipboard &&
-                        window.isSecureContext
+                    else if (
+                        navigator.clipboard
                     ) {
 
                         await navigator.clipboard.writeText(
-                            window.location.href
+                            shareData.url
                         );
-
 
                         showToast(
-                            "Website link copied successfully."
+                            "Card link copied."
                         );
-
-                        return;
 
                     }
 
+                    else {
 
-                    showToast(
-                        "Copy the website link from your browser."
-                    );
+                        showToast(
+                            "Share is not supported."
+                        );
+
+                    }
 
                 }
+
                 catch (error) {
 
-                    if (
-                        error &&
-                        error.name !== "AbortError"
-                    ) {
-
-                        console.log(
-                            "Share error:",
-                            error
-                        );
-
-                    }
+                    console.log(
+                        "Share cancelled or failed",
+                        error
+                    );
 
                 }
 
@@ -671,74 +1940,39 @@ function initializeShare() {
 
 function initializeSaveContact() {
 
-    const buttons =
-        document.querySelectorAll(
-            '#saveContact, a[href="#contact-form"]'
-        );
+    const cards =
+        $$(".card");
 
 
-    buttons.forEach(button => {
-
-        const text =
-            button.textContent
-                .trim()
-                .toLowerCase();
-
+    cards.forEach(card => {
 
         if (
-            !text.includes("save contact")
+            !card.innerText
+                .toLowerCase()
+                .includes("save contact")
         ) {
-
             return;
-
         }
 
 
-        button.addEventListener(
+        card.addEventListener(
             "click",
-            event => {
+            function(event) {
 
                 event.preventDefault();
 
 
-                const phone =
-                    APP.phone ||
-                    "+919026036445";
+                const vcard =
 
-
-                const email =
-                    APP.email ||
-                    "SandeepElectroFix@gmail.com";
-
-
-                const website =
-                    APP.cardWebsite ||
-                    "https://sandeepelectrofix.github.io/SandeepElectroFix-Card/";
-
-
-                const vcard = [
-
-                    "BEGIN:VCARD",
-
-                    "VERSION:3.0",
-
-                    "FN:Sandeep ElectroFix",
-
-                    "ORG:Sandeep ElectroFix",
-
-                    "TEL:" + phone,
-
-                    "EMAIL:" + email,
-
-                    "URL:" + website,
-
-                    "ADR:;;Lucknow;Uttar Pradesh;;India",
-
-                    "NOTE:Professional Electrical Services",
-
-                    "END:VCARD"
-
-                ].join("\r\n");
+`BEGIN:VCARD
+VERSION:3.0
+FN:${BUSINESS.owner || BUSINESS.name}
+ORG:${BUSINESS.name}
+TEL:${BUSINESS.phone}
+EMAIL:${BUSINESS.email}
+ADR:;;${BUSINESS.location};;;;
+URL:${BUSINESS.cardWebsite}
+END:VCARD`;
 
 
                 const blob =
@@ -761,7 +1995,6 @@ function initializeSaveContact() {
 
                 link.href = url;
 
-
                 link.download =
                     "Sandeep-ElectroFix.vcf";
 
@@ -773,11 +2006,7 @@ function initializeSaveContact() {
                 link.remove();
 
 
-                setTimeout(() => {
-
-                    URL.revokeObjectURL(url);
-
-                }, 1000);
+                URL.revokeObjectURL(url);
 
 
                 showToast(
@@ -793,1815 +2022,121 @@ function initializeSaveContact() {
 
 
 /* =========================================================
-   SERVICES
+   BUSINESS LINKS
 ========================================================= */
 
-function loadServices() {
+function updateBusinessLinks() {
 
-    const container =
-        document.getElementById(
-            "serviceContainer"
-        );
-
-
-    if (!container) return;
-
-
-    /* CONFIG */
-
-    if (
-        Array.isArray(APP.services) &&
-        APP.services.length
-    ) {
-
-        renderServices(
-            container,
-            APP.services
-        );
-
-        return;
-
-    }
-
-
-    /* JSON FALLBACK */
-
-    fetch("data/services.json")
-
-        .then(response => {
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "services.json not found"
-                );
-
-            }
-
-            return response.json();
-
-        })
-
-        .then(services => {
-
-            if (!Array.isArray(services)) {
-
-                throw new Error(
-                    "Invalid services data"
-                );
-
-            }
-
-
-            renderServices(
-                container,
-                services
-            );
-
-        })
-
-        .catch(error => {
-
-            console.log(
-                "Services error:",
-                error
-            );
-
-        });
-
-}
-
-
-function renderServices(
-    container,
-    services
-) {
-
-    container.innerHTML = "";
-
-
-    services.forEach(service => {
-
-        const card =
-            document.createElement("div");
-
-
-        card.className =
-            "service-card";
-
-
-        const icon =
-            document.createElement("div");
-
-
-        icon.className =
-            "service-icon";
-
-
-        icon.textContent =
-            service.icon || "⚡";
-
-
-        const title =
-            document.createElement("h3");
-
-
-        title.textContent =
-            service.title ||
-            service.name ||
-            "Electrical Service";
-
-
-        const description =
-            document.createElement("p");
-
-
-        description.textContent =
-            service.description || "";
-
-
-        card.appendChild(icon);
-
-        card.appendChild(title);
-
-
-        if (
-            service.description
-        ) {
-
-            card.appendChild(
-                description
-            );
-
-        }
-
-
-        container.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-function initializeGallery() {
-
-    const container =
-        document.getElementById(
-            "galleryContainer"
-        );
-
-
-    if (!container) return;
-
-
-    /* CONFIG */
-
-    if (
-        Array.isArray(APP.gallery) &&
-        APP.gallery.length
-    ) {
-
-        renderGallery(
-            container,
-            APP.gallery
-        );
-
-        return;
-
-    }
-
-
-    /* JSON FALLBACK */
-
-    fetch("data/gallery.json")
-
-        .then(response => {
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "gallery.json not found"
-                );
-
-            }
-
-            return response.json();
-
-        })
-
-        .then(gallery => {
-
-            if (!Array.isArray(gallery)) {
-
-                throw new Error(
-                    "Invalid gallery data"
-                );
-
-            }
-
-
-            renderGallery(
-                container,
-                gallery
-            );
-
-        })
-
-        .catch(error => {
-
-            console.log(
-                "Gallery error:",
-                error
-            );
-
-        });
-
-}
-
-
-function renderGallery(
-    container,
-    gallery
-) {
-
-    container.innerHTML = "";
-
-
-    gallery.forEach(item => {
-
-        const wrapper =
-            document.createElement("div");
-
-
-        wrapper.className =
-            "gallery-item";
-
-
-        const image =
-            document.createElement("img");
-
-
-        image.src =
-            item.image || "";
-
-
-        image.alt =
-            item.title ||
-            "Sandeep ElectroFix Electrical Work";
-
-
-        image.loading =
-            "lazy";
-
-
-        const title =
-            document.createElement("p");
-
-
-        title.textContent =
-            item.title || "";
-
-
-        wrapper.appendChild(image);
-
-
-        if (item.title) {
-
-            wrapper.appendChild(title);
-
-        }
-
-
-        container.appendChild(wrapper);
-
-    });
-
-
-    setupGalleryLightbox();
-
-}
-
-
-function setupGalleryLightbox() {
-
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
-
-
-    const lightboxImage =
-        document.getElementById(
-            "lightboxImage"
-        );
-
-
-    const closeButton =
-        document.getElementById(
-            "closeLightbox"
-        );
-
-
-    if (
-        !lightbox ||
-        !lightboxImage
-    ) {
-
-        return;
-
-    }
-
-
-    document
-        .querySelectorAll(
-            "#galleryContainer img"
-        )
-        .forEach(image => {
-
-            image.addEventListener(
-                "click",
-                () => {
-
-                    lightboxImage.src =
-                        image.src;
-
-
-                    lightboxImage.alt =
-                        image.alt;
-
-
-                    lightbox.style.display =
-                        "flex";
-
-
-                    document.body.style.overflow =
-                        "hidden";
-
-                }
-            );
-
-        });
-
-
-    function closeLightbox() {
-
-        lightbox.style.display =
-            "none";
-
-
-        lightboxImage.src =
-            "";
-
-
-        document.body.style.overflow =
-            "";
-
-    }
-
-
-    if (closeButton) {
-
-        closeButton.addEventListener(
-            "click",
-            closeLightbox
-        );
-
-    }
-
-
-    lightbox.addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target === lightbox
-            ) {
-
-                closeLightbox();
-
-            }
-
-        }
-    );
-
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape"
-            ) {
-
-                closeLightbox();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   REVIEWS
-========================================================= */
-
-function loadReviews() {
-
-    const container =
-        document.getElementById(
-            "reviewContainer"
-        );
-
-
-    if (!container) return;
-
-
-    /* CONFIG */
-
-    if (
-        Array.isArray(APP.reviews) &&
-        APP.reviews.length
-    ) {
-
-        renderReviews(
-            container,
-            APP.reviews
-        );
-
-        return;
-
-    }
-
-
-    /* JSON FALLBACK */
-
-    fetch("data/reviews.json")
-
-        .then(response => {
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "reviews.json not found"
-                );
-
-            }
-
-            return response.json();
-
-        })
-
-        .then(reviews => {
-
-            if (!Array.isArray(reviews)) {
-
-                throw new Error(
-                    "Invalid reviews data"
-                );
-
-            }
-
-
-            renderReviews(
-                container,
-                reviews
-            );
-
-        })
-
-        .catch(error => {
-
-            console.log(
-                "Reviews error:",
-                error
-            );
-
-        });
-
-}
-
-
-function renderReviews(
-    container,
-    reviews
-) {
-
-    container.innerHTML = "";
-
-
-    reviews.forEach(review => {
-
-        const card =
-            document.createElement("div");
-
-
-        card.className =
-            "review-card";
-
-
-        const rating =
-            document.createElement("div");
-
-
-        rating.className =
-            "rating";
-
-
-        const ratingValue =
-            Number(review.rating) || 5;
-
-
-        rating.textContent =
-            "★".repeat(
-                Math.max(
-                    0,
-                    Math.min(
-                        5,
-                        Math.round(
-                            ratingValue
-                        )
-                    )
-                )
-            );
-
+    $$("a").forEach(link => {
 
         const text =
-            document.createElement("p");
+            link.innerText
+                .trim()
+                .toLowerCase();
 
 
-        text.textContent =
-            review.text ||
-            review.review ||
-            "";
-
-
-        const name =
-            document.createElement("h4");
-
-
-        name.textContent =
-            "- " +
-            (
-                review.name ||
-                "Customer"
-            );
-
-
-        card.appendChild(rating);
-
-        card.appendChild(text);
-
-        card.appendChild(name);
-
-
-        if (review.date) {
-
-            const date =
-                document.createElement("small");
-
-
-            date.textContent =
-                review.date;
-
-
-            card.appendChild(date);
-
-        }
-
-
-        container.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================================================
-   FAQ
-========================================================= */
-
-function initializeFAQ() {
-
-    const container =
-        document.getElementById(
-            "faqContainer"
-        );
-
-
-    if (!container) return;
-
-
-    /* CONFIG FAQ */
-
-    if (
-        Array.isArray(APP.faq) &&
-        APP.faq.length
-    ) {
-
-        renderFAQ(
-            container,
-            APP.faq
-        );
-
-        return;
-
-    }
-
-
-    /* JSON FALLBACK */
-
-    fetch("data/faq.json")
-
-        .then(response => {
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "faq.json not found"
-                );
-
-            }
-
-            return response.json();
-
-        })
-
-        .then(faqs => {
-
-            if (!Array.isArray(faqs)) {
-
-                throw new Error(
-                    "Invalid FAQ data"
-                );
-
-            }
-
-
-            renderFAQ(
-                container,
-                faqs
-            );
-
-        })
-
-        .catch(error => {
-
-            console.log(
-                "FAQ error:",
-                error
-            );
-
-        });
-
-}
-
-
-function renderFAQ(
-    container,
-    faqs
-) {
-
-    container.innerHTML = "";
-
-
-    faqs.forEach((item, index) => {
-
-        const wrapper =
-            document.createElement("div");
-
-
-        wrapper.className =
-            "faq-item";
-
-
-        const button =
-            document.createElement("button");
-
-
-        button.type =
-            "button";
-
-
-        button.className =
-            "faq-question";
-
-
-        button.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-
-        const question =
-            document.createElement("span");
-
-
-        question.textContent =
-            item.question || "";
-
-
-        const icon =
-            document.createElement("span");
-
-
-        icon.className =
-            "faq-icon";
-
-
-        icon.textContent =
-            "+";
-
-
-        button.appendChild(question);
-
-        button.appendChild(icon);
-
-
-        const answer =
-            document.createElement("div");
-
-
-        answer.className =
-            "faq-answer";
-
-
-        const paragraph =
-            document.createElement("p");
-
-
-        paragraph.textContent =
-            item.answer || "";
-
-
-        answer.appendChild(
-            paragraph
-        );
-
-
-        wrapper.appendChild(button);
-
-        wrapper.appendChild(answer);
-
-
-        container.appendChild(wrapper);
-
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const isOpen =
-                    wrapper.classList.contains(
-                        "active"
-                    );
-
-
-                /* CLOSE ALL */
-
-                container
-                    .querySelectorAll(
-                        ".faq-item"
-                    )
-                    .forEach(otherItem => {
-
-                        otherItem.classList.remove(
-                            "active"
-                        );
-
-
-                        const otherButton =
-                            otherItem.querySelector(
-                                ".faq-question"
-                            );
-
-
-                        const otherIcon =
-                            otherItem.querySelector(
-                                ".faq-icon"
-                            );
-
-
-                        if (otherButton) {
-
-                            otherButton.setAttribute(
-                                "aria-expanded",
-                                "false"
-                            );
-
-                        }
-
-
-                        if (otherIcon) {
-
-                            otherIcon.textContent =
-                                "+";
-
-                        }
-
-                    });
-
-
-                /* OPEN CLICKED ITEM */
-
-                if (!isOpen) {
-
-                    wrapper.classList.add(
-                        "active"
-                    );
-
-
-                    button.setAttribute(
-                        "aria-expanded",
-                        "true"
-                    );
-
-
-                    icon.textContent =
-                        "−";
-
-                }
-
-            }
-        );
-
-    });
-
-
-    console.log(
-        "FAQ loaded:",
-        faqs.length,
-        "questions"
-    );
-
-}
-
-
-/* =========================================================
-   LOCATION
-========================================================= */
-
-function initializeLocation() {
-
-    const button =
-        document.getElementById(
-            "getLocationBtn"
-        );
-
-
-    const input =
-        document.getElementById(
-            "customerLocation"
-        );
-
-
-    const status =
-        document.getElementById(
-            "locationStatus"
-        );
-
-
-    if (!button) return;
-
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            if (
-                !navigator.geolocation
-            ) {
-
-                setLocationStatus(
-                    status,
-                    "❌ Your browser does not support location."
-                );
-
-                return;
-
-            }
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "📍 Getting Location...";
-
-
-            setLocationStatus(
-                status,
-                "📍 Getting your current location..."
-            );
-
-
-            navigator.geolocation.getCurrentPosition(
-
-                position => {
-
-                    const lat =
-                        position.coords.latitude;
-
-
-                    const lng =
-                        position.coords.longitude;
-
-
-                    const mapsURL =
-                        `https://www.google.com/maps?q=${lat},${lng}`;
-
-
-                    if (input) {
-
-                        input.value =
-                            mapsURL;
-
-                    }
-
-
-                    setLocationStatus(
-                        status,
-                        "✅ Location captured successfully."
-                    );
-
-
-                    button.disabled =
-                        false;
-
-
-                    button.textContent =
-                        "📍 Location Captured";
-
-                },
-
-
-                error => {
-
-                    console.log(
-                        "Location error:",
-                        error
-                    );
-
-
-                    setLocationStatus(
-                        status,
-                        "❌ Location permission denied. Please paste your Google Maps location link."
-                    );
-
-
-                    button.disabled =
-                        false;
-
-
-                    button.textContent =
-                        "📍 Try Again";
-
-                },
-
-
-                {
-
-                    enableHighAccuracy:
-                        true,
-
-                    timeout:
-                        15000,
-
-                    maximumAge:
-                        0
-
-                }
-
-            );
-
-        }
-    );
-
-}
-
-
-function setLocationStatus(
-    element,
-    message
-) {
-
-    if (!element) return;
-
-    element.textContent =
-        message;
-
-}
-
-
-/* =========================================================
-   WHATSAPP QUOTE FORM
-========================================================= */
-
-function initializeQuoteForm() {
-
-    const button =
-        document.getElementById(
-            "sendQuoteBtn"
-        );
-
-
-    if (!button) return;
-
-
-    button.addEventListener(
-        "click",
-        sendQuote
-    );
-
-}
-
-
-function sendQuote() {
-
-    const name =
-        getValue(
-            "customerName"
-        );
-
-
-    const phone =
-        getValue(
-            "customerPhone"
-        );
-
-
-    const service =
-        getValue(
-            "serviceName"
-        );
-
-
-    const message =
-        getValue(
-            "customerMessage"
-        );
-
-
-    const location =
-        getValue(
-            "customerLocation"
-        );
-
-
-    if (!name) {
-
-        showToast(
-            "Please enter your name."
-        );
-
-        return;
-
-    }
-
-
-    if (!phone) {
-
-        showToast(
-            "Please enter your mobile number."
-        );
-
-        return;
-
-    }
-
-
-    if (!service) {
-
-        showToast(
-            "Please select a service."
-        );
-
-        return;
-
-    }
-
-
-    if (!location) {
-
-        showToast(
-            "Please share your service location."
-        );
-
-        return;
-
-    }
-
-
-    const whatsappNumber =
-        APP.whatsapp ||
-        "919026036445";
-
-
-    const whatsappMessage =
-
-`🔔 NEW SERVICE ENQUIRY
-
-👤 Name: ${name}
-
-📱 Mobile: ${phone}
-
-⚡ Service: ${service}
-
-📝 Message:
-${message || "No message provided"}
-
-📍 Service Location:
-${location}
-
-━━━━━━━━━━━━━━
-
-⚡ Sandeep ElectroFix
-Professional Electrical Services
-📍 Lucknow, Uttar Pradesh`;
-
-
-    const whatsappURL =
-        "https://wa.me/" +
-        whatsappNumber.replace(/\D/g, "") +
-        "?text=" +
-        encodeURIComponent(
-            whatsappMessage
-        );
-
-
-    showToast(
-        "Opening WhatsApp..."
-    );
-
-
-    setTimeout(() => {
-
-        window.open(
-            whatsappURL,
-            "_blank",
-            "noopener"
-        );
-
-    }, 300);
-
-
-    /* GOOGLE SHEET */
-
-    sendToGoogleSheet({
-
-        name,
-        phone,
-        service,
-        message,
-        location
-
-    });
-
-}
-
-
-function getValue(id) {
-
-    return (
-        document
-            .getElementById(id)
-            ?.value
-            .trim() || ""
-    );
-
-}
-
-
-/* =========================================================
-   GOOGLE SHEET
-========================================================= */
-
-function sendToGoogleSheet(data) {
-
-    const googleSheetURL =
-        "https://script.google.com/macros/s/AKfycbxShXAXNiKStkhDZLywJ4YeRVUJ2Ljv44qOjsofiVP27vArOk2OhiN1i4BXKwv21joF/exec";
-
-
-    if (!googleSheetURL) return;
-
-
-    fetch(
-        googleSheetURL,
-        {
-
-            method: "POST",
-
-            mode: "no-cors",
-
-            headers: {
-
-                "Content-Type":
-                    "text/plain;charset=utf-8"
-
-            },
-
-            body:
-                JSON.stringify(data)
-
-        }
-    )
-    .then(() => {
-
-        console.log(
-            "Enquiry sent to Google Sheet."
-        );
-
-    })
-    .catch(error => {
-
-        console.log(
-            "Google Sheet error:",
-            error
-        );
-
-    });
-
-}
-
-
-/* =========================================================
-   THEME
-========================================================= */
-
-function initializeTheme() {
-
-    const button =
-        document.getElementById(
-            "themeToggle"
-        );
-
-
-    let savedTheme = null;
-
-
-    try {
-
-        savedTheme =
-            localStorage.getItem(
-                "sandeepTheme"
-            );
-
-    }
-    catch (error) {
-
-        console.log(
-            "Theme storage unavailable."
-        );
-
-    }
-
-
-    if (
-        savedTheme === "light"
-    ) {
-
-        document.body.classList.add(
-            "light-theme"
-        );
-
-        document.documentElement.classList.add(
-            "saved-light-theme"
-        );
-
-    }
-    else {
-
-        document.body.classList.remove(
-            "light-theme"
-        );
-
-        document.documentElement.classList.remove(
-            "saved-light-theme"
-        );
-
-    }
-
-
-    updateThemeButton(
-        button
-    );
-
-
-    if (!button) return;
-
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            const isLight =
-                document.body.classList.contains(
-                    "light-theme"
-                );
-
-
-            const newTheme =
-                isLight
-                    ? "dark"
-                    : "light";
-
-
-            if (
-                newTheme === "light"
-            ) {
-
-                document.body.classList.add(
-                    "light-theme"
-                );
-
-                document.documentElement.classList.add(
-                    "saved-light-theme"
-                );
-
-            }
-            else {
-
-                document.body.classList.remove(
-                    "light-theme"
-                );
-
-                document.documentElement.classList.remove(
-                    "saved-light-theme"
-                );
-
-            }
-
-
-            try {
-
-                localStorage.setItem(
-                    "sandeepTheme",
-                    newTheme
-                );
-
-            }
-            catch (error) {
-
-                console.log(
-                    "Unable to save theme."
-                );
-
-            }
-
-
-            updateThemeButton(
-                button
-            );
-
-        }
-    );
-
-}
-
-
-function updateThemeButton(button) {
-
-    if (!button) return;
-
-
-    const isLight =
-        document.body.classList.contains(
-            "light-theme"
-        );
-
-
-    button.textContent =
-        isLight
-            ? "🌙 Dark Mode"
-            : "☀️ Light Mode";
-
-}
-
-
-/* =========================================================
-   LANGUAGE SYSTEM
-========================================================= */
-
-function initializeLanguage() {
-
-    const buttons =
-        document.querySelectorAll(
-            ".language-btn"
-        );
-
-
-    buttons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                setLanguage(
-                    button.dataset.lang
-                );
-
-            }
-        );
-
-    });
-
-
-    let savedLanguage = "en";
-
-
-    try {
-
-        savedLanguage =
-            localStorage.getItem(
-                "sandeepLanguage"
-            ) || "en";
-
-    }
-    catch (error) {
-
-        console.log(
-            "Language storage unavailable."
-        );
-
-    }
-
-
-    setLanguage(
-        savedLanguage
-    );
-
-}
-
-
-function setLanguage(language) {
-
-    const selectedLanguage =
-        translations[language]
-            ? language
-            : "en";
-
-
-    const dictionary =
-        translations[selectedLanguage];
-
-
-    document
-        .querySelectorAll(
-            "[data-i18n]"
-        )
-        .forEach(element => {
-
-            const key =
-                element.getAttribute(
-                    "data-i18n"
-                );
-
-
-            if (
-                dictionary[key]
-            ) {
-
-                element.textContent =
-                    dictionary[key];
-
-            }
-
-        });
-
-
-    try {
-
-        localStorage.setItem(
-            "sandeepLanguage",
-            selectedLanguage
-        );
-
-    }
-    catch (error) {
-
-        console.log(
-            "Unable to save language."
-        );
-
-    }
-
-
-    document
-        .querySelectorAll(
-            ".language-btn"
-        )
-        .forEach(button => {
-
-            button.classList.toggle(
-                "active",
-                button.dataset.lang ===
-                    selectedLanguage
-            );
-
-        });
-
-
-    document.documentElement.lang =
-        selectedLanguage === "hi"
-            ? "hi"
-            : "en";
-
-}
-
-
-/* =========================================================
-   QR DOWNLOAD
-========================================================= */
-
-function initializeQR() {
-
-    const button =
-        document.getElementById(
-            "downloadQR"
-        );
-
-
-    const qr =
-        document.getElementById(
-            "cardQR"
-        );
-
-
-    if (
-        !button ||
-        !qr
-    ) {
-
-        return;
-
-    }
-
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            if (!qr.src) {
-
-                showToast(
-                    "QR image not available."
-                );
-
-                return;
-
-            }
-
-
-            const link =
-                document.createElement("a");
-
-
-            link.href =
-                qr.src;
-
-
-            link.download =
-                "Sandeep-ElectroFix-QR.png";
-
-
-            document.body.appendChild(
-                link
-            );
-
-
-            link.click();
-
-
-            link.remove();
-
-
-            showToast(
-                "QR download started."
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   TOP BUTTON
-========================================================= */
-
-function initializeTopButton() {
-
-    if (
-        document.getElementById(
-            "topButton"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    const button =
-        document.createElement(
-            "button"
-        );
-
-
-    button.id =
-        "topButton";
-
-
-    button.type =
-        "button";
-
-
-    button.setAttribute(
-        "aria-label",
-        "Back to top"
-    );
-
-
-    button.textContent =
-        "⬆";
-
-
-    document.body.appendChild(
-        button
-    );
-
-
-    function update() {
+        /* CALL */
 
         if (
-            window.scrollY > 300
+            text.includes("call")
         ) {
 
-            button.classList.add(
-                "show"
-            );
-
-        }
-        else {
-
-            button.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-
-
-    window.addEventListener(
-        "scroll",
-        update,
-        {
-            passive: true
-        }
-    );
-
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            window.scrollTo({
-
-                top: 0,
-
-                behavior: "smooth"
-
-            });
-
-        }
-    );
-
-
-    update();
-
-}
-
-
-/* =========================================================
-   MOBILE NAVIGATION
-========================================================= */
-
-function initializeMobileNavigation() {
-
-    const items =
-        document.querySelectorAll(
-            ".bottom-nav-item"
-        );
-
-
-    if (!items.length) return;
-
-
-    items.forEach(item => {
-
-        item.addEventListener(
-            "click",
-            () => {
-
-                items.forEach(
-                    nav => {
-
-                        nav.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                item.classList.add(
-                    "active"
-                );
-
-            }
-        );
-
-    });
-
-
-    const sections = [
-
-        "top",
-
-        "services",
-
-        "gallery",
-
-        "contact-form"
-
-    ];
-
-
-    function updateActive() {
-
-        let current =
-            "top";
-
-
-        sections.forEach(id => {
-
-            const section =
-                document.getElementById(
-                    id
-                );
-
-
-            if (!section) return;
-
-
             if (
-                section.getBoundingClientRect()
-                    .top <= 180
+                link.href.startsWith("tel:")
             ) {
 
-                current =
-                    id;
+                link.href =
+                    `tel:${BUSINESS.phone}`;
 
             }
 
-        });
-
-
-        items.forEach(item => {
-
-            const href =
-                item.getAttribute(
-                    "href"
-                );
-
-
-            item.classList.toggle(
-                "active",
-                href === "#" + current
-            );
-
-        });
-
-    }
-
-
-    window.addEventListener(
-        "scroll",
-        updateActive,
-        {
-            passive: true
         }
-    );
 
 
-    updateActive();
+        /* WHATSAPP */
+
+        if (
+            text.includes("whatsapp")
+        ) {
+
+            link.href =
+                `https://wa.me/${BUSINESS.whatsapp}`;
+
+        }
+
+
+        /* WEBSITE */
+
+        if (
+            text === "website"
+        ) {
+
+            link.href =
+                BUSINESS.website;
+
+        }
+
+
+        /* MAP */
+
+        if (
+            text.includes("google maps")
+        ) {
+
+            link.href =
+                BUSINESS.googleMaps;
+
+        }
+
+
+        /* FACEBOOK */
+
+        if (
+            text.includes("facebook")
+        ) {
+
+            link.href =
+                BUSINESS.facebook;
+
+        }
+
+
+        /* INSTAGRAM */
+
+        if (
+            text.includes("instagram")
+        ) {
+
+            link.href =
+                BUSINESS.instagram;
+
+        }
+
+
+        /* YOUTUBE */
+
+        if (
+            text.includes("youtube")
+        ) {
+
+            link.href =
+                BUSINESS.youtube;
+
+        }
+
+
+        /* EMAIL */
+
+        if (
+            text === "email"
+        ) {
+
+            link.href =
+                `mailto:${BUSINESS.email}`;
+
+        }
+
+    });
 
 }
 
@@ -2612,75 +2147,69 @@ function initializeMobileNavigation() {
 
 function initializeRipple() {
 
-    document.addEventListener(
-        "click",
-        event => {
+    $$(
+        ".btn, .card, .bottom-nav-item"
+    ).forEach(element => {
 
-            const target =
-                event.target.closest(
-                    ".btn, .card"
+        element.addEventListener(
+            "click",
+            function() {
+
+                element.classList.add(
+                    "ripple-active"
                 );
 
 
-            if (!target) return;
+                setTimeout(() => {
 
+                    element.classList.remove(
+                        "ripple-active"
+                    );
 
-            if (
-                target.classList.contains(
-                    "bottom-nav-item"
-                )
-            ) {
-
-                return;
+                }, 300);
 
             }
+        );
+
+    });
+
+}
 
 
-            const ripple =
-                document.createElement(
-                    "span"
-                );
+/* =========================================================
+   TOP BUTTON / SCROLL
+========================================================= */
+
+function initializeTopButton() {
+
+    const button =
+        $("#topButton");
 
 
-            ripple.className =
-                "ripple";
+    if (!button) return;
 
 
-            const rect =
-                target.getBoundingClientRect();
+    window.addEventListener(
+        "scroll",
+        function() {
+
+            button.style.display =
+                window.scrollY > 500
+                    ? "flex"
+                    : "none";
+
+        }
+    );
 
 
-            ripple.style.left =
-                (
-                    event.clientX -
-                    rect.left
-                ) + "px";
+    button.addEventListener(
+        "click",
+        function() {
 
-
-            ripple.style.top =
-                (
-                    event.clientY -
-                    rect.top
-                ) + "px";
-
-
-            target.appendChild(
-                ripple
-            );
-
-
-            setTimeout(
-                () => {
-
-                    if (ripple.parentNode) {
-
-                        ripple.remove();
-
-                    }
-
-                },
-                600
-            );
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
         }
     );
@@ -2694,17 +2223,16 @@ function initializeRipple() {
 
 function initializeAnimations() {
 
-    document.body.classList.add(
-        "loaded"
-    );
+    const elements =
+        $$(
+            ".service-card, .gallery-item, .review-card, .card"
+        );
 
 
     if (
         !("IntersectionObserver" in window)
     ) {
-
         return;
-
     }
 
 
@@ -2712,119 +2240,34 @@ function initializeAnimations() {
         new IntersectionObserver(
             entries => {
 
-                entries.forEach(
-                    entry => {
+                entries.forEach(entry => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-                            entry.target.classList.add(
-                                "visible"
-                            );
+                        entry.target.classList.add(
+                            "visible"
+                        );
 
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
+                        observer.unobserve(
+                            entry.target
+                        );
 
                     }
-                );
+
+                });
 
             },
             {
-                threshold: 0.12
+                threshold: 0.1
             }
         );
 
 
-    document
-        .querySelectorAll(
-            ".card, .service-card, .gallery-item, .review-card, .faq-item"
-        )
-        .forEach(element => {
+    elements.forEach(element => {
 
-            observer.observe(
-                element
-            );
-
-        });
-
-}
-
-
-/* =========================================================
-   FOOTER YEAR
-========================================================= */
-
-function updateFooterYear() {
-
-    const footerText =
-        document.querySelector(
-            "footer p"
-        );
-
-
-    if (!footerText) return;
-
-
-    footerText.textContent =
-        `© ${new Date().getFullYear()} Sandeep ElectroFix`;
-
-}
-
-
-/* =========================================================
-   PAGE LOAD
-========================================================= */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        document.body.classList.add(
-            "loaded"
-        );
-
-
-        console.log(
-            "⚡ Sandeep ElectroFix Digital Card Loaded"
-        );
-
-    }
-);
-/* =========================================================
-   SERVICE WORKER REGISTRATION
-========================================================= */
-
-if ("serviceWorker" in navigator) {
-
-    window.addEventListener("load", () => {
-
-        navigator.serviceWorker
-            .register("./sw.js")
-            .then(registration => {
-
-                console.log(
-                    "[SW] Registered successfully:",
-                    registration.scope
-                );
-
-                /* Check for new SW version */
-
-                registration.update();
-
-            })
-            .catch(error => {
-
-                console.error(
-                    "[SW] Registration failed:",
-                    error
-                );
-
-            });
+        observer.observe(element);
 
     });
 
@@ -2832,308 +2275,114 @@ if ("serviceWorker" in navigator) {
 
 
 /* =========================================================
-   SERVICE WORKER UPDATE
+   ESCAPE HTML
 ========================================================= */
 
-if ("serviceWorker" in navigator) {
+function escapeHTML(value) {
 
-    navigator.serviceWorker.addEventListener(
-        "controllerchange",
-        () => {
-
-            console.log(
-                "[SW] New version activated."
-            );
-
-        }
-    );
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
+
+function escapeAttribute(value) {
+
+    return escapeHTML(value);
+
+}
+
+
 /* =========================================================
-   DISCOUNT SYSTEM
+   MAIN INITIALIZATION
 ========================================================= */
 
-function initializeDiscount() {
+function initializeApp() {
 
-    const section =
-        document.getElementById(
-            "discount-section"
-        );
-
-    if (!section) return;
+    console.log(
+        "Initializing Sandeep ElectroFix..."
+    );
 
 
-    const discount =
-        APP.discount || {};
+    /* MASTER CONTROLS */
 
+    initializeHero();
 
-    /* DISCOUNT OFF */
+    initializeQuickAccess();
 
-    if (discount.enabled !== true) {
+    initializeAbout();
 
-        section.style.display = "none";
+    loadServices();
 
-        return;
+    initializeGallery();
 
-    }
+    initializeLightbox();
 
+    loadReviews();
 
-    /* ELEMENTS */
+    initializeGoogleMaps();
 
-    const title =
-        document.getElementById(
-            "discountTitle"
-        );
+    initializeQuoteForm();
 
-    const percentage =
-        document.getElementById(
-            "discountPercentage"
-        );
+    initializeDiscountCalculation();
 
-    const message =
-        document.getElementById(
-            "discountMessage"
-        );
+    initializeDiscountSections();
 
-    const validity =
-        document.getElementById(
-            "discountValidity"
-        );
+    initializeFAQ();
 
+    initializeQR();
 
-    /* TITLE */
+    initializeContact();
 
-    if (title) {
+    initializeFooter();
 
-        title.textContent =
-            discount.title ||
-            "Special Discount";
+    initializeBottomNavigation();
 
-    }
+    initializeTheme();
 
+    initializeLanguage();
 
-    /* PERCENTAGE */
+    initializeShare();
 
-    const discountPercentage =
-        Number(
-            discount.percentage
-        ) || 0;
+    initializeSaveContact();
 
+    updateBusinessLinks();
 
-    if (percentage) {
+    initializeRipple();
 
-        percentage.textContent =
-            discountPercentage;
+    initializeTopButton();
 
-    }
-
-
-    /* MESSAGE */
-
-    if (message) {
-
-        message.textContent =
-            discount.message ||
-            `Get ${discountPercentage}% OFF on Electrical Services`;
-
-    }
-
-
-    /* VALIDITY */
-
-    if (validity) {
-
-        validity.textContent =
-            discount.validity ||
-            "Limited Time Offer";
-
-    }
+    initializeAnimations();
 
 
     console.log(
-        "Discount loaded:",
-        discountPercentage + "%"
+        "Sandeep ElectroFix App Initialized Successfully"
     );
 
 }
 
 
 /* =========================================================
-   DISCOUNT CALCULATOR
+   DOM READY
 ========================================================= */
 
-function initializeDiscountCalculator() {
+if (
+    document.readyState === "loading"
+) {
 
-    const totalInput =
-        document.getElementById(
-            "serviceTotal"
-        );
-
-    const calculation =
-        document.getElementById(
-            "discountCalculation"
-        );
-
-    const originalAmount =
-        document.getElementById(
-            "originalAmount"
-        );
-
-    const discountPercent =
-        document.getElementById(
-            "quoteDiscountPercent"
-        );
-
-    const discountAmount =
-        document.getElementById(
-            "discountAmount"
-        );
-
-    const finalAmount =
-        document.getElementById(
-            "finalAmount"
-        );
-
-
-    if (
-        !totalInput ||
-        !calculation
-    ) {
-
-        return;
-
-    }
-
-
-    function calculateDiscount() {
-
-        const total =
-            Number(
-                totalInput.value
-            ) || 0;
-
-
-        const discount =
-            APP.discount || {};
-
-
-        const enabled =
-            discount.enabled === true;
-
-
-        const percentage =
-            Math.max(
-                0,
-                Math.min(
-                    100,
-                    Number(
-                        discount.percentage
-                    ) || 0
-                )
-            );
-
-
-        /* NO TOTAL */
-
-        if (total <= 0) {
-
-            calculation.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        /* DISCOUNT OFF */
-
-        if (!enabled) {
-
-            calculation.style.display =
-                "block";
-
-
-            originalAmount.textContent =
-                formatCurrency(total);
-
-
-            discountPercent.textContent =
-                "0";
-
-
-            discountAmount.textContent =
-                "- ₹0";
-
-
-            finalAmount.textContent =
-                formatCurrency(total);
-
-            return;
-
-        }
-
-
-        /* CALCULATE */
-
-        const savedAmount =
-            total *
-            percentage /
-            100;
-
-
-        const payableAmount =
-            total -
-            savedAmount;
-
-
-        calculation.style.display =
-            "block";
-
-
-        originalAmount.textContent =
-            formatCurrency(total);
-
-
-        discountPercent.textContent =
-            percentage;
-
-
-        discountAmount.textContent =
-            "- " +
-            formatCurrency(savedAmount);
-
-
-        finalAmount.textContent =
-            formatCurrency(payableAmount);
-
-    }
-
-
-    totalInput.addEventListener(
-        "input",
-        calculateDiscount
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeApp
     );
-
-
-    calculateDiscount();
 
 }
 
+else {
 
-/* =========================================================
-   CURRENCY FORMAT
-========================================================= */
-
-function formatCurrency(amount) {
-
-    return new Intl.NumberFormat(
-        "en-IN",
-        {
-            style: "currency",
-            currency: "INR",
-            maximumFractionDigits: 0
-        }
-    ).format(amount);
+    initializeApp();
 
 }
