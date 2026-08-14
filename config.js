@@ -94,7 +94,49 @@ features: {
 
     enabled: true
 },
+/* =====================================
+   DISCOUNT / OFFER SETTINGS
+====================================== */
 
+discount: {
+
+    /* DISCOUNT ON / OFF */
+
+    enabled: true,
+
+    /* DISCOUNT TYPE
+       "percentage" = %
+       "fixed"      = ₹
+    */
+
+    type: "percentage",
+
+    /* DISCOUNT VALUE */
+
+    value: 10,
+
+    /* OFFER TITLE */
+
+    title: "Special Discount",
+
+    /* OFFER MESSAGE */
+
+    message:
+        "Get special discount on selected electrical services.",
+
+    /* OPTIONAL VALIDITY */
+
+    validUntil: "",
+
+    /* EXAMPLE:
+       "31 August 2026"
+    */
+
+    /* SHOW DISCOUNT ON CARD */
+
+    showOnCard: true
+
+},
 
 /* =====================================
    SERVICES
