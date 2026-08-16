@@ -1,977 +1,236 @@
 /* =========================================================
-   SANDEEP ELECTROFIX
-   PROJECT 2 - DIGITAL CARD
-   MASTER CONFIGURATION
-   VERSION 3.0
-   ========================================================= */
+   SANDEEP ELECTROFIX - MASTER CONFIGURATION
+========================================================= */
 
-const CONFIG = {
+window.MASTER_CONFIG = {
+    // 🎛️ 1. MASTER SHOW / HIDE CONTROLS
+    controls: {
+        // Sections Visibility
+        showHero: true,
+        showDiscount: false,
+        discountPercent: 10,
+        showQuickAccess: true,
+        showSocialLinks: true,
+        showAbout: true,
+        showLocation: true,
+        showServices: true,
+        showGallery: true,
+        showQR: true,
+        showReviews: false,
+        showQuoteForm: true,
+        showFAQ: true,
+        showFooter: true,
+        showBottomNav: true,
 
-    /* =====================================================
-       BUSINESS INFORMATION
-    ===================================================== */
+        // Top Controls & Hero Elements
+        showThemeToggle: true,
+        showLanguageSwitcher: true,
+        showResetBtn: true,
+        showLogo: true,
+        showTagline: true,
+        showHeroLocation: true,
+        showHeroCallBtn: true,
+        showHeroWhatsappBtn: true,
 
+        // Quick Access Individual Buttons
+        showQuickCall: true,
+        showQuickWhatsapp: true,
+        showQuickEmail: true,
+        showQuickWebsite: true,
+        showQuickMaps: true,
+        showQuickSaveContact: true,
+        showQuickShare: true,
+        showQuickWork: true,
+        showQuickCatalogue: true,
+
+        // Social Media Individual Buttons
+        showFacebook: true,
+        showInstagram: true,
+        showYoutube: true,
+
+        // Quotation Action Buttons
+        showQuoteWhatsappBtn: true,
+        showQuotePdfBtn: true
+    },
+
+    // 🏢 2. BUSINESS & SOCIAL DETAILS
     business: {
-
         name: "Sandeep ElectroFix",
-
         owner: "Sandeep Verma",
-
-        tagline: "Powering Your Trust",
-
         phone: "+919026036445",
-
         whatsapp: "919026036445",
-
         email: "SandeepElectroFix@gmail.com",
-
-        location: "Lucknow, Uttar Pradesh",
-
-        website:
-            "https://sandeepelectrofix.github.io/",
-
-        cardWebsite:
-            "https://sandeepelectrofix.github.io/SandeepElectroFix-Card/",
-
-        googleMaps:
-            "https://maps.app.goo.gl/XYZnm7sFAVRT68Vs7",
-
-        facebook:
-            "https://www.facebook.com/SandeepElectroFix",
-
-        instagram:
-            "https://www.instagram.com/sandeep_electrofix",
-
-        youtube:
-            "https://youtube.com/@sandeepelectrofix",
-
-        logo:
-            "assets/logo.png",
-
-        cardQR:
-            "assets/qr-card.png"
-
+        location_en: "Lucknow, Uttar Pradesh",
+        location_hi: "लखनऊ, उत्तर प्रदेश",
+        tagline_en: "Powering Your Trust",
+        tagline_hi: "आपके विश्वास को रोशन करते हुए",
+        website: "https://sandeepelectrofix.github.io/",
+        cardWebsite: "https://sandeepelectrofix.github.io/SandeepElectroFix-Card/",
+        googleMaps: "https://maps.app.goo.gl/XYZnm7sFAVRT68Vs7",
+        facebook: "https://www.facebook.com/SandeepElectroFix",
+        instagram: "https://www.instagram.com/sandeep_electrofix",
+        youtube: "https://youtube.com/@sandeepelectrofix",
+        logo: "assets/logo.png",
+        qrCode: "assets/qr.png"
     },
 
-
-    /* =====================================================
-       MASTER FEATURE CONTROL
-       
-       true  = SHOW
-       false = HIDE
-       
-       IMPORTANT:
-       YAHI SE FEATURES CONTROL HONGE
-    ===================================================== */
-
-    features: {
-
-
-        /* =================================================
-           MAIN SECTIONS
-        ================================================= */
-
-        hero: true,
-
-        quickAccess: true,
-
-        about: true,
-
-        services: true,
-
-        gallery: true,
-
-        reviews: false,
-
-        googleMaps: true,
-
-        contactForm: true,
-
-        faq: true,
-
-        qrCode: true,
-
-        contact: true,
-
-        footer: true,
-
-
-        /* =================================================
-           HERO ITEMS
-        ================================================= */
-
-        heroItems: {
-
-            logo: true,
-
-            tagline: true,
-
-            location: true,
-
-            callButton: true,
-
-            whatsappButton: true,
-
-            themeButton: true,
-
-            languageSwitcher: true
-
-        },
-
-
-        /* =================================================
-           QUICK ACCESS
-        ================================================= */
-
-        quickAccessItems: {
-
-            materialCatalogue: true,
-
-            call: true,
-
-            whatsapp: true,
-
-            website: true,
-
-            googleMaps: true,
-
-            facebook: true,
-
-            instagram: true,
-
-            youtube: true,
-
-            email: true,
-
-            saveContact: true,
-
-            share: true,
-
-            ourWork: true
-
-        },
-
-
-        /* =================================================
-           SERVICES CONTROL
-        ================================================= */
-
-        serviceSettings: {
-
-            showMainServices: true,
-
-            showSubItems: true,
-
-            showDescription: true,
-
-            showPrices: true,
-
-            showUnits: true
-
-        },
-
-
-        /* =================================================
-           OFFERS / DISCOUNT
-        ================================================= */
-
-        offers: true,
-
-        discountOffer: true,
-
-        discountSection: true,
-
-
-        /* =================================================
-           OTHER FEATURES
-        ================================================= */
-
-        darkMode: true,
-
-        languageSwitcher: true,
-
-        visitorCounter: false,
-
-        youtube: true,
-
-
-        /* =================================================
-           MOBILE BOTTOM NAVIGATION
-        ================================================= */
-
-        bottomNavigation: true,
-
-
-        /* =================================================
-           BOTTOM NAVIGATION ITEMS
-        ================================================= */
-
-        bottomNavItems: {
-
-            home: true,
-
-            services: true,
-
-            work: true,
-
-            quote: true,
-
-            call: true
-
-        }
-
-    },
-
-
-    /* =====================================================
-       DISCOUNT
-    ===================================================== */
-
-    discount: {
-
-        enabled: true,
-
-        type: "percentage",
-
-        value: 10,
-
-        title: "Special Discount",
-
-        message:
-            "Get special discount on selected electrical services.",
-
-        validUntil: "",
-
-        showOnCard: true
-
-    },
-
-
-    /* =====================================================
-       SERVICES
-       MAIN MENU + SUB MENU + FIXED RATE
-    ===================================================== */
-
+    // 🛠️ 3. SERVICES & PRICING
     services: [
-
-
-        /* =================================================
-           HOUSE WIRING
-        ================================================= */
-
         {
-
             id: "house-wiring",
-
             show: true,
-
             icon: "🏠",
-
-            title: "House Wiring",
-
-            description:
-                "Professional house wiring for new and existing homes.",
-
-            items: [
-
-                {
-
-                    id: "concealed-wiring",
-
-                    show: true,
-
-                    title: "Concealed Wiring",
-
-                    price: 25,
-
-                    unit: "sq.ft"
-
-                },
-
-                {
-
-                    id: "surface-wiring",
-
-                    show: true,
-
-                    title: "Surface Wiring",
-
-                    price: 18,
-
-                    unit: "sq.ft"
-
-                },
-
-                {
-
-                    id: "point-wiring",
-
-                    show: true,
-
-                    title: "Point Wiring",
-
-                    price: 350,
-
-                    unit: "point"
-
-                },
-
-                {
-
-                    id: "fan-point",
-
-                    show: true,
-
-                    title: "Fan Point",
-
-                    price: 450,
-
-                    unit: "point"
-
-                },
-
-                {
-
-                    id: "light-point",
-
-                    show: true,
-
-                    title: "Light Point",
-
-                    price: 300,
-
-                    unit: "point"
-
-                }
-
+            title_en: "House Wiring",
+            title_hi: "हाउस वायरिंग",
+            desc_en: "Complete house wiring and piping solutions.",
+            desc_hi: "नए और पुराने मकान की पूरी वायरिंग और पाइपिंग।",
+            subServices: [
+                { show: true, name_en: "New House Wiring", name_hi: "नए मकान की वायरिंग", rate_en: "₹45 / sq.ft.", rate_hi: "₹45 / वर्ग फीट", price: 45 },
+                { show: true, name_en: "Concealed Wiring", name_hi: "कंसील्ड (अंडरग्राउंड) वायरिंग", rate_en: "₹40 / sq.ft.", rate_hi: "₹40 / वर्ग फीट", price: 40 },
+                { show: true, name_en: "Surface Wiring", name_hi: "ओपन / सरफेस वायरिंग", rate_en: "₹30 / sq.ft.", rate_hi: "₹30 / वर्ग फीट", price: 30 },
+                { show: true, name_en: "Slab Piping", name_hi: "छत / स्लैब पाइपिंग", rate_en: "₹15 / sq.ft.", rate_hi: "₹15 / वर्ग फीट", price: 15 },
+                { show: true, name_en: "Switch & Socket Installation", name_hi: "स्विच और सॉकेट फिटिंग", rate_en: "₹80 / point", rate_hi: "₹80 / point", price: 80 },
+                { show: true, name_en: "Complete House Wiring", name_hi: "फुल हाउस वायरिंग सेटअप", rate_en: "₹50 / sq.ft.", rate_hi: "₹50 / वर्ग फीट", price: 50 }
             ]
-
         },
-
-
-        /* =================================================
-           FAN & LIGHT
-        ================================================= */
-
         {
-
-            id: "fan-light",
-
+            id: "light-fan-installation",
             show: true,
-
             icon: "💡",
-
-            title: "Fan & Light Fitting",
-
-            description:
-                "Professional installation of fans, lights and fittings.",
-
-            items: [
-
-                {
-
-                    id: "ceiling-fan",
-
-                    show: true,
-
-                    title: "Ceiling Fan Installation",
-
-                    price: 300,
-
-                    unit: "piece"
-
-                },
-
-                {
-
-                    id: "wall-fan",
-
-                    show: true,
-
-                    title: "Wall Fan Installation",
-
-                    price: 250,
-
-                    unit: "piece"
-
-                },
-
-                {
-
-                    id: "led-light",
-
-                    show: true,
-
-                    title: "LED Light Installation",
-
-                    price: 150,
-
-                    unit: "piece"
-
-                }
-
+            title_en: "Light & Fan Installation",
+            title_hi: "लाइट और पंखा फिटिंग",
+            desc_en: "Fitting of ceiling fans, LED lights and fixtures.",
+            desc_hi: "सीलिंग फैन, एग्जॉस्ट फैन और सभी प्रकार की लाइट फिटिंग।",
+            subServices: [
+                { show: true, name_en: "Ceiling Fan Installation", name_hi: "सीलिंग पंखा फिटिंग", rate_en: "₹250 / fan", rate_hi: "₹250 / पंखा", price: 250 },
+                { show: true, name_en: "Exhaust Fan Installation", name_hi: "एग्जॉस्ट पंखा फिटिंग", rate_en: "₹200 / fan", rate_hi: "₹200 / पंखा", price: 200 },
+                { show: true, name_en: "LED Light Installation", name_hi: "एलईडी लाइट इंस्टॉलेशन", rate_en: "₹100 / light", rate_hi: "₹100 / लाइट", price: 100 },
+                { show: true, name_en: "Decorative Light Fitting", name_hi: "डेकोरेटिव / झूमर लाइट", rate_en: "₹250 / light", rate_hi: "₹250 / लाइट", price: 250 },
+                { show: true, name_en: "Tube Light Installation", name_hi: "ट्यूब लाइट फिटिंग", rate_en: "₹120 / light", rate_hi: "₹120 / लाइट", price: 120 },
+                { show: true, name_en: "Fan Regulator Fitting", name_hi: "फैन रेगुलेटर फिटिंग", rate_en: "₹100 / piece", rate_hi: "₹100 / पीस", price: 100 }
             ]
-
         },
-
-
-        /* =================================================
-           MCB & DB
-        ================================================= */
-
         {
-
-            id: "mcb-db",
-
+            id: "mcb-db-work",
             show: true,
-
-            icon: "⚡",
-
-            title: "MCB & DB Installation",
-
-            description:
-                "MCB, DB and electrical protection system installation.",
-
-            items: [
-
-                {
-
-                    id: "mcb-installation",
-
-                    show: true,
-
-                    title: "MCB Installation",
-
-                    price: 150,
-
-                    unit: "piece"
-
-                },
-
-                {
-
-                    id: "db-installation",
-
-                    show: true,
-
-                    title: "DB Installation",
-
-                    price: 500,
-
-                    unit: "piece"
-
-                },
-
-                {
-
-                    id: "rccb-installation",
-
-                    show: true,
-
-                    title: "RCCB Installation",
-
-                    price: 300,
-
-                    unit: "piece"
-
-                }
-
-            ]
-
-        },
-
-
-        /* =================================================
-           FALSE CEILING
-        ================================================= */
-
-        {
-
-            id: "false-ceiling",
-
-            show: true,
-
             icon: "🔌",
-
-            title: "False Ceiling Wiring",
-
-            description:
-                "Neat and safe wiring for false ceiling lights and electrical points.",
-
-            items: [
-
-                {
-
-                    id: "ceiling-light-point",
-
-                    show: true,
-
-                    title: "Ceiling Light Point",
-
-                    price: 250,
-
-                    unit: "point"
-
-                },
-
-                {
-
-                    id: "ceiling-fan-point",
-
-                    show: true,
-
-                    title: "Ceiling Fan Point",
-
-                    price: 400,
-
-                    unit: "point"
-
-                }
-
+            title_en: "MCB & DB Work",
+            title_hi: "एमसीबी और डीबी पैनल वर्क",
+            desc_en: "MCB, DB, RCCB and circuit safety installation.",
+            desc_hi: "एमसीबी, आरसीसीबी और डिस्ट्रीब्यूशन बोर्ड सुरक्षित फिटिंग।",
+            subServices: [
+                { show: true, name_en: "MCB Installation", name_hi: "एमसीबी फिटिंग", rate_en: "₹150 / MCB", rate_hi: "₹150 / MCB", price: 150 },
+                { show: true, name_en: "DB Installation", name_hi: "डीबी बॉक्स फिटिंग", rate_en: "₹500 / DB", rate_hi: "₹500 / DB", price: 500 },
+                { show: true, name_en: "MCB Replacement", name_hi: "खराब MCB बदलना", rate_en: "₹100 / MCB", rate_hi: "₹100 / MCB", price: 100 },
+                { show: true, name_en: "RCCB Installation", name_hi: "आरसीसीबी फिटिंग", rate_en: "₹300 / pc", rate_hi: "₹300 / पीस", price: 300 },
+                { show: true, name_en: "RCBO Installation", name_hi: "आरसीबीओ फिटिंग", rate_en: "₹350 / pc", rate_hi: "₹350 / पीस", price: 350 },
+                { show: true, name_en: "DB Board Dressing", name_hi: "डीबी बोर्ड ड्रेसिंग", rate_en: "₹500 / DB", rate_hi: "₹500 / DB", price: 500 }
             ]
-
         },
-
-
-        /* =================================================
-           INVERTER
-        ================================================= */
-
         {
-
-            id: "inverter",
-
+            id: "false-ceiling-wiring",
             show: true,
-
+            icon: "🏗️",
+            title_en: "False Ceiling Wiring",
+            title_hi: "फॉल्स सीलिंग वायरिंग",
+            desc_en: "Wiring for COB, profile, strip lights in ceiling.",
+            desc_hi: "फॉल्स सीलिंग लाइट्स, प्रोफाइल और स्ट्रिप लाइट वायरिंग।",
+            subServices: [
+                { show: true, name_en: "Ceiling Light Wiring", name_hi: "सीलिंग लाइट वायरिंग", rate_en: "₹8 / sq.ft.", rate_hi: "₹8 / वर्ग फीट", price: 8 },
+                { show: true, name_en: "Downlight Wiring", name_hi: "डाउनलाइट वायरिंग", rate_en: "₹8 / sq.ft.", rate_hi: "₹8 / वर्ग फीट", price: 8 },
+                { show: true, name_en: "Panel Light Wiring", name_hi: "पैनल लाइट वायरिंग", rate_en: "₹8 / sq.ft.", rate_hi: "₹8 / वर्ग फीट", price: 8 },
+                { show: true, name_en: "Strip Light Wiring", name_hi: "स्ट्रिप लाइट वायरिंग", rate_en: "₹10 / sq.ft.", rate_hi: "₹10 / वर्ग फीट", price: 10 },
+                { show: true, name_en: "Fan Point in Ceiling", name_hi: "सीलिंग में फैन पॉइंट", rate_en: "₹150 / point", rate_hi: "₹150 / पॉइंट", price: 150 },
+                { show: true, name_en: "Concealed Ceiling Wiring", name_hi: "कंसील्ड सीलिंग वायरिंग", rate_en: "₹10 / sq.ft.", rate_hi: "₹10 / वर्ग फीट", price: 10 }
+            ]
+        },
+        {
+            id: "inverter-backup",
+            show: true,
             icon: "🔋",
-
-            title: "Inverter Wiring",
-
-            description:
-                "Professional inverter and backup power wiring.",
-
-            items: [
-
-                {
-
-                    id: "inverter-wiring",
-
-                    show: true,
-
-                    title: "Basic Inverter Wiring",
-
-                    price: 800,
-
-                    unit: "job"
-
-                },
-
-                {
-
-                    id: "changeover",
-
-                    show: true,
-
-                    title: "Inverter Changeover",
-
-                    price: 500,
-
-                    unit: "job"
-
-                }
-
+            title_en: "Inverter & Backup",
+            title_hi: "इन्वर्टर और बैटरी कनेक्शन",
+            desc_en: "Inverter battery setup and changeover services.",
+            desc_hi: "इन्वर्टर कनेक्शन, चेंजओवर स्विच और बैकअप वायरिंग।",
+            subServices: [
+                { show: true, name_en: "Inverter Installation", name_hi: "इन्वर्टर इंस्टॉलेशन", rate_en: "₹500 / set", rate_hi: "₹500 / सेट", price: 500 },
+                { show: true, name_en: "Inverter Wiring", name_hi: "इन्वर्टर लाइन वायरिंग", rate_en: "₹8 / sq.ft.", rate_hi: "₹8 / वर्ग फीट", price: 8 },
+                { show: true, name_en: "Battery Connection", name_hi: "बैटरी कनेक्शन", rate_en: "₹150 / conn", rate_hi: "₹150 / कनेक्शन", price: 150 },
+                { show: true, name_en: "Changeover Switch Fitting", name_hi: "चेंजओवर स्विच लगाना", rate_en: "₹300 / pc", rate_hi: "₹300 / पीस", price: 300 },
+                { show: true, name_en: "Backup Line Routing", name_hi: "बैकअप लाइन बिछाना", rate_en: "₹8 / sq.ft.", rate_hi: "₹8 / वर्ग फीट", price: 8 },
+                { show: true, name_en: "Inverter Fault Check", name_hi: "इन्वर्टर फॉल्ट चेकिंग", rate_en: "₹200 / visit", rate_hi: "₹200 / विजिट", price: 200 }
             ]
-
         },
-
-
-        /* =================================================
-           ELECTRICAL REPAIR
-        ================================================= */
-
         {
-
-            id: "repair",
-
+            id: "electrical-repair",
             show: true,
-
-            icon: "🛠️",
-
-            title: "Electrical Repair",
-
-            description:
-                "Electrical repair and maintenance for homes and shops.",
-
-            items: [
-
-                {
-
-                    id: "minor-repair",
-
-                    show: true,
-
-                    title: "Minor Electrical Repair",
-
-                    price: 300,
-
-                    unit: "job"
-
-                },
-
-                {
-
-                    id: "fault-repair",
-
-                    show: true,
-
-                    title: "Electrical Fault Repair",
-
-                    price: 500,
-
-                    unit: "job"
-
-                }
-
+            icon: "🔧",
+            title_en: "Electrical Repair",
+            title_hi: "इलेक्ट्रिकल रिपेयर",
+            desc_en: "Quick repairs for switches, sockets, and fans.",
+            desc_hi: "स्विच, सॉकेट, पंखा और सामान्य बिजली रिपेयर सेवा।",
+            subServices: [
+                { show: true, name_en: "Switch Repair", name_hi: "स्विच रिपेयर", rate_en: "₹80 / point", rate_hi: "₹80 / point", price: 80 },
+                { show: true, name_en: "Socket Repair", name_hi: "सॉकेट रिपेयर", rate_en: "₹80 / point", rate_hi: "₹80 / point", price: 80 },
+                { show: true, name_en: "Fan Repair", name_hi: "पंखा रिपेयर", rate_en: "₹150 / fan", rate_hi: "₹150 / पंखा", price: 150 },
+                { show: true, name_en: "Light Repair", name_hi: "लाइट रिपेयर", rate_en: "₹100 / light", rate_hi: "₹100 / लाइट", price: 100 },
+                { show: true, name_en: "Loose Connection Fix", name_hi: "लूज कनेक्शन सही करना", rate_en: "₹150 / point", rate_hi: "₹150 / पॉइंट", price: 150 },
+                { show: true, name_en: "Short Circuit Fix", name_hi: "शॉर्ट सर्किट रिपेयर", rate_en: "₹300 / visit", rate_hi: "₹300 / विजिट", price: 300 }
             ]
-
         },
-
-
-        /* =================================================
-           FAULT FINDING
-        ================================================= */
-
         {
-
             id: "fault-finding",
-
             show: true,
-
-            icon: "🔎",
-
-            title: "Fault Finding",
-
-            description:
-                "Electrical fault detection and troubleshooting.",
-
-            items: [
-
-                {
-
-                    id: "basic-fault",
-
-                    show: true,
-
-                    title: "Basic Fault Finding",
-
-                    price: 300,
-
-                    unit: "visit"
-
-                },
-
-                {
-
-                    id: "detailed-fault",
-
-                    show: true,
-
-                    title: "Detailed Fault Finding",
-
-                    price: 500,
-
-                    unit: "visit"
-
-                }
-
+            icon: "🔍",
+            title_en: "Fault Finding",
+            title_hi: "फॉल्ट टेस्टिंग और चेकिंग",
+            desc_en: "Short circuit detection and power restoration.",
+            desc_hi: "शॉर्ट सर्किट, लाइन फॉल्ट और वोल्टेज टेस्टिंग।",
+            subServices: [
+                { show: true, name_en: "Power Failure Checking", name_hi: "पावर कट / लाइन चेकिंग", rate_en: "₹200 / visit", rate_hi: "₹200 / विजिट", price: 200 },
+                { show: true, name_en: "Short Circuit Detection", name_hi: "शॉर्ट सर्किट पकड़ना", rate_en: "₹300 / visit", rate_hi: "₹300 / विजिट", price: 300 },
+                { show: true, name_en: "MCB Tripping Issue", name_hi: "बार-बार MCB गिरना", rate_en: "₹250 / visit", rate_hi: "₹250 / विजिट", price: 250 },
+                { show: true, name_en: "Voltage Checking", name_hi: "वोल्टेज जांच", rate_en: "₹150 / visit", rate_hi: "₹150 / विजिट", price: 150 },
+                { show: true, name_en: "Wiring Fault Detection", name_hi: "वायरिंग फॉल्ट टेस्ट", rate_en: "₹300 / visit", rate_hi: "₹300 / विजिट", price: 300 },
+                { show: true, name_en: "Loose Neutral Detection", name_hi: "न्यूट्रल / अर्थिंग जांच", rate_en: "₹200 / visit", rate_hi: "₹200 / विजिट", price: 200 }
             ]
-
         },
-
-
-        /* =================================================
-           COMMERCIAL
-        ================================================= */
-
         {
-
-            id: "commercial",
-
+            id: "commercial-electrical-work",
             show: true,
-
             icon: "🏢",
-
-            title: "Commercial Wiring",
-
-            description:
-                "Electrical wiring for shops and commercial spaces.",
-
-            items: [
-
-                {
-
-                    id: "commercial-point",
-
-                    show: true,
-
-                    title: "Commercial Point Wiring",
-
-                    price: 450,
-
-                    unit: "point"
-
-                },
-
-                {
-
-                    id: "shop-wiring",
-
-                    show: true,
-
-                    title: "Shop Wiring",
-
-                    price: 1500,
-
-                    unit: "job"
-
-                }
-
+            title_en: "Commercial Work",
+            title_hi: "कमर्शियल इलेक्ट्रिकल कार्य",
+            desc_en: "Wiring and maintenance for shops, offices, and clinics.",
+            desc_hi: "दुकान, ऑफिस और शोरूम की पूरी वायरिंग व मेंटेनेंस।",
+            subServices: [
+                { show: true, name_en: "Shop Wiring", name_hi: "दुकान की वायरिंग", rate_en: "₹45 / sq.ft.", rate_hi: "₹45 / वर्ग फीट", price: 45 },
+                { show: true, name_en: "Office Wiring", name_hi: "ऑफिस वायरिंग", rate_en: "₹50 / sq.ft.", rate_hi: "₹50 / वर्ग फीट", price: 50 },
+                { show: true, name_en: "Commercial Points Fitting", name_hi: "कमर्शियल पॉइंट फिटिंग", rate_en: "₹100 / point", rate_hi: "₹100 / पॉइंट", price: 100 },
+                { show: true, name_en: "Commercial DB Setup", name_hi: "कमर्शियल डीबी सेटअप", rate_en: "₹500 / DB", rate_hi: "₹500 / DB", price: 500 },
+                { show: true, name_en: "Track Light Fitting", name_hi: "ट्रैक लाइट इंस्टॉलेशन", rate_en: "₹150 / light", rate_hi: "₹150 / लाइट", price: 150 },
+                { show: true, name_en: "Monthly Maintenance", name_hi: "मासिक मेंटेनेंस विजिट", rate_en: "₹500 / visit", rate_hi: "₹500 / विजिट", price: 500 }
             ]
-
         }
-
     ],
 
-
-    /* =====================================================
-       GALLERY
-    ===================================================== */
-
+    // 📸 4. GALLERY
     gallery: [
-
-        {
-
-            id: "work-1",
-
-            show: true,
-
-            image: "assets/gallery/work1.jpg",
-
-            title: "Electrical Work"
-
-        },
-
-        {
-
-            id: "work-2",
-
-            show: true,
-
-            image: "assets/gallery/work2.jpg",
-
-            title: "House Wiring"
-
-        },
-
-        {
-
-            id: "work-3",
-
-            show: true,
-
-            image: "assets/gallery/work3.jpg",
-
-            title: "Electrical Installation"
-
-        },
-
-        {
-
-            id: "work-4",
-
-            show: true,
-
-            image: "assets/gallery/work4.jpg",
-
-            title: "Professional Electrical Work"
-
-        }
-
+        { show: true, image: "assets/gallery/work1.jpg", title_en: "House Wiring", title_hi: "हाउस वायरिंग" },
+        { show: true, image: "assets/gallery/work2.jpg", title_en: "False Ceiling Wiring", title_hi: "फॉल्स सीलिंग वायरिंग" },
+        { show: true, image: "assets/gallery/work3.jpg", title_en: "DB Panel Installation", title_hi: "डीबी पैनल इंस्टॉलेशन" },
+        { show: true, image: "assets/gallery/work4.jpg", title_en: "Lighting Work", title_hi: "लाइटिंग वर्क" }
     ],
 
-
-    /* =====================================================
-       REVIEWS
-    ===================================================== */
-
+    // ⭐ 5. REVIEWS
     reviews: [
-
-        {
-
-            id: "review-1",
-
-            show: true,
-
-            name: "Customer",
-
-            rating: 5,
-
-            text:
-                "Professional electrical service with good workmanship."
-
-        },
-
-        {
-
-            id: "review-2",
-
-            show: true,
-
-            name: "Customer",
-
-            rating: 5,
-
-            text:
-                "Good quality electrical work and proper guidance."
-
-        },
-
-        {
-
-            id: "review-3",
-
-            show: true,
-
-            name: "Customer",
-
-            rating: 5,
-
-            text:
-                "Reliable electrician service in Lucknow."
-
-        }
-
+        { show: true, name: "Rahul Sharma", rating: 5, text_en: "Excellent electrical service and professional work.", text_hi: "बहुत ही बढ़िया और सुरक्षित काम किया।" },
+        { show: true, name: "Amit Verma", rating: 5, text_en: "Good quality work and on-time service.", text_hi: "समय पर और बेहतरीन क्वालिटी का काम।" }
     ],
 
-
-    /* =====================================================
-       FAQ
-    ===================================================== */
-
+    // ❓ 6. FAQ
     faq: [
-
-        {
-
-            id: "faq-1",
-
-            show: true,
-
-            question:
-                "What electrical services do you provide?",
-
-            answer:
-                "We provide house wiring, false ceiling wiring, MCB & DB installation, fan and light fitting, inverter wiring, electrical repair, fault finding and maintenance services."
-
-        },
-
-        {
-
-            id: "faq-2",
-
-            show: true,
-
-            question:
-                "Do you provide house wiring services?",
-
-            answer:
-                "Yes. We provide professional electrical wiring services for new construction, renovation and existing homes."
-
-        },
-
-        {
-
-            id: "faq-3",
-
-            show: true,
-
-            question:
-                "Do you provide electrical repair services?",
-
-            answer:
-                "Yes. We provide electrical fault finding, repair and maintenance services."
-
-        },
-
-        {
-
-            id: "faq-4",
-
-            show: true,
-
-            question:
-                "How can I request a quotation?",
-
-            answer:
-                "Use the Request a Quote form on this digital card and send your enquiry directly through WhatsApp."
-
-        },
-
-        {
-
-            id: "faq-5",
-
-            show: true,
-
-            question:
-                "Which area do you serve?",
-
-            answer:
-                "Sandeep ElectroFix provides electrical services in Lucknow, Uttar Pradesh."
-
-        }
-
-    ],
-
-
-    /* =====================================================
-       QUOTE FORM
-    ===================================================== */
-
-    quote: {
-
-        enabled: true,
-
-        whatsappNumber:
-            "919026036445",
-
-        defaultMessage:
-            "Hello Sandeep ElectroFix, I would like to enquire about electrical service.",
-
-        requireName: true,
-
-        requirePhone: true,
-
-        requireService: true,
-
-        requireLocation: true
-
-    }
-
+        { show: true, q_en: "Do you provide complete house wiring?", q_hi: "क्या आप पूरे मकान की वायरिंग करते हैं?", a_en: "Yes, we provide new house concealed and surface wiring.", a_hi: "हाँ, हम नए और पुराने मकानों की पूरी अंडरग्राउंड व ओपन वायरिंग करते हैं।" },
+        { show: true, q_en: "Do you fix short circuits and tripping?", q_hi: "क्या आप शॉर्ट सर्किट और फॉल्ट ठीक करते हैं?", a_en: "Yes, we detect and fix short circuits safely.", a_hi: "हाँ, हम शॉर्ट सर्किट और एमसीबी ट्रिपिंग तुरंत चेक करके ठीक करते हैं।" }
+    ]
 };
-
-
-/* =========================================================
-   GLOBAL ACCESS
-========================================================= */
-
-window.CONFIG = CONFIG;
-
-
-/* =========================================================
-   CONFIG LOADED MESSAGE
-========================================================= */
-
-console.log(
-    "Sandeep ElectroFix Master Config Loaded",
-    CONFIG
-);
